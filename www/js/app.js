@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
 .run(function($rootScope) {
     $rootScope.subsiteCode = "";
-    $rootScope.url = "";
+    $rootScope.url = "http://58.30.241.14/webapp/mobile.do?";
     $rootScope.user = {
         userId: '001',
         nickname: 'user',
@@ -125,71 +125,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             url: '/:pid/pay-ok?orderNum&totalMoney&linkMan&productName',
             templateUrl: 'templates/pay-ok.html',
             controller: 'PayOKCtrl'
-        })
-        //首页风格4
-        .state('home-4', {
-            url: '/:pid/home-4',
-            templateUrl: 'templates/home-4.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格5
-        .state('home-5', {
-            url: '/:pid/home-5',
-            templateUrl: 'templates/home-5.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格6
-        .state('home-6', {
-            url: '/:pid/home-6',
-            templateUrl: 'templates/home-6.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格7
-        .state('home-7', {
-            url: '/:pid/home-7',
-            templateUrl: 'templates/home-7.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格8
-        .state('home-8', {
-            url: '/:pid/home-8',
-            templateUrl: 'templates/home-8.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格9
-        .state('home-9', {
-            url: '/:pid/home-9',
-            templateUrl: 'templates/home-9.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格10
-        .state('home-10', {
-            url: '/:pid/home-10',
-            templateUrl: 'templates/home-10.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格11
-        .state('home-11', {
-            url: '/:pid/home-11',
-            templateUrl: 'templates/home-11.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格12
-        .state('home-12', {
-            url: '/:pid/home-12',
-            templateUrl: 'templates/home-12.html'
-        })
-        //首页风格13
-        .state('home-13', {
-            url: '/:pid/home-13',
-            templateUrl: 'templates/home-13.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格16
-        .state('home-16', {
-            url: '/:pid/home-16',
-            templateUrl: 'templates/home-16.html',
-            controller: 'HomeCtrl'
         })
         //首页风格18
         .state('home-18', {
