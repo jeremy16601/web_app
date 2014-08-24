@@ -127,7 +127,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             controller: 'PayOKCtrl'
         })
 
-        //首页风格29
+        //首页风格
         .state('home-29', {
             url: '/:pid/home-29',
             templateUrl: 'templates/home-29.html',
