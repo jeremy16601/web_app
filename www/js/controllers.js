@@ -4,13 +4,13 @@ angular.module('starter.controllers', [])
 
     InitService.getInitDatas(function(data) {
         localStorageService.set('initInfo', data);
-        localStorageService.set('homeStyle', data.styleIde);
+        localStorageService.set('homeStyle', 'home-29');
         localStorageService.set('bgImg', data.bgImg);
         localStorageService.set('phone', data.phone);
         localStorageService.set('title', data.customName);
-        localStorageService.set('payType', data.payType);
+        localStorageService.set('payType', '3');
 
-        console.log('data===='+data);
+        console.log('data===='+data.bgImg);
         $state.go(localStorageService.get('homeStyle'), $stateParams, {
             location: false
         });
