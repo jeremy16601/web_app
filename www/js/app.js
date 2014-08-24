@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
     $stateProvider
     //开始页面，初始化
         .state('start', {
-        url: '/',
+        url: '/:pid',
         template: '<div></div>',
         controller: 'InitCtrl'
     })
