@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
 .run(function($rootScope) {
     $rootScope.subsiteCode = "";
-    $rootScope.url = "http://58.30.241.14/webapp/mobile.do?";
+    $rootScope.url = "";
     $rootScope.user = {
         userId: '001',
         nickname: 'user',
@@ -126,54 +126,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             templateUrl: 'templates/pay-ok.html',
             controller: 'PayOKCtrl'
         })
-        //首页风格18
-        .state('home-18', {
-            url: '/:pid/home-18',
-            templateUrl: 'templates/home-18.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格19
-        .state('home-19', {
-            url: '/:pid/home-19',
-            templateUrl: 'templates/home-19.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格21
-        .state('home-21', {
-            url: '/:pid/home-21',
-            templateUrl: 'templates/home-21.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格22
-        .state('home-22', {
-            url: '/:pid/home-22',
-            templateUrl: 'templates/home-22.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格23
-        .state('home-23', {
-            url: '/:pid/home-23',
-            templateUrl: 'templates/home-23.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格25
-        .state('home-25', {
-            url: '/:pid/home-25',
-            templateUrl: 'templates/home-25.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格27
-        .state('home-27', {
-            url: '/:pid/home-27',
-            templateUrl: 'templates/home-27.html',
-            controller: 'HomeCtrl'
-        })
-        //首页风格28
-        .state('home-28', {
-            url: '/:pid/home-28',
-            templateUrl: 'templates/home-28.html',
-            controller: 'HomeCtrl'
-        })
+
         //首页风格29
         .state('home-29', {
             url: '/:pid/home-29',
