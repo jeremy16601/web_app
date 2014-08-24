@@ -1,34 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html ng-app="starter">
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title>首页</title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- ionic css -->
+    <link href="lib/css/ionic.min.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+    <!-- your app's css -->
+    <link href="css/app.css" rel="stylesheet">
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- ionic/angularjs scripts -->
+    <script src="lib/js/ionic.bundle.min.js"></script>
+    <script src="js/angular-local-storage.min.js"></script>
+    <script src="js/angular-cookies.min.js"></script>
 
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-
-    <!-- your app's js -->
+    <!-- your app's script -->
+    <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+</head>
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
-  </body>
+<body>
+<ion-nav-bar class="bar-assertive"></ion-nav-bar>
+
+<ion-nav-view animation="none"></ion-nav-view>
+
+<script type="text/javascript" src="js/swipe.js"></script>
+<script type="text/javascript" src="js/klass.min.js"></script>
+<script type="text/javascript" src="js/code.photoswipe-3.0.5.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/bootstrap-datepicker.zh-CN.js"></script>
+
+</body>
+
 </html>

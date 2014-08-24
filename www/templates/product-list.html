@@ -1,0 +1,15 @@
+<ion-view title="产品列表" hide-nav-bar="true">
+    <ion-content has-tabs="false">
+
+        <div class="list  ">
+            <a ng-repeat="item in productList.proList" href="#/{{subsiteCode}}/product-detail/{{item.proId}}" class="item item-thumbnail-left item-no-board">
+                <img ng-src="{{item.proPhoto}}">
+
+                <p style="-webkit-text-fill-color: #898989">{{item.proName}}</p>
+
+                <p style="font-size:16px; color: red; margin-top: 25px; ">￥{{item.price}}</p>
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

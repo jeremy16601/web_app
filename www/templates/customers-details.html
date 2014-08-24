@@ -1,0 +1,56 @@
+<style type="text/css">
+.bg1 {
+    background-color:#F9F9F9;
+}
+.card1 {
+    margin: auto;
+    padding-top: 0px;
+}
+.bugBtn {
+    margin-left: 50px;
+    border: 0px solid;
+    margin-top: -10px;
+    margin-bottom: -5px;
+    padding: 0px 20px 0 20px;
+    min-height: 20px;
+}
+.Title1 {
+    font-size: 12px;
+    color: #898989;
+    font-weight: normal;
+}
+</style>
+
+<ion-view title="团购详情" hide-nav-bar="true">
+    <ion-content has-header="false" class="bg1">
+        <img class="full-image" src="{{datas.dataList.picture}}">
+        <div class="card card1">
+            <div class="item " style="color: #f5655f;font-size: 20px;  background-color: #f9f9f9;">
+                ￥{{datas.dataList.price}}
+                <del style="font-size: 16px; color: #898989; margin-left: 5px;">
+                    <span>¥{{datas.dataList.oldPrice}}</span>
+                </del>
+                <!-- <button class="button button-assertive bugBtn" style="background-color: #f5655f;">立即抢购</button> -->
+            </div>
+            <div class="item item-text-wrap Title1 ">
+                <div style="font-size: 14px;margin-left:5px;" ng-bind-html="datas.dataList.intro"></div>
+                <br/>
+                <p style="margin-top: 10px; font-size: 12px;">{{datas.dataList.title}}</p>
+                <div style="border-top:1px dashed  #C0C0C0;"></div>
+                <h6 style="margin-top: 13px;margin-left: 5px;color: #898989;">{{datas.dataList.buyNum}}人已购买 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{datas.dataList.endTime}}以上</h6>
+            </div>
+
+            <div class="item item-divider Title1">
+                商家地址
+            </div>
+            <div class="item item-text-wrap Title1">
+                {{datas.dataList.shopAddress}}
+                <br/>商家电话：{{datas.dataList.shopPhone}}
+            </div>
+        </div>
+
+        <h4 class="item item-divider Title1  ">套餐详情</h4>
+        <div class="list" style="font-size: 11px;color: #898989; margin-left: 15px;" ng-bind-html="datas.dataList.contentIntro">
+        </div>
+    </ion-content>
+</ion-view>

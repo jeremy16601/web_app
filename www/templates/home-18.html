@@ -1,0 +1,129 @@
+<style type="text/css">
+
+    .col {
+        padding: 0;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    a {
+        color: #f5f5f5;
+        text-decoration: none;
+    }
+
+    a p {
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        margin: 0;
+        position: relative;
+        top: 40px;
+    }
+
+    .row img{
+        max-height: 100px;
+    }
+
+    .color_one {
+        background: #31ABF4;
+    }
+
+    .color_two {
+        background: #F9AB6D;
+    }
+
+    .color_three {
+        background: #7FC816;
+    }
+
+    .color_four {
+        background: #34D5D0;
+    }
+
+    .color_five {
+        background: #31ABF4;
+    }
+
+    .color_six {
+        background: #2CDBEF;
+    }
+
+    .color_seven {
+        background: #FE864A;
+    }
+
+    .color_eight {
+        background: #F4B613;
+    }
+
+    .color_nine {
+        background: #9656F3;
+    }
+</style>
+
+<ion-view title="{{title}}" hide-nav-bar="true">
+    <ion-content>
+        <div class="swipe-div">
+            <div id='slider' class='swipe'>
+                <div class='swipe-wrap'>
+                    <div ng-repeat="ad in adList">
+                        <a href="{{ad.href}}">
+                            <img ng-src="{{ad.img}}">
+                        </a>
+
+                        <p>{{ad.title}}</p>
+                    </div>
+                </div>
+            </div>
+            <ul class="mod_index">
+                <li class="current"></li>
+            </ul>
+        </div>
+
+
+        <!--导航-->
+        <div ng-repeat="nav in navList"
+             ng-init="classes=['color_one', 'color_two', 'color_three','color_four', 'color_five', 'color_six','color_seven','color_eight','color_nine']">
+            <span ng-if="$index % 2 == 0">
+                <div class="row" ng-if="navList[$index+0]">
+                    <div class="col-67">
+                        <a href="{{navList[$index+0].href}}">
+                            <img ng-src="{{navList[$index+0].icon}}"
+                                 ng-if="navList[$index+0].icon.substring(0,4)!='ion-'">
+                            <img class="col" src="img/18icon.png" ng-if="navList[$index+0].icon.substring(0,4)=='ion-'">
+                        </a>
+                    </div>
+
+                    <div class="col col-33" ng-class="classes[($index+0) % classes.length]">
+                        <a href="{{navList[$index+0].href}}">
+                            <p>{{navList[$index+0].title}}</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="row " ng-if="navList[$index+1]" style="margin-top: 5px;">
+
+                    <div class="col col-33"
+                         ng-class="classes[($index+1) % classes.length]">
+                        <a href="{{navList[$index+1].href}}">
+                            <p>{{navList[$index+1].title}}</p>
+                        </a>
+                    </div>
+
+                    <div class="col-67">
+                        <a href="{{navList[$index+1].href}}">
+
+                            <img ng-src="{{navList[$index+1].icon}}"
+                                 ng-if="navList[$index+0].icon.substring(0,4)!='ion-'">
+                            <img class="col" src="img/18icon.png" ng-if="navList[$index+0].icon.substring(0,4)=='ion-'">
+                        </a>
+                    </div>
+                </div>
+
+
+        </div>
+        </span>
+
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,36 @@
+<style type="text/css">
+.label1 {
+    font-size: 14px;
+}
+</style>
+
+<ion-view title="新增地址" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+        <form name="myForm" ng-submit="addAddress(address)">
+            <div class="list">
+                <label class="item item-input label1">
+                    省 份：
+                    <input style="margin-left: 4px;" type="text" ng-model="address.province" > <i class="icon ion-chevron-right "></i>
+                </label>
+                <label class="item item-input label1">
+                    城 市：
+                    <input style="margin-left: 4px;" type="text" ng-model="address.city"> <i class="icon ion-chevron-right  "></i>
+                </label>
+                <label class="item item-input label1">
+                    联系人：
+                    <input type="text" ng-model="address.linkMan" style="margin-left: 10px;"> <i class="icon ion-chevron-right "></i>
+                </label>
+                <label class="item item-input label1">
+                    联系电话：
+                    <input type="text" ng-model="address.linkPhone" style="margin-left: 10px;"> <i class="icon ion-chevron-right "></i>
+                </label>
+                <label class="item item-input label1">
+                    详细地址：
+                    <input type="text" ng-model="address.address" style="margin-left: 10px;"> <i class="icon ion-chevron-right "></i>
+                </label>
+
+            </div>
+            <button class="button button-full2 button-block " type="submit">保存</button>
+        </form>
+    </ion-content>
+</ion-view>

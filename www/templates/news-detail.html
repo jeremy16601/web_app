@@ -1,0 +1,30 @@
+<style type="text/css">
+    .article-content{
+        line-height: 1.428em;
+    }
+</style>
+
+<ion-view title="{{news.newsTitle}}" hide-nav-bar="true">
+    <ion-content has-header="false" padding="true">
+
+        <div class="article-header">
+            <div class="mod-title article-header-color"><p>{{news.newsTitle}}</p></div>
+            <div class="mod-text">{{news.newsPtime}}</div>
+        </div>
+
+        <div class="article-content article-color">
+
+        </div>
+
+        <div class="mod-share">
+            <span class="hd">分享</span>
+            <a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{url}}&desc={{news.title}}&pics={{news.img}}"
+               class="qzone" title="分享到QQ空间"></a>
+            <a href="http://v.t.sina.com.cn/share/share.php?title={{news.title}}&pic={{news.img}}"
+               class="sina" title="分享到新浪微博"></a>
+            <a href="http://widget.renren.com/dialog/share?resourceUrl={{url}}&title={{news.title}}&pic={{news.img}}&description={{news.content}}"
+               class="renren" title="分享到人人"></a>
+        </div>
+
+    </ion-content>
+</ion-view>

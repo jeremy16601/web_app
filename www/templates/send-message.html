@@ -1,0 +1,48 @@
+<style type="text/css">
+.css-form input.ng-invalid.ng-dirty {
+    background-color: #FA787E;
+}
+.css-form input.ng-valid.ng-dirty {
+    background-color: #78FA89;
+}
+p {
+    font-size: 16px;
+    color: #666666;
+}
+</style>
+
+
+<ion-view title="发送留言" hide-nav-bar="true">
+    <ion-content has-header="false">
+
+        <form name="myForm" ng-submit="send(message)">
+            <div class="list list-inset">
+                <p>留言内容</p>
+                <label class="item item-input">
+                    <textarea rows="8" ng-model="message.contents" required></textarea>
+                </label>
+
+                <br>
+
+                <p>姓名</p>
+                <label class="item item-input">
+                    <input type="text" ng-model="message.name" required>
+                </label>
+
+                <br>
+
+                <p>联系方式</p>
+                <label class="item item-input">
+                    <input type="text" ng-model="message.contacts">
+                </label>
+
+            </div>
+            <div style="padding-bottom:40px; padding-left:10px;padding-right:13px;  ">
+                <button class="button button-full button-assertive" type="submit" style="background: #f5655f;">
+                    发送留言
+                </button>
+            </div>
+
+        </form>
+    </ion-content>
+</ion-view>

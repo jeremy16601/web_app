@@ -1,0 +1,68 @@
+<style type="text/css">
+body {
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+.button {
+    width: 90%;
+    margin-left: 15px;
+    padding-top: 3px;
+}
+.spanname {
+    margin-left: 15px;
+    color: black;
+}
+</style>
+
+<ion-view title="付款" hide-nav-bar="true">
+    <ion-content has-header="false">
+
+        <div class="row" style="padding-bottom: 0px;padding-right: 30px;background: white;">
+            <div class="col col-44" style="background:white;text-align:right;">
+                <img src="../www/img/ok.png">
+            </div>
+            <div class="col col-60" style="background:white; color:#43cb53; font-size:18px; padding-top:10px;">
+                支付成功
+            </div>
+        </div>
+        <div class="list">
+            <div class="item item-divider">
+        </div>
+
+            <div class="item" style="font-size: 14px;color:#898989;">
+                商品名称
+                <span class="spanname">{{ productName }}</span>
+                <br>
+                <br>联系人
+                <span style="margin-left: 30px;color: black;">{{ linkMan }}</span>
+            </div>
+
+            <div class="item" style="font-size: 14px;color:#898989;">
+                支付方式
+                <span class="spanname">{{ payFS }}</span>
+                <br>
+                <br>交易订单
+                <span class="spanname">{{ orderNum }}</span>
+                <br>
+                <!-- <br>交易时间 <span class="spanname">{{ text }}</span> -->
+            </div>
+
+            <div class="item" style="font-size: 14px;color:#898989;">
+                支付金额
+                <span class="spanname">{{ totalMoney }}</span>
+                <br>
+
+            </div>
+            <!-- <ion-radio ng-repeat="item in serverSideList" ng-value="item.value" ng-model="data.serverSide" ng-change="serverSideChange(item)" name="server-side">
+               商户名称  {{ item.text }}
+                <br>
+                <span style="font-size: 14px; color:#898989;">推荐使用微信5.4以上版本使用</span>
+            </ion-radio> -->
+            <a class="button  button-positive" href="#/{{subsiteCode}}" style="background-color: #f5655f;border: solid 0;margin-top: 10px;">
+                关闭
+            </a>
+        </div>
+        <script>
+        $("input[type='radio'], input[type='checkbox']").ionCheckRadio();
+        </script>
+    </ion-content>
+</ion-view>

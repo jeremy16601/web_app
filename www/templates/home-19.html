@@ -1,0 +1,90 @@
+<style type="text/css">
+.nav {
+    text-align: center;
+    line-height: 40px;
+}
+.nav a {
+    color: #eeeeee;
+    text-decoration: none;
+}
+.nav p {
+    color: white;
+    font-size: 14px;
+    margin: 0;
+}
+.nav_color {
+    background: url("img/19bg2.png");
+    /*background-size: cover;*/
+    opacity: 0.9;
+}
+.row {
+    width: 90%;
+    margin: 0 auto;
+}
+.nav-title {
+    margin-top: 60px;
+    text-align: center;
+    background-color: #d59604;
+}
+.pane {
+    background: url("img/19bg.png");
+    background-size: cover;
+}
+.img3 {
+    text-align: center;
+    font-size: 46px;
+    margin-top: 15px;
+}
+.two {
+    width:95%;
+    height:60px;
+    text-align:center;
+    padding-top: 13px;
+    position:absolute;
+    left:10px;
+    top:70px;
+    color: #D59404;
+    border:0px solid;
+    font-size: 18px;
+    background: white;
+}
+</style>
+
+<ion-view title="{{title}}" hide-nav-bar="true">
+    <ion-content>
+
+        <div class="nav-title" style=" width: 90%; text-align: center;margin-left: 17px;">
+            <h1 style="height:130px; color: white; margin-bottom: 0px;padding-top: 20px;padding-bottom: 20px;">{{title}}</h1>
+        </div>
+
+        <div class="two"> <i class="icon ion-ios7-telephone-outline" style="font-size: 30px; margin-right:10px;"></i>
+            <span style="color:#d49502">{{phone}}</span>
+        </div>
+
+        <!--导航-->
+        <div ng-repeat="nav in navList">
+            <span ng-if="$index % 2 == 0">
+                <div class="row item-no-board item-no-padding" >
+
+                    <div class="col nav nav_color" ng-if="navList[$index+0]" style="border-right: 1px #ffffff solid;border-bottom: 1px #ffffff solid;">
+                        <a ng-href="{{navList[$index+0].href}}">
+                            <i class="icon img3" ng-class="navList[$index+0].icon" ng-style="{{styleColor}}"></i>
+                            <p style="margin-top: -15px;" ng-style="{{styleColor}}">{{navList[$index+0].title}}</p>
+                        </a>
+                    </div>
+
+
+                    <div class="col nav nav_color" ng-if="navList[$index+1]" style="border-bottom: 1px #ffffff solid;">
+                        <a ng-href="{{navList[$index+1].href}}">
+                            <i class="icon img3" ng-class="navList[$index+1].icon" ng-style="{{styleColor}}"></i>
+                            <p style="margin-top: -15px;" ng-style="{{styleColor}}">{{navList[$index+1].title}}</p>
+                        </a>
+                    </div>
+
+                </div>
+            </span>
+        </div>
+
+
+    </ion-content>
+</ion-view>

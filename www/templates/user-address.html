@@ -1,0 +1,33 @@
+<style type="text/css">
+body {
+    cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+.button1 {
+    line-height: 22px;
+    min-height: 27px;
+}
+</style>
+
+<ion-view title="收货地址管理" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+
+        <div class="list">
+            <ion-radio ng-repeat="item in items.dataList" ng-value="item" ng-model="data1.clientSide" ng-change="serverSideChange(item)" name="server-side">
+                <span style="font-size: 16px;">{{item.linkMan}} &nbsp; &nbsp;{{item.province}}{{item.city}} {{item.linkPhone}}
+                </span>
+                <br>
+                <span style="color: #898989;font-size: 13px;margin-top:5px;">{{item.address}}</span>
+                <!-- <button class="button button1" ng-click="delAddress('{{item.userAddId}}')">
+    删除</button>
+ -->
+            </ion-radio>
+            <div style="text-align:center;">
+                <a class="button  button-positive" href="#/{{subsiteCode}}/user-addressAdd" style="background-color: #f5655f;border: solid 0;margin-top: 10px;">
+                添加新地址
+            </a>
+            </div>
+        </div>
+
+
+    </ion-content>
+</ion-view>

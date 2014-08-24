@@ -1,0 +1,36 @@
+<style type="text/css">
+.label1 {
+    font-size: 14px;
+}
+</style>
+
+<ion-view title="个人信息完善" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+        <form name="myForm" ng-submit="setEditUser(users)">
+            <div class="list">
+                <label class="item item-input label1">
+                    邮 箱：
+                    <input style="margin-left: 4px;" type="text" ng-model="users.email" placeholder="{{userdata.email}}"> <i class="icon ion-chevron-right "></i>
+                </label>
+                <label class="item item-input label1">
+                    手 机：
+                    <input style="margin-left: 4px;" type="text" ng-model="users.phone" placeholder="{{userdata.phone}}"> <i class="icon ion-chevron-right  "></i>
+                </label>
+                <label class="item item-input label1">
+                    Q Q：
+                    <input type="text" ng-model="users.qq" style="margin-left: 10px;" placeholder="{{userdata.qq}}"> <i class="icon ion-chevron-right "></i>
+                </label>
+<!-- <label class="item item-input label1">
+    姓名：
+    <input type="text" ng-model="users.realname" style="margin-left: 10px;" placeholder="{{userdata.realname}}"> <i class="icon ion-chevron-right "></i>
+</label>
+ -->
+<!-- 
+                <input type="hidden" ng-model="users.sex" value="{{userdata.sex}}">
+                <input type="hidden" ng-model="users._id" value="{{userdata._id}}">
+                <input type="hidden" ng-model="users.userId" value="{{userdata.userId}}"> -->
+            </div>
+            <button class="button button-full2 button-block " type="submit">保存</button>
+        </form>
+    </ion-content>
+</ion-view>

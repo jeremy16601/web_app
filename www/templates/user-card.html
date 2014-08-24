@@ -1,0 +1,131 @@
+<style type="text/css">
+.margin-top {
+    margin-top: 16px;
+}
+.member-card-top {
+    width: 100%;
+    min-height: 100px;
+    padding-top: 24px;
+    background: url("img/membercard_bg.png") repeat;
+    text-align: center;
+}
+.member-card {
+    width: 80%;
+    height: 76px;
+    margin: 0 auto;
+    position: relative;
+    background: no-repeat;
+    background-size: cover;
+}
+.member-card .card-title {
+    font-size: 16px;
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.20);
+}
+.member-card .card-number {
+    position: absolute;
+    top: 50px;
+    right: 5px;
+    font-size: 10px;
+    color: #c48601;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+.member-card .card-logo {
+    position: absolute;
+    top: 5px;
+    width: 50%;
+    right: 0px;
+}
+.card-tips {
+    text-align: center;
+    font-size: 12px;
+    color: #709b98;
+    line-height: 36px;
+}
+a.item {
+    color: #666666;
+}
+.intro {
+    font-size: 14px;
+    color: #709b98;
+    padding-left: 40px;
+    line-height: 1.5em;
+    display: none;
+}
+</style>
+
+<ion-view title="会员卡" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+        <div class="member-card-top">
+            <div class="member-card">
+                <span class="card-title">{{card.cardName}}</span>
+                <span class="card-number">会员卡号 {{card.cardNum}}</span>
+                <img class="card-logo" src="img/user-card-logo.png" ng-if="card.cardIcon==null">
+                <img class="card-logo" ng-src="{{card.cardIcon}}" ng-if="card.cardIcon">
+            </div>
+        </div>
+
+        <div class="card-tips">
+            <span>*使用时向服务员出示此卡</span>
+        </div>
+        <div class="list">
+
+            <a class="item item-icon-left margin-top" href="#/{{subsiteCode}}/user-detail">
+                <i class="icon ion-person-add"></i>
+                完善个人信息
+            </a>
+
+            <a class="item item-icon-left" href="#/{{subsiteCode}}/signIn">
+                <i class="icon ion-email"></i>
+                签到
+            </a>
+
+            <a class="item item-icon-left margin-top">
+                <i class="icon ion-mic-a"></i>
+                积分
+                <span class="item-note">
+                    {{card.score}}分
+                </span>
+            </a>
+
+            <!--<a class="item item-icon-left" href="#">-->
+            <!--<i class="icon ion-person-stalker"></i>-->
+            <!--余额-->
+            <!--<span class="badge badge-assertive">3599.0元</span>-->
+            <!--</a>-->
+
+            <div class="margin-top">
+                <div ng-repeat="item in privilege">
+                    <a class="item item-icon-left " href="#" ng-click="showIntro($index,$event)">
+                        <i class="icon ion-chatbubble-working"></i>
+                        {{item.title}}
+                    </a>
+
+                    <div class="item intro" id="intro{{$index}}" ng-bind-html="item.remark">
+                    </div>
+                </div>
+            </div>
+
+            <a class="item item-icon-left margin-top" href="#/{{subsiteCode}}/user-address">
+                <i class="icon ion-map"></i>
+                收获地址管理
+            </a>
+
+            <!--   <a class="item item-icon-left margin-top" href="/{{subsiteCode}}/user-order/0">
+                  <i class="icon ion-chatbubble-working"></i>
+                  我的账单
+              </a> -->
+            <!--<a class="item item-icon-left href="#">-->
+            <!--<i class="icon ion-chatbubble-working"></i>-->
+            <!--充值-->
+            <!--</a>-->
+            <!--<a class="item item-icon-left" href="#">-->
+            <!--<i class="icon ion-chatbubble-working"></i>-->
+            <!--付款-->
+            <!--</a>-->
+        </div>
+    </ion-content>
+</ion-view>

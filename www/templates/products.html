@@ -1,0 +1,78 @@
+<style type="text/css">
+    .imgwh {
+        height: 120px;
+    }
+</style>
+
+<ion-view title="产品分类" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+        <form name="myForm" class="my-form">
+            <div style="position: relative;">
+                <div style="position: absolute; margin-top: 100px; width: 100%;">
+                    <div class="item-input-inset">
+                        <label class="item-input-wrapper">
+                            <i style="font-size: 16px; color: #898989;"
+                               class="icon ion-ios7-search placeholder-icon"></i>
+                            <input style="color:#dddddd; margin-left: -2px;" ng-trim="false" id="productName"
+                                   ng-model="productName" type="search" placeholder="输入查询内容">
+                        </label>
+                        <button id="btn2" style="width: 40px; background-color: #f5655f; border: 0 solid"
+                                ng-click="search({{productName}})" style="margin-left: 30px;"
+                                class="button button-small button-assertive" type="button">查询
+                        </button>
+                    </div>
+                </div>
+                <img class="full-image" style="height: 150px" ng-src="{{img.imgPath}}" ng-href="{{img.linkPath}}">
+            </div>
+
+            <div ng-repeat="listDetails in fruits.typeProList">
+                <div class="bar-title t1">
+                    <h2 style="font-size: 14px;margin-top: -2px;">{{ listDetails.proTypeMaxName }}</h2>
+                </div>
+                <div class="row" style="margin-top: -4px; padding-left: 3px;padding-right: 5px;">
+                    <div class="col col-grids " style="background: #ffffff;" ng-if="listDetails.proList[0]">
+                        <a href="#/{{subsiteCode}}/product-detail/{{listDetails.proList[0].proId}}">
+                            <img class="full-image imgwh" src="{{listDetails.proList[0].proPhoto}}">
+                        </a>
+                        <label class="lable-text-color">￥{{ listDetails.proList[0].price }}</label>
+                        <br/>
+                        <label class="lable-color-title">{{listDetails.proList[0].proName}}</label>
+                    </div>
+                    <div class="col col-grids " style="margin-left: -1px;background: #ffffff;"
+                         ng-if="listDetails.proList[1]">
+                        <a href="#/{{subsiteCode}}/product-detail/{{listDetails.proList[1].proId}}">
+                            <img class="full-image imgwh" src="{{listDetails.proList[1].proPhoto}}">
+                        </a>
+                        <label class="lable-text-color">￥{{listDetails.proList[1].price }}</label>
+                        <br/>
+                        <label class="lable-color-title">{{listDetails.proList[1].proName}}</label>
+                    </div>
+                </div>
+                <div class="row"
+                     style="padding-left: 3px;padding-right: 5px;margin-top: -6px;background: #ffffff; padding-bottom:  0px;">
+                    <div class="col col-grids " ng-if="listDetails.proList[2]">
+                        <a href="#/{{subsiteCode}}/product-detail/{{listDetails.proList[2].proId}}">
+                            <img class="full-image imgwh" src="{{listDetails.proList[2].proPhoto}}">
+                        </a>
+                        <label class="lable-text-color">￥{{ listDetails.proList[2].price }}</label>
+                        <br/>
+                        <label class="lable-color-title">{{listDetails.proList[2].proName}}</label>
+                    </div>
+                    <div class="col col-grids " style="margin-left: -1px;background: #ffffff;"
+                         ng-if="listDetails.proList[3]">
+                        <a href="#/{{subsiteCode}}/product-detail/{{listDetails.proList[3].proId}}">
+                            <img class="full-image imgwh" src="{{listDetails.proList[3].proPhoto}}">
+                        </a>
+                        <label class="lable-text-color">￥{{ listDetails.proList[3].price }}</label>
+                        <br/>
+                        <label class="lable-color-title">{{listDetails.proList[3].proName}}</label>
+                    </div>
+                </div>
+                <button id="btn1" class="button button-full1" ng-click="more('{{listDetails.proTypeMaxId}}')">更多
+                </button>
+            </div>
+
+        </form>
+
+    </ion-content>
+</ion-view>

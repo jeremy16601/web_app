@@ -1,0 +1,261 @@
+/*Your app's CSS, go crazy, make it your own */
+
+/*全局背景颜色*/
+ .bg-color {
+    background: #f9f9f9;
+}
+.pane {
+    background: #f9f9f9;
+}
+/*全局的标题颜色*/
+ .article-header-color {
+    color: #666666;
+}
+/*全局的正文颜色*/
+ .article-color {
+    color: #898989;
+}
+.ionic-logo {
+    display: block;
+    margin: 15px auto;
+    width: 96px;
+    height: 96px;
+}
+.icon-home1:after {
+    content: url("../img/icon/bg_icon.png");
+}
+.ionic-margin {
+    margin: 20px 10px;
+}
+/*列表无边框设计*/
+ .item-no-padding {
+    padding: 0;
+}
+.item-no-board {
+    border: 0;
+}
+a.item-no-board:after {
+    display: none;
+}
+/*列表无边框设计结束*/
+
+/*左右滑动开始*/
+ .swipe-div {
+    position: relative;
+}
+.swipe {
+    overflow: hidden;
+    visibility: hidden;
+    position: relative;
+}
+.swipe-wrap {
+    overflow: hidden;
+    position: relative;
+}
+.swipe-wrap > div {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+.swipe-wrap img {
+    width: 100%;
+    display: block;
+    font-weight: bold;
+    color: #14ADE5;
+    font-size: 20px;
+    text-align: center;
+    background: #fff;
+}
+.swipe-wrap p {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    line-height: 2.5em;
+    color: #fff;
+    text-align: left;
+    font-size: .875em;
+    text-indent: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 35px;
+    margin: 0;
+
+    background:-moz-linear-gradient(top,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.2));/*Mozilla*/
+    background:-webkit-linear-gradient(top,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.2));/*new gradient for Webkit*/
+    background:-o-linear-gradient(top,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.2)); /*Opera11*/
+}
+.swipe-ctr {
+    position: absolute;
+    right: .5em;
+    bottom: 2.2em;
+    overflow: hidden;
+    text-align: center
+}
+.swipe-ctr span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 0 2px
+}
+.swipe-ctr .cur {
+    background: rgba(255, 255, 255, 1)
+}
+/*左右滑动结束*/
+
+/*左右滑动样式二*/
+ .mod_index {
+    display: -webkit-box;
+}
+ul, li {
+    list-style: none;
+}
+.mod_index li {
+    -webkit-box-flex: 1;
+    height: 2px;
+    background-color: #c7c7c7;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.mod_index .current {
+    background-color: #e33b3d;
+}
+/*左右滑动样式二结束*/
+
+/*标题栏（默认样式）开始*/
+ div[class ^=bar-] {
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+.bar-title {
+    line-height: 20px;
+    font-size: 18px;
+}
+.bar-title.t1 {
+    border-left: 4px solid #e55e5e;
+    padding-left: 3px;
+}
+.bar-title h2 {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    color: #f5655f;
+}
+/*标题栏结束*/
+
+/*新闻样式*/
+ .article-header {
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+}
+.article-header .mod-title {
+    line-height: 1.3em;
+    font-size: 20px;
+    text-align: left;
+    padding: .8rem .5rem 0rem 0rem;
+    background: 0;
+}
+.article-header .mod-text {
+    font-size: 14px;
+    color: #999;
+    text-align: left;
+    text-indent: 0;
+    padding: 0 .5rem 0.5em 0;
+}
+.mod-share {
+    font-size: 0;
+    text-align: center;
+}
+.mod-share .hd {
+    width: 53px;
+    height: 28px;
+    line-height: 200px;
+    vertical-align: top;
+    margin: 2px 6px 0 0;
+    background-position: 0 0;
+    overflow: hidden;
+}
+.mod-share .hd, .mod-share a {
+    display: inline-block;
+    background: url('../img/share.png') no-repeat;
+    background-size: auto 32px;
+}
+.mod-share a {
+    width: 32px;
+    height: 32px;
+    vertical-align: top;
+    margin-left: 6px;
+    color: #333;
+    text-decoration: none;
+}
+.mod-share .qzone {
+    background-position: -63px 0;
+}
+.mod-share .sina {
+    background-position: -100px 0;
+}
+.mod-share .renren {
+    background-position: -137px 0;
+}
+.mod-share .sohu {
+    background-position: -175px 0;
+}
+/*新闻样式结束*/
+
+/*李雪晴的样式*/
+ .col-grids {
+    padding: 2px;
+    border: 1px solid #dddddd;
+}
+.lable-text-color {
+    color: #f5655f;
+    padding-left: 55%;
+}
+.lable-color-title {
+    color: #666666;
+    margin-left: 5px;
+    margin-bottom: 3px;
+}
+.button.button-full1 {
+    border-color: transparent;
+    background-color: #EEEEEE;
+    width: 97%;
+    color: #666666;
+    height: auto;
+    text-align: center;
+    margin: 5px;
+    line-height: 35px;
+    min-height: 30px;
+}
+.button.button-full2 {
+    border-color: transparent;
+    background-color: #F5655E;
+    width: 90%;
+    text-align: center;
+    color: white;
+    margin: auto;
+}
+.user-div {
+    text-align: center;
+    background: url("../img/user_bg.png");
+    background-size: cover;
+    min-height: 152px;
+    padding-top: 10px;
+}
+.user_avatar {
+    border-radius: 95px 95px / 95px 95px;
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+}
+/*朝右的箭头*/
+ .item-home5 {
+    margin: 0px;
+    padding: 0px;
+}
+/*李雪晴的样式

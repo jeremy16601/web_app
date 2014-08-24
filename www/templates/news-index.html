@@ -1,0 +1,68 @@
+<style type="text/css">
+    .item {
+        padding-top: 0px;
+    }
+
+    .item p {
+        color: #898989;
+        white-space: normal;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .item h2 {
+        margin-top: 8px;
+        color: #666666;
+    }
+
+    .item-thumbnail-left {
+        padding-left: 95px;
+    }
+
+    .item-thumbnail-left > img:first-child {
+        left: 0px;
+    }
+
+    a.item {
+        padding-right: 0px;
+        padding-bottom: 24px;
+    }
+
+</style>
+<ion-view title="新闻列表" hide-nav-bar="true">
+    <ion-content has-header="false">
+
+        <div class="swipe-div padding-bottom">
+            <div id='slider-news' class='swipe'>
+                <div class='swipe-wrap'>
+
+                    <div ng-repeat="ad in adList">
+                        <img ng-src="{{ad.newsIsChargeImg}}">
+
+                        <p>{{ad.newsTitle}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swipe-ctr">
+                <span class="cur"></span>
+            </div>
+        </div>
+
+        <div class="bar-title t1">
+            <h2>新闻</h2>
+        </div>
+
+        <div class="list padding-left padding-right">
+            <a ng-repeat="item in news" href="#/{{subsiteCode}}/news/{{item.newsId}}"
+               class="item item-thumbnail-left item-no-board bg-color">
+                <img ng-src="{{ item.newsImg }}">
+
+                <h2>{{item.newsTitle}}</h2>
+
+                <p>{{item.newsIntro}}</p>
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

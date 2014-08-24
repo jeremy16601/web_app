@@ -1,0 +1,61 @@
+<style type="text/css">
+.nav {
+    height: 90px;
+}
+.pane {
+    background: url("img/bg29.png");
+    background-size: cover;
+}
+.bar-opacity {
+    background-color: rgba(0, 0, 0, .25);
+    color: #fff;
+    height: 90px;
+}
+.scroll-view {
+    width: 100%;
+    /*height: 70px;*/
+}
+.tabs {
+    background-color: transparent;
+    height: 90px;
+    color: #ffffff;
+    line-height: 90px;
+    width: inherit;
+    background-image: none;
+}
+.tab-item {
+    min-width: 80px;
+}
+.tab-item .icon {
+    height: 48px;
+    width: 48px;
+    padding: 5px;
+    font-size: 38px;
+    border-radius: 48px;
+    -moz-border-radius: 48px;
+    -webkit-border-radius: 48px;
+    border: 1px #FFFFFF solid;
+    margin-bottom: 10px;
+}
+</style>
+
+<ion-view title="{{title}}" hide-nav-bar="true">
+    <ion-content scroll="false">
+
+        <div class="bar bar-footer bar-opacity">
+
+            <ion-scroll direction="x" scrollbar-x="false">
+
+                <div class="nav">
+                    <div class="tabs tabs-icon-top">
+                        <a class="tab-item" ng-repeat="nav in navList" ng-href="{{nav.href}}">
+                            <i class="icon" ng-class="nav.icon"></i>
+                            <p ng-style="{{styleColor}}">{{nav.title}}</p>
+                        </a>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+
+    </ion-content>
+</ion-view>

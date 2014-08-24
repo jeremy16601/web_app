@@ -1,0 +1,32 @@
+<style type="text/css">
+.item {
+    padding: 25px;
+}
+/*是否显示箭头*/
+ a.item:after, button.item:after, .item a[href].item-content:after, .item[ng-click] a.item-content:after {
+    content:"";
+}
+
+.item {
+padding: 15px;
+}
+.list1 {
+    background: #f9f9f9;
+}
+</style>
+
+<ion-view title="搜索结果" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+
+        <div class="list list1 ">
+            <a style="padding-left: 115px;" ng-repeat="item in productList.proList" href="#/{{subsiteCode}}/product-detail/{{item.proId}}" class="item item-avatar list1">
+                <img style="border:solid 1px #dddddd; padding:2px; background: #ffffff;  max-width: 90px;max-height: 100px; border-radius: 0px;" ng-src="{{item.img}}">
+
+                <p style="color: #898989;white-space: normal;margin-top: -4px; ">{{item.proName}}</p>
+
+                <p style="font-size:16px; color: #f5655f;padding-top: 48px;">￥{{item.price}}</p>
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,22 @@
+<!--
+相册
+-->
+<link href="css/photo.css" rel="stylesheet">
+
+<ion-view title="相册" hide-nav-bar="true">
+    <ion-content has-header="false" has-padding="true">
+        <div id="main" role="main" class="album2">
+            <ul id="gallery" class="gallery">
+
+                <li ng-repeat="photoAlbum in photoAlbums">
+                    <a href="#{{subsiteCode}}/photoAlbum/{{photoAlbum.showImgId}}">
+                        <img src="{{photoAlbum.imgPath}}" alt="{{photoAlbum.albumName}}">
+
+                        <p>{{photoAlbum.albumName}}<span>({{photoAlbum.imgNum}}张)</span></p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>

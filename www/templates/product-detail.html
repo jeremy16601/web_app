@@ -1,0 +1,145 @@
+<style type="text/css">
+    .button {
+        height: 30px;
+        line-height: 35px;
+        min-height: 30px;
+        font-size: 12px;
+    }
+
+    .button1 {
+        width: 99%;
+        background-color: #F5655F;
+        height: 40px;
+        margin-top: 10px;
+        font-size: 16px;
+        border: 0 solid
+    }
+
+    .item {
+        border-width: 0px;
+    }
+
+    .card {
+        margin: 10px 10px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .div-num {
+        color: #666666;
+        padding-right: 100px;
+        background: #f9f9f9;
+    }
+
+    .div-num .plus {
+        font-size: 24px;
+        line-height: 49px;
+        min-width: 48px;
+        text-align: center;
+    }
+
+    .div-num input {
+        border: 1px solid #F5645F;
+        height: 30px;
+        margin-top: 9px;
+        width: 50px;
+    }
+
+    .div-num .minus {
+        font-size: 24px;
+        line-height: 49px;
+        min-width: 48px;
+        text-align: center;
+    }
+
+    .item.active:not(.item-divider):not(.item-input):not(.item-input-inset) {
+        background-color: #f9f9f9;
+        border-color: #ccc;
+    }
+
+    .hint {
+        color: red;
+        margin-left: 16px;
+        padding: 70px;
+    }
+
+</style>
+
+<!--产品详情界面-->
+<ion-view title="商品详情" hide-nav-bar="true">
+    <ion-content has-header="false">
+
+
+        <div class="swipe-div padding-bottom">
+            <div id='slider-news' class='swipe'>
+                <div class='swipe-wrap'>
+
+                    <div ng-repeat="ad in datas.dataList.imgList">
+                        <img ng-src="{{ad.imgPath}}">
+
+                        <!--   <p>{{ad.newsTitle}}</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="swipe-ctr">
+                <span class="cur"></span>
+            </div>
+        </div>
+
+
+        <div class="list card" style="background: #f9f9f9;">
+            <p style="color:#666666;font-size: 16px;">{{ datas.dataList.productName }}</p>
+
+            <p style="color:#f5655f; font-size: 16px;">￥{{datas.dataList.price}}</p>
+            <!--  <p style="color:#666666;">
+                <span>颜 色&nbsp;</span>
+                <button class="button button-stable    ">金色</button>
+                <button class="button button-stable  ">白色</button>
+            </p> -->
+
+            <div class="div-num item tabs">
+
+                数 量 &nbsp;
+
+                <a class="tab-item" ng-click="count = count + 1" ng-init="count=1">
+                    <i class="plus icon ion-plus"></i>
+                </a>
+                <input class="tab-item" ng-value="count" id="count" type="text">
+                <a class="tab-item" ng-click="count = count - 1">
+                    <i class="minus icon ion-minus"></i>
+                </a>
+            </div>
+            <span ng-if="count<=0" class="animate-if hint">
+                最低购买数量为1！
+            </span>
+
+            <a class="button  button-assertive button1"
+               href="#/{{subsiteCode}}/pay?num={{count}}&proId={{datas.dataList.id}}&unit={{datas.dataList.unit}}"
+                    >
+                立即购买
+            </a>
+
+            <div class="bar-title t1">
+                <h2 style="font-size: 16px; margin-top: 23px; ">商品简介</h2>
+            </div>
+
+            <div style="color:#898989; font-size: 12px;" id="product-content">
+
+            </div>
+
+            <!--  <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" href="#">
+                    <i class="icon ion-thumbsup"></i>
+                    收藏
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-chatbox"></i>
+                    评论
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-share"></i>
+                    分享
+                </a>
+            </div> -->
+        </div>
+    </ion-content>
+</ion-view>

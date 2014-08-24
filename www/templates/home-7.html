@@ -1,0 +1,51 @@
+<style type="text/css">
+.border {
+    margin-top: 16px;
+    width: 40%;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+    line-height: 50px;
+    background: #ef8049;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+}
+.title {
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    margin: 0 10px;
+    min-width: 30px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 26px;
+    line-height: 44px;
+}
+.pane {
+    background: url("img/bg.png");
+    background-size: cover;
+}
+
+</style>
+
+<ion-view title="{{title}}" hide-nav-bar="true">
+    <ion-content>
+
+        <div class="nav">
+            <div>
+                <h2 class="title">{{title}}</h2>
+            </div>
+
+            <ul>
+                <li class="border" ng-repeat="nav in navList" ng-href="{{nav.href}}">
+                    <p ng-style="{{styleColor}}">{{nav.title}}</p>
+                </li>
+            </ul>
+
+        </div>
+    </ion-content>
+</ion-view>

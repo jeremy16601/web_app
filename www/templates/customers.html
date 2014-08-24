@@ -1,0 +1,49 @@
+<style type="text/css">
+.item {
+    padding: 25px;
+}
+/*是否显示箭头*/
+ a.item:after, button.item:after, .item a[href].item-content:after, .item[ng-click] a.item-content:after {
+    content:"";
+    padding-right: 10px;
+}
+.item {
+    padding: 15px;
+}
+.list1 {
+    background: #f9f9f9;
+}
+p {
+ margin: 0 0 0 0; 
+}
+a.item, button.item, .item a[href].item-content, .item[ng-click] a.item-content {
+    padding-right: 10px;
+}
+/*根据Title的行数，改变css*/
+ .unChangeClass {
+    padding-top: 9px;
+}
+.ChangeClass {
+    padding-top: 33px;
+}
+</style>
+
+<ion-view title="团购" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+
+        <div class="list list1 ">
+            <a style="padding-left: 120px;" ng-repeat="item in productList.dataList" href="#/{{subsiteCode}}/customers-details/{{item.groupId}}" class="item item-avatar list1">
+                <img style="border:solid 1px #dddddd; padding:2px; background: #ffffff;  max-width: 90px;max-height: 100px; border-radius: 0px;" ng-src="{{item.thumbnail}}">
+                <!-- ng-if="{{item.proName.length < 10 }}" -->
+                <p style="color: #898989;white-space: normal;margin-top: -4px; ">{{item.title}}</p>
+                <p ng-class="{'ChangeClass':item.title.length<15}" class="unChangeClass" style="font-size:16px; color: #f5655f;margin-bottom: -25px;">￥{{item.price}}
+                    <del style="font-size: 12px; color: #898989; margin-left: 5px;">
+                        <span>¥{{item.oldPrice}}</span>
+                    </del>
+                </p>
+
+            </a>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,63 @@
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/datepicker3.css" rel="stylesheet">
+
+<style type="text/css">
+
+    #signIn {
+        text-align: center;
+
+    }
+
+    #signIn img {
+        margin: 30px 0;
+        width: 50%;
+    }
+
+    /*日历CSS*/
+    #calendar {
+    }
+
+    .datepicker table {
+        margin: 0 auto;
+    }
+
+    .datepicker .red {
+        color: #ffffff;
+        background-color: #b15036;
+        border-color: #b15036;
+    }
+
+    .datepicker-inline {
+        width: 100%;
+        text-align: center;
+    }
+
+    .datepicker th.datepicker-switch {
+        width: 213px;
+    }
+
+    .datepicker table tr td, .datepicker table tr th {
+        width: 40px;
+        height: 40px;
+        border-radius: 0;
+    }
+
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, fieldset, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+        vertical-align: middle;
+    }
+
+</style>
+
+<ion-view title="签到" hide-nav-bar="true">
+    <ion-content has-header="false" has-tabs="false">
+
+        <div id="signIn">
+            <img src="img/checkin.png" ng-click="singIn()" ng-if="enableSign">
+            <img src="img/checkin_ok.png" ng-if="!enableSign">
+        </div>
+
+
+        <div id="calendar">
+        </div>
+    </ion-content>
+</ion-view>
