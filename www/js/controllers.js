@@ -10,6 +10,7 @@ angular.module('starter.controllers', [])
         localStorageService.set('title', data.customName);
         localStorageService.set('payType', data.payType);
 
+        console.log('data===='+data);
         $state.go(localStorageService.get('homeStyle'), $stateParams, {
             location: false
         });
