@@ -1,14 +1,4 @@
-Ionic App Base
-=====================
 
-A starting project for Ionic that optionally supports
-using custom SCSS.
-
-## Using this project
-
-We recommend using the `ionic` utility to create new Ionic projects that are based on this project but use a ready-made starter template.
-
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
 
 ```bash
 $ sudo npm install -g ionic
@@ -71,18 +61,4 @@ To this:
 After saving the update to bower.json file, run `gulp install`.
 
 Alternatively, install bower globally with `npm install -g bower` and run `bower install`.
-
-#### Using the Nightly Builds of Ionic
-
-If you feel daring and want use the bleeding edge 'Nightly' version of Ionic, change the version of Ionic in your bower.json to this:
-
-```
-"ionic": "driftyco/ionic-bower#master"
-```
-
-Warning: the nightly version is not stable.
-
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
 
