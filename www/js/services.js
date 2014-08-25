@@ -3,7 +3,7 @@ angular.module('starter.services', [])
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     })
-    //初始化Service
+    //获取导航
     .factory('InitService', function($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
