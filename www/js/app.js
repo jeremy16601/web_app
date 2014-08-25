@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
 .run(function($rootScope) {
     $rootScope.subsiteCode = "";
-    $rootScope.url = "http://58.30.241.14/webapp/mobile.do?";
+    $rootScope.url = "http://106.187.52.57:8080/api/";//http://58.30.241.14/webapp/mobile.do?
     $rootScope.user = {
         userId: '001',
         nickname: 'user',

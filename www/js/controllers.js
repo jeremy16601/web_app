@@ -6,8 +6,6 @@ angular.module('starter.controllers', [])
         localStorageService.set('initInfo', data);
         localStorageService.set('homeStyle', 'home-29');
         localStorageService.set('bgImg', data.bgImg);
-        localStorageService.set('phone', data.phone);
-        localStorageService.set('title', data.customName);
         localStorageService.set('payType', '3');
 
         console.log('data===='+data.bgImg);
@@ -27,9 +25,6 @@ angular.module('starter.controllers', [])
         delay: 100
     });
 
-    //  $scope.$on('$stateChangeStart', function () {
-    //      console.log("start");
-    //  });
 
     $scope.$on('$stateChangeSuccess', function() {
         $ionicLoading.hide();
@@ -111,9 +106,6 @@ angular.module('starter.controllers', [])
         var color = localStorageService.get('initInfo').styleColor;
         if (color != null)
             $scope.styleColor = "{color:'" + color + "'}";
-
-        $scope.phone = localStorageService.get('phone');
-        $scope.title = localStorageService.get('title');
 
         angular.element(document).ready(function() {
             $scope.swipeImg();
