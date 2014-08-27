@@ -48,10 +48,10 @@ angular.module('starter.controllers', [])
         ]
 
 
-        var color = '#363636';
+        var color = 'white';
         $scope.styleColor = "{color:'" + color + "'}";
 
-        $(".pane").css("background-image", "url(" + 'http://app.ktcx.cn/webapp/uploadfiles/bgImg/2014-07-22_1406012841315126.jpg' + ")");
+        $(".pane").css("background-image", "url(" + 'img/bg29.png' + ")");
     })
 
 
