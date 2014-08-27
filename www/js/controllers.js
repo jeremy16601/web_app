@@ -56,51 +56,51 @@ angular.module('starter.controllers', [])
         $location.path('/' + $rootScope.subsiteCode);
         $location.replace();
     } else {
-        $scope.navList = localStorageService.get('initInfo').menuList;
-        $scope.adList = localStorageService.get('initInfo').showImgList;
-        if ($scope.adList == null) {
-            $scope.adList = [{
-                "img": "img/banner.png",
-                "title": "标题"
-            }];
-            //判断首页轮播对应的图片
-            if (localStorageService.get('homeStyle') == 'home-8') {
-                $scope.adList = [{
-                    "img": "img/home/8.jpg",
-                    "title": "标题"
-                }];
-            } else if (localStorageService.get('homeStyle') == 'home-9') {
-                $scope.adList = [{
-                    "img": "img/home/9.jpg",
-                    "title": "标题"
-                }];
-            } else if (localStorageService.get('homeStyle') == 'home-11') {
-                $scope.adList = [{
-                    "img": "img/home/11.jpg",
-                    "title": "标题"
-                }];
-            } else if (localStorageService.get('homeStyle') == 'home-18') {
-                $scope.adList = [{
-                    "img": "img/home/11.jpg",
-                    "title": "标题"
-                }];
-            } else if (localStorageService.get('homeStyle') == 'home-21') {
-                $scope.adList = [{
-                    "img": "img/home/21.jpg",
-                    "title": "标题"
-                }];
-            } else if (localStorageService.get('homeStyle') == 'home-23') {
-                $scope.adList = [{
-                    "img": "img/home/9.jpg",
-                    "title": "标题"
-                }];
-            } else if (localStorageService.get('homeStyle') == 'home-25') {
-                $scope.adList = [{
-                    "img": "img/home/9.jpg",
-                    "title": "标题"
-                }];
-            }
-        }
+        $scope.navList = localStorageService.get('initInfo').data;
+//        $scope.adList = localStorageService.get('initInfo').showImgList;
+//        if ($scope.adList == null) {
+//            $scope.adList = [{
+//                "img": "img/banner.png",
+//                "title": "标题"
+//            }];
+//            //判断首页轮播对应的图片
+//            if (localStorageService.get('homeStyle') == 'home-8') {
+//                $scope.adList = [{
+//                    "img": "img/home/8.jpg",
+//                    "title": "标题"
+//                }];
+//            } else if (localStorageService.get('homeStyle') == 'home-9') {
+//                $scope.adList = [{
+//                    "img": "img/home/9.jpg",
+//                    "title": "标题"
+//                }];
+//            } else if (localStorageService.get('homeStyle') == 'home-11') {
+//                $scope.adList = [{
+//                    "img": "img/home/11.jpg",
+//                    "title": "标题"
+//                }];
+//            } else if (localStorageService.get('homeStyle') == 'home-18') {
+//                $scope.adList = [{
+//                    "img": "img/home/11.jpg",
+//                    "title": "标题"
+//                }];
+//            } else if (localStorageService.get('homeStyle') == 'home-21') {
+//                $scope.adList = [{
+//                    "img": "img/home/21.jpg",
+//                    "title": "标题"
+//                }];
+//            } else if (localStorageService.get('homeStyle') == 'home-23') {
+//                $scope.adList = [{
+//                    "img": "img/home/9.jpg",
+//                    "title": "标题"
+//                }];
+//            } else if (localStorageService.get('homeStyle') == 'home-25') {
+//                $scope.adList = [{
+//                    "img": "img/home/9.jpg",
+//                    "title": "标题"
+//                }];
+//            }
+//        }
 
 
         var color = localStorageService.get('initInfo').styleColor;

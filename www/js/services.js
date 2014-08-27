@@ -8,7 +8,7 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getInitDatas: function(callback) {
-                $http.get($rootScope.url + 'act=initialization&subsiteCode=' + $rootScope.subsiteCode, {
+                $http.get($rootScope.url + 'category/list', {
                     cache: true
                 }).success(callback);
             }
