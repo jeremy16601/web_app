@@ -9,7 +9,6 @@ angular.module('starter.services', [])
 
     })
 
-
 //HomeService
     .factory('HomeService', function ($stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;

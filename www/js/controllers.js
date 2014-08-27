@@ -44,7 +44,8 @@ angular.module('starter.controllers', [])
                 "icon": "ion-ios7-compose-outline",
                 "title": "仓库",
                 "href": "#/201407220000400/news"
-            }]
+            }
+        ]
 
 
         var color = '#363636';
@@ -54,7 +55,7 @@ angular.module('starter.controllers', [])
     })
 
 
-//新闻
+    //新闻
     .controller('NewsCtrl', function ($scope, $ionicLoading, $timeout, NewsService) {
         $ionicLoading.show({
             content: '加载数据',
