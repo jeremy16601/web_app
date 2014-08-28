@@ -6,7 +6,6 @@ angular.module('starter.controllers', [])
         });
     })
 
-// 首页 controller
     .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $timeout, HomeService) {
         $ionicLoading.show({
             content: '加载数据',
@@ -14,7 +13,6 @@ angular.module('starter.controllers', [])
             maxWidth: 200,
             delay: 100
         });
-
 
         $scope.$on('$stateChangeSuccess', function () {
             $ionicLoading.hide();
@@ -25,7 +23,7 @@ angular.module('starter.controllers', [])
                 "id": 1,
                 "icon": "ion-ios7-paper-outline",
                 "title": "商品分类",
-                "href": "#/201407220000400/news"
+                "href": "#/201407220000400/products"
             },
             {
                 "id": 2,
@@ -51,7 +49,7 @@ angular.module('starter.controllers', [])
         var color = 'white';
         $scope.styleColor = "{color:'" + color + "'}";
 
-        $(".pane").css("background-image", "url(" + 'img/bg29.png' + ")");
+        $(".pane").css("background-image", "url(" + 'img/bj.png' + ")");
     })
 
 
