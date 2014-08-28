@@ -40,13 +40,13 @@ angular.module('starter.controllers', [])
             {
                 "id": 4,
                 "icon": "ion-ios7-compose-outline",
-                "title": "仓库",
+                "title": "关于我们",
                 "href": "#/201407220000400/news"
             }
         ]
 
 
-        var color = 'white';
+        var color = 'black';
         $scope.styleColor = "{color:'" + color + "'}";
 
         $(".pane").css("background-image", "url(" + 'img/bj.png' + ")");
@@ -338,8 +338,7 @@ angular.module('starter.controllers', [])
         }
         //默认加载
         ProductService.getProducts(function (results) {
-            $scope.fruits = results;
-            console.log('results==='+results);
+            $scope.productList = results;
             $ionicLoading.hide();
         });
 
