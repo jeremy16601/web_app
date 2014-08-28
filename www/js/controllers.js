@@ -339,7 +339,7 @@ angular.module('starter.controllers', [])
         //默认加载
         ProductService.getProducts(function (results) {
             $scope.fruits = results;
-
+            console.log('results==='+results);
             $ionicLoading.hide();
         });
 

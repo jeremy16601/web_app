@@ -178,7 +178,7 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getProducts: function (callback) {
-                $http.get($rootScope.url + 'act=typeProductList&subsiteCode=' + $rootScope.subsiteCode, {
+                $http.get($rootScope.url + '/category/list', {
                     cache: true
                 }).success(callback);
             },
