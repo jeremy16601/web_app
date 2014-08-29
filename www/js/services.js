@@ -192,13 +192,8 @@ angular.module('starter.services', [])
     .factory('productListService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
-            getFruitsAsync: function (callback) { //+ $stateParams.currentPage
-                $http.get($rootScope.url + '/category/list' + $rootScope.subsiteCode + '&currentPage=1' + '&proTypeMaxId=' + $stateParams.proTypeMaxId, {
-                    cache: true
-                }).success(callback);
-            },
-            getProductTypeList: function (callback) {
-                $http.get($rootScope.url + 'act=productTypeList&subsiteCode=' + $rootScope.subsiteCode, {
+            getProductTypeList: function (callback) { //+ $stateParams.currentPage
+                $http.get($rootScope.url + '/category/list', {
                     cache: true
                 }).success(callback);
             }

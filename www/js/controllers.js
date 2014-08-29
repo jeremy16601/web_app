@@ -23,7 +23,7 @@ angular.module('starter.controllers', [])
                 "id": 1,
                 "icon": "ion-ios7-paper-outline",
                 "title": "商品分类",
-                "href": "#/201407220000400/products"
+                "href": "#/201407220000400/classify"
             },
             {
                 "id": 2,
@@ -422,7 +422,7 @@ angular.module('starter.controllers', [])
         });
         productListService.getProductTypeList(function (results) {
             $ionicLoading.hide();
-            $scope.productTypeList = results.proTypeList;
+            $scope.productTypeList = results.data;
         });
 
     })
