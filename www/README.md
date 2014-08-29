@@ -6,4 +6,5 @@ $ ionic build ios
 $ ionic emulate ios
 ```
 
-#### 在浏览器中测试 ionic serve
+#### 在浏览器中测试 
+``ionic serve``

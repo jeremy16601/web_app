@@ -156,11 +156,11 @@ angular.module('starter.controllers', [])
 //付款
     .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $location, $stateParams, $scope, PayService) {
 
-        $scope.address = $cookieStore.get("address");
-        if ($scope.address == undefined) {
-            alert('请先去选择收货地址');
-            $location.url('/' + $rootScope.subsiteCode + '/user-address');
-        }
+        // $scope.address = $cookieStore.get("address");
+        // if ($scope.address == undefined) {
+        //     alert('请先去选择收货地址');
+        //     $location.url('/' + $rootScope.subsiteCode + '/user-address');
+        // }
 
         //下订单
         $scope.orders = function (order) {
