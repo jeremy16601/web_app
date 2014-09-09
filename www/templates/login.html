@@ -1,7 +1,11 @@
 <style>
+    .bar.bar-assertive {
+        border-color: #428E57;
+        background-color: #428E57;
+    }
     .button.button-positive {
-        border-color: #f5655f;
-        background-color: #f5655f;
+        border-color: #428E57;
+        background-color: #428E57;
         color: #fff;
     }
 </style>
@@ -9,17 +13,20 @@
     <ion-content has-header="true">
         <div class="list">
             <label class="item item-input">
-                <span class="input-label">用户名</span>
+                <span class="input-label">用户名:</span>
                 <input type="text" ng-model="user.username">
             </label>
             <label class="item item-input">
-                <span class="input-label">密码</span>
+                <span class="input-label">密  码:</span>
                 <input type="password" ng-model="user.password">
             </label>
         </div>
         <div class="padding">
             <button class="button button-block button-positive" ng-click="login(user)">
                 登陆
+            </button>
+            <button class="button button-block button-positive" ng-href="#/{{subsiteCode}}/">
+                注册
             </button>
             <p class="text-center">
                 <a href="#/forgot-password">忘记密码?</a>
