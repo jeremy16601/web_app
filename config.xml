@@ -7,7 +7,7 @@
   <author email="584333110@qq.com" href="http://nodejs.pw/">
       lixueqing
     </author>
-  <content src="www/index.html"/>
+  <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
