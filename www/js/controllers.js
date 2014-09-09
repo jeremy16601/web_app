@@ -399,7 +399,7 @@ angular.module('starter.controllers', [])
     })
 
 //产品类型列表页
-    .controller('ClassCtrl', function ($scope, $ionicLoading, $rootScope, $location,productListService) {
+    .controller('ClassCtrl', function ($scope, $ionicLoading, $rootScope, $location, productListService) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -408,8 +408,8 @@ angular.module('starter.controllers', [])
             showDelay: 100
         });
 
-        $scope.gotoCata=function(id){
-            var url='#/'+$rootScope.subsiteCode+'/products?categoryId='+id;
+        $scope.gotoCata = function (id) {
+            var url = '#/' + $rootScope.subsiteCode + '/products?categoryId=' + id;
             window.location.assign(url);
         };
 
@@ -697,68 +697,16 @@ angular.module('starter.controllers', [])
 
     })
 
-//投票
-    .controller('VoteCtrl', function ($scope, $ionicSlideBoxDelegate, VoteService) {
-
-        VoteService.voteList(function (data) {
-            $scope.votes = data.dataList;
-            $ionicSlideBoxDelegate.update();
-
-            angular.element(document).ready(function () {
-                for (x in $scope.votes) {
-                    if (!$scope.votes[x].enableVote) {
-                        $scope.showVoteResult($scope.votes[x]);
-                    }
-                }
-            });
-        });
-
-        $scope.slideChanged = function (index) {
-            $scope.slideIndex = index;
+    //登陆
+    .controller('LoginCtrl', function ($scope, LoginService) {
+        //注册
+        $scope.signIn = function(user) {
+            console.log('Sign-In', user);
+            $state.go('tabs.home');
         };
-
-        $scope.submit = function (vote) {
-            var voteInfo = {};
-
-            if (vote.isCheckbox == 'N') {
-                var dd = $('input[name="group' + vote.voId + '"]:checked').val();
-                voteInfo.voId = vote.voId;
-                voteInfo.opId = dd;
-
-            } else {
-                voteInfo.voId = vote.voId;
-                voteInfo.opId = [];
-                $('input[name="checkbox' + vote.voId + '"]:checked').each(function () {
-                    voteInfo.opId.push($(this).val());
-                });
-            }
-
-            VoteService.vote(voteInfo, function (data) {
-            });
-
-            $('#vote-list' + vote.voId).hide();
-            $('#vote-result' + vote.voId).show();
-
-            $('#submit' + vote.voId).hide();
-            for (var i = 0; i < vote.opData.length; i++) {
-                var opt = vote.opData[i];
-                if (opt.percent != '0') {
-                    $('#progresBar' + opt.opId).css('width', opt.percent + '%');
-                }
-            }
+        //登陆
+        $scope.login = function(user) {
+            console.log('Sign-In', user);
+            $state.go('tabs.home');
         };
-
-        $scope.showVoteResult = function (vote) {
-            $('#vote-list' + vote.voId).hide();
-            $('#vote-result' + vote.voId).show();
-
-            $('#submit' + vote.voId).hide();
-            for (var i = 0; i < vote.opData.length; i++) {
-                var opt = vote.opData[i];
-                if (opt.percent != '0') {
-                    $('#progresBar' + opt.opId).css('width', opt.percent + '%');
-                }
-            }
-        };
-
     });

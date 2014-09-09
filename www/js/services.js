@@ -400,13 +400,17 @@ angular.module('starter.services', [])
     })
 
 //投票
-    .factory('VoteService', function ($http, $stateParams, $rootScope) {
+    .factory('LoginService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
-            vote: function (vote, callback) {
+            //注册
+            sign: function (sign, callback) {
                 var data = {
-                        voId: vote.voId,
-                        opId: vote.opId
+                        username: sign.username,
+                        email: sign.email,
+                        phone:sign.phone,
+                        password:sign.password,
+                        rePassword:sign.rePassword
                     },
                     transFn = function (data) {
                         return $.param(data, true);
@@ -417,11 +421,12 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                $http.post($rootScope.url + 'act=updateVote&subsiteCode=' + $rootScope.subsiteCode, data, postCfg).success(callback);
+                $http.post($rootScope.url + '/user/register', data, postCfg).success(callback);
 
             },
-            voteList: function (callback) {
-                $http.get($rootScope.url + 'act=voteList&subsiteCode=' + $rootScope.subsiteCode, {
+            //登陆
+            login: function (callback) {
+                $http.get($rootScope.url + '/user/getInfo', {
                     cache: true
                 }).success(callback);
             }

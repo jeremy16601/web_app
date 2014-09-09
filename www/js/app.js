@@ -181,6 +181,11 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/about-us.html',
                 controller: 'AboutUsCtrl'
             })
+            .state('login', {
+                url: "/:pid/login",
+                templateUrl: "templates/login.html",
+                controller: 'LoginCtrl'
+            })
             //二维码
             .state('qr-code', {
                 url: '/:pid/qr-code',
