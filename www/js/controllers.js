@@ -315,7 +315,7 @@ angular.module('starter.controllers', [])
     })
 
 //产品列表
-    .controller('ProductCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location,$stateParams, ProductService) {
+    .controller('ProductCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location, $stateParams, ProductService) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -323,10 +323,16 @@ angular.module('starter.controllers', [])
             maxWidth: 200,
             showDelay: 100
         });
+        //默认加载
+        ProductService.getProducts(function (results) {
+            $scope.productList = results;
+            $ionicLoading.hide();
+        });
+
         //点击详情
         $scope.more = function (proTypeMaxId) {
             $location.path('/' + $rootScope.subsiteCode + '/product-list/' + proTypeMaxId);
-        }
+        };
         //根据输入内容，查询
         $scope.search = function (productName) {
             var elem = document.getElementById('productName');
@@ -334,12 +340,7 @@ angular.module('starter.controllers', [])
             $location.path('/' + $rootScope.subsiteCode + '/product-search/' + elem.value);
 
 
-        }
-        //默认加载
-        ProductService.getProducts(function(results) {
-            $scope.productList = results;
-            $ionicLoading.hide();
-        });
+        };
 
 
     })
@@ -400,7 +401,7 @@ angular.module('starter.controllers', [])
     })
 
 //产品类型列表页
-    .controller('ClassCtrl', function ($scope, $ionicLoading, $rootScope, productListService) {
+    .controller('ClassCtrl', function ($scope, $ionicLoading, $rootScope, $location,productListService) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -408,6 +409,11 @@ angular.module('starter.controllers', [])
             maxWidth: 200,
             showDelay: 100
         });
+
+        $scope.gotoCata=function(id){
+            $location.path('/'+$rootScope.subsiteCode+'/products?categoryId='+id);
+        };
+
         productListService.getProductTypeList(function (results) {
             $ionicLoading.hide();
             $scope.productTypeList = results.data;

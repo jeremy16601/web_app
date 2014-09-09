@@ -7,8 +7,9 @@
         <div ng-repeat="productype in productTypeList">
 
             <ul class="list">
-                <li class="item ">
-                    <a href="#/{{subsiteCode}}/products?categoryId={{productype.id}}" style="text-decoration: none">{{productype.name}}</a>
+                <li class="item " ng-click="gotoCata(productype.id)">
+                    <!--href="#/{{subsiteCode}}/products?categoryId={{productype.id}}"-->
+                    <a style="text-decoration: none">{{productype.name}}</a>
                 </li>
             </ul>
         </div>
