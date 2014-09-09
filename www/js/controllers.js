@@ -342,17 +342,6 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
         });
 
-        ProductService.getProductImg(function (result) {
-            $scope.img = result;
-            if (result.succeed == "002") {
-                $scope.img.imgPath = "img/12.jpg";
-            }
-
-            if ($scope.img.imgPath == "") {
-                $scope.img.imgPath = "img/12.jpg";
-            }
-            $ionicLoading.hide();
-        });
 
     })
 

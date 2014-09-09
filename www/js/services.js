@@ -178,12 +178,9 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getProducts: function (callback) {
-                $http.get($rootScope.url + 'act=typeProductList&subsiteCode=' + $rootScope.subsiteCode, {
+                $http.get($rootScope.url + '/goods', {
                     cache: true
                 }).success(callback);
-            },
-            getProductImg: function (callback) {
-                $http.get($rootScope.url + 'act=modelConByPar&modelType=model_pro&subsiteCode=' + $rootScope.subsiteCode).success(callback);
             }
         };
     })
