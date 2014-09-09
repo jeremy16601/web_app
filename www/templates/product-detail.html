@@ -73,8 +73,8 @@
             <div id='slider-news' class='swipe'>
                 <div class='swipe-wrap'>
 
-                    <div ng-repeat="ad in datas.dataList.imgList">
-                        <img ng-src="{{ad.imgPath}}">
+                    <div ng-repeat="ad in datas.data.goodsDetail.pictures">
+                        <img style="height: 260px;" ng-src="http://106.187.52.57:8080/static/images/{{ad.path}}">
 
                         <!--   <p>{{ad.newsTitle}}</p> -->
                     </div>
@@ -87,9 +87,9 @@
 
 
         <div class="list card" style="background: #f9f9f9;">
-            <p style="color:#666666;font-size: 16px;">{{ datas.dataList.productName }}</p>
+            <p style="color:#666666;font-size: 16px;">{{ datas.data.goodsDetail.name }}</p>
 
-            <p style="color:#f5655f; font-size: 16px;">￥{{datas.dataList.price}}</p>
+            <p style="color:#f5655f; font-size: 16px;">￥{{datas.data.goodsDetail.price}}</p>
             <!--  <p style="color:#666666;">
                 <span>颜 色&nbsp;</span>
                 <button class="button button-stable    ">金色</button>

@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
             {
                 "id": 2,
                 "icon": "ion-ios7-cart-outline",
-                "title": "我的订单",
+                "title": "我的购物车",
                 "href": "#/201407220000400/news"
             },
             {
@@ -127,11 +127,10 @@ angular.module('starter.controllers', [])
 
             $ionicLoading.hide();
             $scope.datas = results;
-            console.log(results);
-            $('#product-content').html($scope.datas.dataList.productIntro);
+            $('#product-content').html($scope.datas.data.goodsDetail.description);
             angular.element(document).ready(function () {
 
-                for (var i = 1; i < $scope.datas.dataList.imgList.length; i++) {
+                for (var i = 1; i < $scope.datas.data.goodsDetail.pictures.length; i++) {
                     var dot = document.createElement("span");
                     $('.swipe-ctr').append(dot);
                 }
@@ -316,7 +315,7 @@ angular.module('starter.controllers', [])
     })
 
 //产品列表
-    .controller('ProductCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location, ProductService) {
+    .controller('ProductCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location,$stateParams, ProductService) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -337,7 +336,7 @@ angular.module('starter.controllers', [])
 
         }
         //默认加载
-        ProductService.getProducts(function (results) {
+        ProductService.getProducts(function(results) {
             $scope.productList = results;
             $ionicLoading.hide();
         });

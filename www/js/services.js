@@ -176,16 +176,21 @@ angular.module('starter.services', [])
 //产品数据
     .factory('ProductService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
+        var page = $stateParams.page;
+        var categoryId = $stateParams.categoryId;
+        if (page == null) {
+            page = 1;
+        } else if (categoryId == null) {
+            categoryId=1;
+        }
         return {
             getProducts: function (callback) {
-                $http.get($rootScope.url + '/goods', {
-                    cache: true
-                }).success(callback);
+                $http.get($rootScope.url + '/goods?categoryId=' + categoryId + '&page=' + page).success(callback);
             }
         };
     })
 
-//产品列表数据
+//产品category数据
     .factory('productListService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
@@ -202,7 +207,7 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
-                $http.get($rootScope.url + 'act=productDetail&subsiteCode=' + $rootScope.subsiteCode + '&proId=' + $stateParams.proId, {
+                $http.get($rootScope.url + '/goods/' + $stateParams.proId, {
                     cache: true
                 }).success(callback);
             }

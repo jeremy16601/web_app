@@ -27,8 +27,8 @@
 
 
             <div class="list  ">
-                <a ng-repeat="item in productList.data.content" href="#/{{subsiteCode}}/product-detail/{{item.proId}}" class="item item-thumbnail-left item-no-board">
-                    <img ng-src="{{item.proPhoto}}">
+                <a ng-repeat="item in productList.data.content" href="#/{{subsiteCode}}/product-detail/{{item.id}}" class="item item-thumbnail-left item-no-board">
+                    <img  ng-src="{{item.goodsDetail.pictures[0].path}}" />
 
                     <p style="-webkit-text-fill-color: #898989">{{item.goodsDetail.name}}</p>
 

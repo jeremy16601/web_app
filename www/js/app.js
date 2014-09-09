@@ -92,7 +92,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
         })
         //产品列表首页
         .state('products', {
-            url: '/:pid/products',
+            url: '/:pid/products?categoryId&page&pageSize',
             templateUrl: 'templates/products.html',
             controller: 'ProductCtrl'
         })
