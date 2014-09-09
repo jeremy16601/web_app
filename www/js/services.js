@@ -176,16 +176,19 @@ angular.module('starter.services', [])
 //产品数据
     .factory('ProductService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
-        var page = $stateParams.page;
-        var categoryId = $stateParams.categoryId;
-        if (page == null) {
-            page = 1;
-        } else if (categoryId == null) {
-            categoryId=1;
-        }
+
         return {
             getProducts: function (callback) {
-                $http.get($rootScope.url + '/goods?categoryId=' + categoryId + '&page=' + page).success(callback);
+                var page = $stateParams.page;
+                var categoryId = $stateParams.categoryId;
+                if (page == null) {
+                    page = 1;
+                } else if (categoryId == null) {
+                    categoryId=1;
+                }
+                $http.get($rootScope.url + '/goods?categoryId=' + categoryId + '&page=' + page, {
+                    cache: true
+                }).success(callback);
             }
         };
     })

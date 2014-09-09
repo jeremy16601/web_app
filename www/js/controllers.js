@@ -2,7 +2,7 @@ angular.module('starter.controllers', [])
 
     .controller('InitCtrl', function ($scope, localStorageService, $ionicLoading, $stateParams, $state, InitService) {
         $state.go('home-29', $stateParams, {
-            location: false
+            location: true
         });
     })
 
@@ -329,18 +329,16 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
         });
 
-        //点击详情
-        $scope.more = function (proTypeMaxId) {
-            $location.path('/' + $rootScope.subsiteCode + '/product-list/' + proTypeMaxId);
-        };
-        //根据输入内容，查询
-        $scope.search = function (productName) {
-            var elem = document.getElementById('productName');
-            // alert(elem.value);
-            $location.path('/' + $rootScope.subsiteCode + '/product-search/' + elem.value);
-
-
-        };
+//        //点击详情
+//        $scope.more = function (proTypeMaxId) {
+//            $location.path('/' + $rootScope.subsiteCode + '/product-list/' + proTypeMaxId);
+//        };
+//        //根据输入内容，查询
+//        $scope.search = function (productName) {
+//            var elem = document.getElementById('productName');
+//            // alert(elem.value);
+//            $location.path('/' + $rootScope.subsiteCode + '/product-search/' + elem.value);
+//        };
 
 
     })
@@ -411,7 +409,8 @@ angular.module('starter.controllers', [])
         });
 
         $scope.gotoCata=function(id){
-            $location.path('/'+$rootScope.subsiteCode+'/products?categoryId='+id);
+            var url='#/'+$rootScope.subsiteCode+'/products?categoryId='+id;
+            window.location.assign(url);
         };
 
         productListService.getProductTypeList(function (results) {
