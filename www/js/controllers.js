@@ -29,13 +29,13 @@ angular.module('starter.controllers', [])
                 "id": 2,
                 "icon": "ion-ios7-cart-outline",
                 "title": "我的购物车",
-                "href": "#/201407220000400/news"
+                "href": "#/201407220000400/user"
             },
             {
                 "id": 3,
                 "icon": "ion-ios7-person-outline",
                 "title": "用户中心",
-                "href": "#/201407220000400/user"
+                "href": "#/201407220000400/login"
             },
             {
                 "id": 4,
