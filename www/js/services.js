@@ -1,7 +1,6 @@
 angular.module('starter.services', [])
     .config(function ($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
-        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     })
     //获取导航
@@ -401,7 +400,7 @@ angular.module('starter.services', [])
     })
 
 //用户登陆
-    .factory('LoginService', function ($http, $stateParams, $rootScope) {
+    .factory('LoginService', function ($http, $stateParams, $window,$rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             //注册
@@ -422,28 +421,22 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                $http.post($rootScope.url + '/user/register', data, postCfg).success(function(datas){
-                    console.log('注册成功'+datas+'=='+datas.Result);
+                $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
+                    if(data.success){
+                        $window.location.assign('#/201407220000400/login');
+                    }
                 });
 
             },
             //登陆
             login: function (user) {
-                var data = {
-                        email: user.email,
-                        password: user.password
-                    },
-                    transFn = function (data) {
-                        return $.param(data, true);
-                    },
-                    postCfg = {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                        },
-                        transformRequest: transFn
+                $http.get($rootScope.url + '/user/login?emailOrPhone=' + user.emailOrPhone + '&password=' + user.password).success(function (data) {
+                    if(data.success){
+                        $http.get($rootScope.url + '/user/getInfo').success(function(data){
+                            console.log('登陆成功，个人信息是：'+data.email);
+                        });
                     };
-                $http.post($rootScope.url + '/user/login', data, postCfg).success(function(datas){
-                    console.log('Login成功'+datas+'=='+datas.Result);
+                     $window.location.assign('#/201407220000400/user');
                 });
             }
         }

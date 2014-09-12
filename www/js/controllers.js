@@ -709,9 +709,7 @@ angular.module('starter.controllers', [])
         //登陆
         $scope.login = function(user) {
             console.log('Login-In', user);
-            LoginService.login(user,function(datas){
-                console.log('登陆数据:'+datas);
-            });
+            LoginService.login(user);
 //            $state.go('tabs.home');
         };
     });
