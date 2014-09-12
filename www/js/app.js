@@ -5,13 +5,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
     .run(function ($rootScope) {
         $rootScope.subsiteCode = "";
         $rootScope.url = "http://106.187.52.57:8080/api";
-        $rootScope.user = {
-            userId: '001',
-            nickname: 'user',
-            sex: '1',
-            icon: '',
-            city: '北京'
-        };
         $rootScope.timeout = 100;
     })
 
@@ -187,10 +180,10 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 controller: 'LoginCtrl'
             })
             //二维码
-            .state('qr-code', {
-                url: '/:pid/qr-code',
-                templateUrl: 'templates/qr-code.html',
-                controller: 'QRCodeCtrl'
+            .state('register', {
+                url: '/:pid/register',
+                templateUrl: 'templates/register.html',
+                controller: 'LoginCtrl'
             })
             //相册
             .state('photoAlbum', {

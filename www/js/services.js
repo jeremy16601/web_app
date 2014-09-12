@@ -184,7 +184,7 @@ angular.module('starter.services', [])
                 if (page == null) {
                     page = 1;
                 } else if (categoryId == null) {
-                    categoryId=1;
+                    categoryId = 1;
                 }
                 $http.get($rootScope.url + '/goods?categoryId=' + categoryId + '&page=' + page, {
                     cache: true
@@ -399,7 +399,7 @@ angular.module('starter.services', [])
         };
     })
 
-//投票
+//用户登陆
     .factory('LoginService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
@@ -408,9 +408,9 @@ angular.module('starter.services', [])
                 var data = {
                         username: sign.username,
                         email: sign.email,
-                        phone:sign.phone,
-                        password:sign.password,
-                        rePassword:sign.rePassword
+                        phone: sign.phone,
+                        password: sign.password,
+                        rePassword: sign.rePassword
                     },
                     transFn = function (data) {
                         return $.param(data, true);
@@ -421,14 +421,29 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                $http.post($rootScope.url + '/user/register', data, postCfg).success(callback);
+                $http.post($rootScope.url + '/user/register', data, postCfg).success(function(datas){
+                    console.log('注册成功'+datas+'=='+datas.Result);
+                });
 
             },
             //登陆
-            login: function (callback) {
-                $http.get($rootScope.url + '/user/getInfo', {
-                    cache: true
-                }).success(callback);
+            login: function (user) {
+                var data = {
+                        email: user.email,
+                        password: user.password
+                    },
+                    transFn = function (data) {
+                        return $.param(data, true);
+                    },
+                    postCfg = {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        transformRequest: transFn
+                    };
+                $http.post($rootScope.url + '/user/login', data, postCfg).success(function(datas){
+                    console.log('Login成功'+datas+'=='+datas.Result);
+                });
             }
         }
     })

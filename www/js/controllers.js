@@ -702,11 +702,16 @@ angular.module('starter.controllers', [])
         //注册
         $scope.signIn = function(user) {
             console.log('Sign-In', user);
-            $state.go('tabs.home');
+            LoginService.sign(user,function(datas){
+                console.log('注册数据:'+datas);
+            });
         };
         //登陆
         $scope.login = function(user) {
-            console.log('Sign-In', user);
-            $state.go('tabs.home');
+            console.log('Login-In', user);
+            LoginService.login(user,function(datas){
+                console.log('登陆数据:'+datas);
+            });
+//            $state.go('tabs.home');
         };
     });

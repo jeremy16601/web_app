@@ -296,7 +296,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
         //二维码
         .state('qr-code', {
             url: '/:pid/qr-code',
-            templateUrl: 'templates/qr-code.html',
+            templateUrl: 'templates/register.html',
             controller: 'QRCodeCtrl'
         })
         //相册
