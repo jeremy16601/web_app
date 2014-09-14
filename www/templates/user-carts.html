@@ -1,0 +1,21 @@
+<ion-view title="我的购物车" hide-nav-bar="true">
+    <ion-content>
+
+        <div class="list">
+            <a ng-repeat="item in orderList"  class="item item-thumbnail-left item-no-board">
+                <img ng-src="http://115.28.242.219/webapp/{{item.photo}}">
+
+                <p style="-webkit-text-fill-color: #898989">{{item.proName}}</p>
+
+                <p style="font-size:16px; color: red; margin-top: 25px; ">￥{{item.totalMoney}} <span style="margin-left:50px;">{{item.statusName}}</span></p>
+            </a>
+        </div>
+
+        <ion-infinite-scroll
+                ng-if="hasmore"
+                on-infinite="loadMore()"
+                icon="ion-loading-c"
+                distance="10%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

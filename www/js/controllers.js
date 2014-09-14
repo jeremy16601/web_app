@@ -533,30 +533,27 @@ angular.module('starter.controllers', [])
 
 //用户订单
     .controller('UserCtrlOrder', function ($scope, $timeout, UserOrderService) {
-        $scope.hasmore = true;
-        $scope.loadMore = function () {
-            $scope.$broadcast('scroll.infiniteScrollComplete');
-            $timeout(function () {
+//        $scope.hasmore = true;
+//        $scope.loadMore = function () {
+//            $scope.$broadcast('scroll.infiniteScrollComplete');
                 UserOrderService.getNextOrderList(function (data) {
-                    if (data.succeed == "002") {
-                        $scope.hasmore = false;
-                    } else {
+                    if (data.success) {
+//                        $scope.hasmore = false;
+//                    } else {
                         if ($scope.orderList == null) {
-                            $scope.orderList = data.dataList;
+                            $scope.orderList = data.data.content;
                         } else {
-                            for (var i = 0; i < data.dataList.length; i++) {
-                                $scope.orderList.push(data.dataList[i]);
+                            for (var i = 0; i < data.data.content.length; i++) {
+                                $scope.orderList.push(data.data.content[i]);
                             }
                         }
-                        if (data.currentPage >= data.totalPage) {
-                            $scope.hasmore = false;
-                        }
+//                        if (data.currentPage >= data.data.totalPages) {
+//                            $scope.hasmore = false;
+//                        }
                     }
-
-                    $scope.$broadcast('scroll.infiniteScrollComplete');
+//                    $scope.$broadcast('scroll.infiniteScrollComplete');
                 });
-            }, 400);
-        };
+//        };
     })
 
 //用户收货地址

@@ -227,10 +227,10 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/user-signin.html',
                 controller: 'UserSignInCtrl'
             })
-            //投票
-            .state('vote', {
-                url: '/:pid/vote',
-                templateUrl: 'templates/vote.html',
+            //我的购物车
+            .state('user-cart', {
+                url: '/:pid/carts',
+                templateUrl: 'templates/user-carts.html',
                 controller: 'VoteCtrl'
             });
 

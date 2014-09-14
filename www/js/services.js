@@ -380,8 +380,7 @@ angular.module('starter.services', [])
         return {
             getNextOrderList: function (callback) {
                 currentPage++;
-                console.log(currentPage);
-                $http.get($rootScope.url + 'act=orderList&subsiteCode=' + $rootScope.subsiteCode + '&userId=' + $stateParams.userId + '&currentPage=' + currentPage).success(callback);
+                $http.get($rootScope.url + '/order/list?userId=' + $stateParams.userId).success(callback);
             }
         };
     })
@@ -403,7 +402,7 @@ angular.module('starter.services', [])
     })
 
 //用户登陆
-    .factory('LoginService', function ($http, localStorageService,$stateParams, $window, $rootScope) {
+    .factory('LoginService', function ($http, localStorageService, $stateParams, $window, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             //注册
@@ -428,9 +427,9 @@ angular.module('starter.services', [])
                 $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
                     if (data.success) {
                         localStorageService.set('id', data.data);
-                        $window.location.assign('#/201407220000400/user?id='+data.data);
-                    }else{
-                        alert('注册失败:'+data.data);
+                        $window.location.assign('#/201407220000400/user?id=' + data.data);
+                    } else {
+                        alert('注册失败:' + data.data);
                     }
                 });
             },
