@@ -407,13 +407,13 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             //注册
-            sign: function (sign, callback) {
+            sign: function (sign) {
                 var data = {
-                        username: sign.username,
-                        email: sign.email,
-                        phone: sign.phone,
-                        password: sign.password,
-                        rePassword: sign.rePassword
+                        'username': sign.username,
+                        'email': sign.email,
+                        'phone': sign.phone,
+                        'password': sign.password,
+                        'rePassword': sign.rePassword
                     },
                     transFn = function (data) {
                         return $.param(data, true);
@@ -424,20 +424,37 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
-                    console.log('注册成功：' + JSON.parse(data));
-                    if (data.success) {
-                        $window.location.assign('#/201407220000400/login');
+                console.log('sign:' + data);
+                $http({
+                    url: $rootScope.url + '/user/register',
+                    method: "POST",
+                    data: {username: 'afljeaf',
+                        email: '353534534@qq.com',
+                        phone: '12234223542',
+                        password: '123456',
+                        rePassword: '123456'}
+                }).then(function (response) {
+                        if (response.success) {
+                            $window.location.assign('#/201407220000400/login');
+                        }
+                    },
+                    function (response) { // optional
+                        console.log('faild：' + response);
                     }
-                });
-
+                );
+//                $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
+//                    console.log('注册成功：' + data);
+//                    if (data.success) {
+//                        $window.location.assign('#/201407220000400/login');
+//                    }
+//                });
             },
             //登陆
             login: function (user) {
                 $http.get($rootScope.url + '/user/login?emailOrPhone=' + user.emailOrPhone + '&password=' + user.password).success(function (data) {
                     if (data.success) {
                         $rootScope.userid = data.data;
-                        $window.location.assign('#/201407220000400/user?id='+data.data);
+                        $window.location.assign('#/201407220000400/user?id=' + data.data);
                     }
                     ;
                 });
