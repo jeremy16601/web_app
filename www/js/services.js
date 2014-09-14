@@ -403,7 +403,7 @@ angular.module('starter.services', [])
     })
 
 //用户登陆
-    .factory('LoginService', function ($http, $stateParams, $window, $rootScope) {
+    .factory('LoginService', function ($http, localStorageService,$stateParams, $window, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             //注册
@@ -424,30 +424,15 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                console.log('sign:' + data);
-                $http({
-                    url: $rootScope.url + '/user/register',
-                    method: "POST",
-                    data: {username: 'afljeaf',
-                        email: '353534534@qq.com',
-                        phone: '12234223542',
-                        password: '123456',
-                        rePassword: '123456'}
-                }).then(function (response) {
-                        if (response.success) {
-                            $window.location.assign('#/201407220000400/login');
-                        }
-                    },
-                    function (response) { // optional
-                        console.log('faild：' + response);
+
+                $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
+                    if (data.success) {
+                        localStorageService.set('id', data.data);
+                        $window.location.assign('#/201407220000400/user?id='+data.data);
+                    }else{
+                        alert('注册失败:'+data.data);
                     }
-                );
-//                $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
-//                    console.log('注册成功：' + data);
-//                    if (data.success) {
-//                        $window.location.assign('#/201407220000400/login');
-//                    }
-//                });
+                });
             },
             //登陆
             login: function (user) {
@@ -456,7 +441,6 @@ angular.module('starter.services', [])
                         $rootScope.userid = data.data;
                         $window.location.assign('#/201407220000400/user?id=' + data.data);
                     }
-                    ;
                 });
             }
         }
