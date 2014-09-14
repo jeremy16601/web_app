@@ -74,12 +74,17 @@
                 <div class='swipe-wrap'>
 
                     <div ng-repeat="ad in datas.data.goodsDetail.pictures">
+
                         <img style="height: 260px;" ng-src="http://106.187.52.57:8080/static/images/{{ad.path}}">
 
                         <!--   <p>{{ad.newsTitle}}</p> -->
                     </div>
                 </div>
             </div>
+            <span style="margin-left: 180px; font-size: 18px">
+            <a ng-click="addtoCarts(datas.data.goodsDetail.id)">加入购物车<i class="ion-ios7-cart-outline" style="font-size: 33px;"></i></a>
+            </span>
+
             <div class="swipe-ctr">
                 <span class="cur"></span>
             </div>

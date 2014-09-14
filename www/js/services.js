@@ -9,12 +9,12 @@ angular.module('starter.services', [])
 
     })
 
-//HomeService
+    //HomeService
     .factory('HomeService', function ($stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
     })
 
-//新闻数据
+    //新闻数据
     .factory('NewsService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
@@ -32,7 +32,7 @@ angular.module('starter.services', [])
 
     })
 
-//企业列表
+    //企业列表
     .factory('CompanyListService', function ($http, $rootScope, $stateParams) {
         $rootScope.subsiteCode = $stateParams.pid
         return {
@@ -44,7 +44,7 @@ angular.module('starter.services', [])
         }
     })
 
-//企业详情
+    //企业详情
     .factory('CompanyDetailsService', function ($http, $rootScope, $stateParams) {
         $rootScope.subsiteCode = $stateParams.pid
         return {
@@ -56,7 +56,7 @@ angular.module('starter.services', [])
         }
     })
 
-//人才招聘、关于我们、二维码 、发送留言
+    //人才招聘、关于我们、二维码 、发送留言
     .factory('IndustryService', function ($http, $location, $ionicPopup, $rootScope, $stateParams) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
@@ -116,7 +116,7 @@ angular.module('starter.services', [])
 
     })
 
-//预约
+    //预约
     .factory('yuyueService', function ($http, $location, $ionicPopup, $window, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
@@ -163,7 +163,7 @@ angular.module('starter.services', [])
         };
     })
 
-//产品搜索
+    //产品搜索
     .factory('productSearchService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
@@ -173,7 +173,7 @@ angular.module('starter.services', [])
         };
     })
 
-//产品数据
+    //产品数据
     .factory('ProductService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
 
@@ -193,7 +193,7 @@ angular.module('starter.services', [])
         };
     })
 
-//产品category数据
+    //产品category数据
     .factory('productListService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
@@ -205,14 +205,39 @@ angular.module('starter.services', [])
         };
     })
 
-//产品详情
-    .factory('ProductDetailService', function ($http, $stateParams, $rootScope) {
+    //产品详情
+    .factory('ProductDetailService', function ($http, $stateParams,$window,localStorageService, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
                 $http.get($rootScope.url + '/goods/' + $stateParams.proId, {
                     cache: true
                 }).success(callback);
+            },
+            addToCart: function (goodsId) {
+                //添加商品到购物车
+                var data = {
+                        'goodsId': goodsId,
+                        'userId': localStorageService.get('id')
+                    },
+                    transFn = function (data) {
+                        return $.param(data, true);
+                    },
+                    postCfg = {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        transformRequest: transFn
+                    };
+
+                $http.post($rootScope.url + '/goods/add2Cart', data, postCfg).success(function (data) {
+                    if (data.success) {
+                        alert('添加成功！');
+                        $window.location.reload();
+                    } else {
+                        alert('添加失败:' + data.data);
+                    }
+                });
             }
         };
     })

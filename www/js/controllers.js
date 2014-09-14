@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
                     "id": 2,
                     "icon": "ion-ios7-cart-outline",
                     "title": "我的购物车",
-                    "href": "#/201407220000400/user"
+                    "href": "#/201407220000400/carts?id=" + localStorageService.get('id')
                 },
                 {
                     "id": 3,
@@ -154,6 +154,11 @@ angular.module('starter.controllers', [])
             });
         });
 
+        //add to cart
+        $scope.addtoCarts = function (goodsId) {
+            ProductDetailService.addToCart(goodsId);
+        };
+
 
     })
 
@@ -219,7 +224,7 @@ angular.module('starter.controllers', [])
         console.log('serverSideChange=' + $scope.selectValue);
     })
 
-//付款成功
+    //付款成功
     .controller('PayOKCtrl', function ($rootScope, $stateParams, $scope, PayService) {
 
 
@@ -265,7 +270,7 @@ angular.module('starter.controllers', [])
 
     })
 
-//人才招聘
+    //人才招聘
     .controller('PersonnelRecruitmentCtrl', function ($scope, $ionicLoading, IndustryService) {
         $ionicLoading.show({
             content: '加载数据',
@@ -281,7 +286,7 @@ angular.module('starter.controllers', [])
 
     })
 
-//关于我们
+    //关于我们
     .controller('AboutUsCtrl', function ($scope, IndustryService) {
         IndustryService.getAboutUs(function (result) {
             $('.about_us').html(result.sysValue);
@@ -289,21 +294,21 @@ angular.module('starter.controllers', [])
 
     })
 
-//二维码
+    //二维码
     .controller('QRCodeCtrl', function ($scope, IndustryService) {
         IndustryService.getQRcode(function (result) {
             $scope.url = result.sysValue;
         });
     })
 
-//企业列表
+    //企业列表
     .controller('CompanyListCtrl', function ($scope, CompanyListService) {
         CompanyListService.getCompanyList(function (result) {
             $scope.url = result.sysValue;
         });
     })
 
-// 企业详情 controller
+    // 企业详情 controller
     .controller('CompanyDetailsCtrl', function ($scope, loadJs, CompanyDetailsService) {
         CompanyDetailsService.getCompanyDetail(function (results) {
             $scope.companyDetail = results.dataList;
@@ -319,7 +324,7 @@ angular.module('starter.controllers', [])
         });
     })
 
-//产品列表
+    //产品列表
     .controller('ProductCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location, $stateParams, ProductService) {
         $ionicLoading.show({
             content: '加载数据',
@@ -348,7 +353,7 @@ angular.module('starter.controllers', [])
 
     })
 
-//团购
+    //团购
     .controller('CustomersCtrl', function ($scope, $rootScope, $ionicLoading, CustomerService) {
         $ionicLoading.show({
             content: '加载数据',
@@ -363,7 +368,7 @@ angular.module('starter.controllers', [])
         });
     })
 
-//团购-详情
+    //团购-详情
     .controller('CustomersDetailsCtrl', function ($scope, $ionicLoading, $rootScope, CustomerService) {
         $ionicLoading.show({
             content: '加载数据',
@@ -536,23 +541,23 @@ angular.module('starter.controllers', [])
 //        $scope.hasmore = true;
 //        $scope.loadMore = function () {
 //            $scope.$broadcast('scroll.infiniteScrollComplete');
-                UserOrderService.getNextOrderList(function (data) {
-                    if (data.success) {
+        UserOrderService.getNextOrderList(function (data) {
+            if (data.success) {
 //                        $scope.hasmore = false;
 //                    } else {
-                        if ($scope.orderList == null) {
-                            $scope.orderList = data.data.content;
-                        } else {
-                            for (var i = 0; i < data.data.content.length; i++) {
-                                $scope.orderList.push(data.data.content[i]);
-                            }
-                        }
+                if ($scope.orderList == null) {
+                    $scope.orderList = data.data.content;
+                } else {
+                    for (var i = 0; i < data.data.content.length; i++) {
+                        $scope.orderList.push(data.data.content[i]);
+                    }
+                }
 //                        if (data.currentPage >= data.data.totalPages) {
 //                            $scope.hasmore = false;
 //                        }
-                    }
+            }
 //                    $scope.$broadcast('scroll.infiniteScrollComplete');
-                });
+        });
 //        };
     })
 

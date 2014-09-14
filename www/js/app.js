@@ -229,7 +229,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //我的购物车
             .state('user-cart', {
-                url: '/:pid/carts',
+                url: '/:pid/carts?id',
                 templateUrl: 'templates/user-carts.html',
                 controller: 'VoteCtrl'
             });
