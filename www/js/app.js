@@ -152,7 +152,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //个人中心--用户地址列表
             .state('user-address', {
-                url: '/:pid/user-address',
+                url: '/:pid/user-address?id',
                 templateUrl: 'templates/user-address.html',
                 controller: 'user-addressCtrl'
             })

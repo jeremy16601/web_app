@@ -307,7 +307,11 @@ angular.module('starter.services', [])
             },
             //得到会员收货地址
             getUserAddressList: function (callback) {
-                $http.get($rootScope.url + 'act=userAddressList&subsiteCode=' + $rootScope.subsiteCode).success(callback);
+                $http.get($rootScope.url + '/user/getAddresses?id=' + $stateParams.id).success(callback);
+            },
+            //得到会员余额
+            getUserAccount: function (callback) {
+                $http.get($rootScope.url + '/user/account?id=' + $stateParams.id).success(callback);
             },
             //完善个人信息
             setUserDetailInfo: function (users) {

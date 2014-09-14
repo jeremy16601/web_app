@@ -1,8 +1,8 @@
 <style type="text/css">
-.user-list-one {
-    margin-top: 23px;
-    margin-bottom: 23px;
-}
+    .user-list-one {
+        margin-top: 23px;
+        margin-bottom: 23px;
+    }
 </style>
 
 <ion-view title="个人中心" hide-nav-bar="true">
@@ -15,12 +15,15 @@
         </div>
 
         <div class="list">
-            <a class="item user-list-one" href="#/{{subsiteCode}}/user-detail">请先完善个人信息&nbsp;&nbsp;&nbsp;&nbsp;</a>
-            <a class="item " href="#/{{subsiteCode}}/user-order/{{userdata._id}}">我的订单</a>
-            <a class="item " href="#/{{subsiteCode}}/user-card">我的会员卡</a>
-            <a class="item " href="#/{{subsiteCode}}/user-address">我的收货地址</a>
+            <a class="item" href="">余额：{{ acc.data }} &nbsp;元
+                <a class="item" href="">手机：{{ userdata.phone }}
+                    <a class="item " href="">邮箱：{{ userdata.email }}</a> <br/> <br/>
+                    <a class="item " href="#/{{subsiteCode}}/user-order/{{userdata.id}}">我的订单</a>
+                    <!--<a class="item " href="#/{{subsiteCode}}/user-card">我的会员卡</a>-->
+                    <a class="item " href="#/{{subsiteCode}}/user-address?id={{ userdata.id }}">我的收货地址</a>
+
         </div>
-        <a class="button button-full2 button-block " style="background-color: #428E57" href="#/{{subsiteCode}}">首  页</a>
+        <a class="button button-full2 button-block " style="background-color: #428E57" href="#/{{subsiteCode}}">首 页</a>
         <br>
         <br>
     </ion-content>

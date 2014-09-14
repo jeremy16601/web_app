@@ -6,45 +6,50 @@ angular.module('starter.controllers', [])
         });
     })
 
-    .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $timeout, HomeService) {
+    .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $state, HomeService) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
             maxWidth: 200,
             delay: 100
         });
-
-        $scope.$on('$stateChangeSuccess', function () {
+        //检测本地是否有id
+        if (localStorageService.get('id') == null) {
+            alert('请先注册！谢谢');
+            var url = '#/' + $rootScope.subsiteCode + '/register';
+            window.location.assign(url);
             $ionicLoading.hide();
-        });
-
-        $scope.navList = [
-            {
-                "id": 1,
-                "icon": "ion-ios7-paper-outline",
-                "title": "商品分类",
-                "href": "#/201407220000400/classify"
-            },
-            {
-                "id": 2,
-                "icon": "ion-ios7-cart-outline",
-                "title": "我的购物车",
-                "href": "#/201407220000400/user"
-            },
-            {
-                "id": 3,
-                "icon": "ion-ios7-person-outline",
-                "title": "用户中心",
-                "href": "#/201407220000400/login"
-            },
-            {
-                "id": 4,
-                "icon": "ion-ios7-compose-outline",
-                "title": "关于我们",
-                "href": "#/201407220000400/news"
-            }
-        ]
-
+        } else {
+            $scope.$on('$stateChangeSuccess', function () {
+                $ionicLoading.hide();
+            });
+            $scope.navList = [
+                {
+                    "id": 1,
+                    "icon": "ion-ios7-paper-outline",
+                    "title": "商品分类",
+                    "href": "#/201407220000400/classify"
+                },
+                {
+                    "id": 2,
+                    "icon": "ion-ios7-cart-outline",
+                    "title": "我的购物车",
+                    "href": "#/201407220000400/user"
+                },
+                {
+                    "id": 3,
+                    "icon": "ion-ios7-person-outline",
+                    "title": "用户中心",
+                    "href": "#/201407220000400/user?id=" + localStorageService.get('id')
+                },
+                {
+                    "id": 4,
+                    "icon": "ion-ios7-compose-outline",
+                    "title": "关于我们",
+                    "href": "#/201407220000400/news"
+                }
+            ]
+        }
 
         var color = 'black';
         $scope.styleColor = "{color:'" + color + "'}";
@@ -500,8 +505,8 @@ angular.module('starter.controllers', [])
         });
     })
 
-//用户授权
-    .controller('UserCtrl', function ($scope, UsersService, $ionicLoading, $cookieStore, $rootScope, $location) {
+    //用户授权
+    .controller('UserCtrl', function ($scope, UsersService, $ionicLoading, localStorageService, $rootScope, $location) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -512,11 +517,17 @@ angular.module('starter.controllers', [])
         UsersService.getUserInfo(function (data) {
             //给前台赋值
             $scope.userdata = data.data;
-            $cookieStore.put('userId', data.data.id);
+            localStorageService.set('id', data.data.id);
+            //$cookieStore.put('userId',);
             $scope.go = function (path) {
                 $location.path(path);
             };
         });
+        //金额
+        $scope.account = UsersService.getUserAccount(function (data) {
+            $scope.acc = data;
+        });
+
         $ionicLoading.hide();
     })
 
@@ -552,7 +563,7 @@ angular.module('starter.controllers', [])
     .controller('user-addressCtrl', function ($scope, $window, $cookieStore, UsersService) {
 
         UsersService.getUserAddressList(function (data) {
-            $scope.items = data;
+            $scope.items = data.data;
         });
 
 
@@ -698,17 +709,10 @@ angular.module('starter.controllers', [])
 
     //登陆
     .controller('LoginCtrl', function ($scope, LoginService) {
-        //注册
-        $scope.signIn = function(user) {
-            console.log('Sign-In', user);
-            LoginService.sign(user,function(datas){
-                console.log('注册数据:'+datas);
-            });
+        $scope.signIn = function (user) {
+            LoginService.sign(user);
         };
-        //登陆
-        $scope.login = function(user) {
-            console.log('Login-In', user);
+        $scope.login = function (user) {
             LoginService.login(user);
-//            $state.go('tabs.home');
         };
     });

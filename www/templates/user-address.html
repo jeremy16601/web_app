@@ -12,8 +12,8 @@ body {
     <ion-content has-header="false" has-tabs="false">
 
         <div class="list">
-            <ion-radio ng-repeat="item in items.dataList" ng-value="item" ng-model="data1.clientSide" ng-change="serverSideChange(item)" name="server-side">
-                <span style="font-size: 16px;">{{item.linkMan}} &nbsp; &nbsp;{{item.province}}{{item.city}} {{item.linkPhone}}
+            <ion-radio ng-repeat="item in items" ng-value="item" ng-model="data1.clientSide" ng-change="serverSideChange(item)" name="server-side">
+                <span style="font-size: 16px;">{{item.username}} &nbsp; &nbsp;{{item.province}}{{item.city}} {{item.phone}}
                 </span>
                 <br>
                 <span style="color: #898989;font-size: 13px;margin-top:5px;">{{item.address}}</span>
