@@ -128,7 +128,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //个人中心
             .state('user', {
-                url: '/:pid/user',
+                url: '/:pid/user?id',
                 templateUrl: 'templates/user.html',
                 controller: 'UserCtrl'
             })

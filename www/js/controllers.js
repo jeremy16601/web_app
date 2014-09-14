@@ -511,10 +511,8 @@ angular.module('starter.controllers', [])
         });
         UsersService.getUserInfo(function (data) {
             //给前台赋值
-            $scope.userdata = data.dataList;
-            // $rootScope.userId = data.dataList.userId;
-            $cookieStore.put('userId', data.dataList.userId);
-            // alert('cookie是:' + $cookieStore.get('userId'));
+            $scope.userdata = data.data;
+            $cookieStore.put('userId', data.data.id);
             $scope.go = function (path) {
                 $location.path(path);
             };
@@ -686,7 +684,8 @@ angular.module('starter.controllers', [])
         UsersService.getUserInfo(function (data) {
             //给前台赋值
             $scope.userdata = data;
-            // // console.log(data);// $rootScope.userId = data.userId;
+            // // console.log(data);
+            // $rootScope.userId = data.userId;
             $ionicLoading.hide();
         });
         //修改用户信息

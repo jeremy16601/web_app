@@ -301,13 +301,12 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getUserInfo: function (callback) {
-                $http.get($rootScope.url + 'act=getInfoByUserId&subsiteCode=' + $rootScope.subsiteCode, {
+                $http.get($rootScope.url + '/user/getInfo?id=' + $stateParams.id, {
                     cache: true
                 }).success(callback);
             },
             //得到会员收货地址
             getUserAddressList: function (callback) {
-                //act=userAddressList&subsiteCode=
                 $http.get($rootScope.url + 'act=userAddressList&subsiteCode=' + $rootScope.subsiteCode).success(callback);
             },
             //完善个人信息
@@ -400,7 +399,7 @@ angular.module('starter.services', [])
     })
 
 //用户登陆
-    .factory('LoginService', function ($http, $stateParams, $window,$rootScope) {
+    .factory('LoginService', function ($http, $stateParams, $window, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             //注册
@@ -422,7 +421,8 @@ angular.module('starter.services', [])
                         transformRequest: transFn
                     };
                 $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
-                    if(data.success){
+                    console.log('注册成功：' + JSON.parse(data));
+                    if (data.success) {
                         $window.location.assign('#/201407220000400/login');
                     }
                 });
@@ -431,12 +431,11 @@ angular.module('starter.services', [])
             //登陆
             login: function (user) {
                 $http.get($rootScope.url + '/user/login?emailOrPhone=' + user.emailOrPhone + '&password=' + user.password).success(function (data) {
-                    if(data.success){
-                        $http.get($rootScope.url + '/user/getInfo').success(function(data){
-                            console.log('登陆成功，个人信息是：'+data.email);
-                        });
-                    };
-                     $window.location.assign('#/201407220000400/user');
+                    if (data.success) {
+                        $rootScope.userid = data.data;
+                        $window.location.assign('#/201407220000400/user?id='+data.data);
+                    }
+                    ;
                 });
             }
         }
