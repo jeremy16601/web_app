@@ -2,13 +2,16 @@
     <ion-content>
 
         <div class="list">
-            <a ng-repeat="item in orderList" class="item item-thumbnail-left item-no-board">
+            <a ng-repeat="item in datas" class="item item-thumbnail-left item-no-board">
                 <img ng-src="http://115.28.242.219/webapp/{{item.photo}}">
 
-                <p style="-webkit-text-fill-color: #898989">订单编号:{{item.num}}</p>
+                <p style="-webkit-text-fill-color: #898989"><span style="margin-left:10px;">{{item.goods.goodsDetail.name}}</span>
 
-                <p style="font-size:16px; color: red; margin-top: 25px; ">￥{{item.amount}}
-                    <span style="margin-left:50px;">{{item.username}}</span>
+                    <!--<span style="margin-left:10px;">下单时间:{{item.goods.createdDate}}</span>-->
+                </p>
+
+                <p style="font-size:16px; color: red; margin-top: 25px; ">￥{{item.goods.goodsDetail.price}}
+                    <span style="margin-left:10px;">数量:{{item.num}}</span>
                 </p>
             </a>
         </div>

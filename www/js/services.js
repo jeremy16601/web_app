@@ -238,6 +238,9 @@ angular.module('starter.services', [])
                         alert('添加失败:' + data.data);
                     }
                 });
+            },
+            getcartsList:function(callback){ //购物车列表
+                $http.get($rootScope.url +'/goods/cart?userId='+localStorageService.get('id')).success(callback);
             }
         };
     })

@@ -386,9 +386,9 @@ angular.module('starter.controllers', [])
 
 
 //优惠信息
-    .controller('SpecialOffersCtrl', function ($scope, SpecialOffersService) {
-        SpecialOffersService.getDatas(function (result) {
-            $scope.datas = result.dataList;
+    .controller('CartCtrl', function ($scope, ProductDetailService) {
+        ProductDetailService.getcartsList(function (datas) {
+            $scope.datas = datas.data;
         });
     })
 

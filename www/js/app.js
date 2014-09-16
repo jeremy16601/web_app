@@ -231,7 +231,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             .state('user-cart', {
                 url: '/:pid/carts?id',
                 templateUrl: 'templates/user-carts.html',
-                controller: 'VoteCtrl'
+                controller: 'CartCtrl'
             });
 
         // if none of the above states are matched, use this as the fallback
