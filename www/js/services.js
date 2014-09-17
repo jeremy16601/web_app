@@ -251,7 +251,7 @@ angular.module('starter.services', [])
     })
 
 //支付
-    .factory('PayService', function ($http, $stateParams, $rootScope) {
+    .factory('PayService', function ($http, $stateParams, localStorageService,$rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
@@ -260,13 +260,10 @@ angular.module('starter.services', [])
             //生成订单
             setProductOrder: function (order, callback) {
                 var orderInfo = {
-                        proId: order.proId,
-                        standardId: order.standardId,
-                        linkMan: order.linkMan,
-                        linkPhone: order.linkPhone,
+                        addressId: localStorageService.get('addressYoo').id,
                         num: order.num,
-                        remark: order.remark,
-                        payType: order.payType
+                        userId: localStorageService.get('id'),
+                        payMethod: order.payType
                     },
                     transFn = function (orderInfo) {
                         return $.param(orderInfo);
