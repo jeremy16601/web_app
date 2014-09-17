@@ -346,11 +346,11 @@ angular.module('starter.services', [])
             },
             //得到会员收货地址
             getUserAddressList: function (callback) {
-                $http.get($rootScope.url + '/user/getAddresses?id=' + $stateParams.id).success(callback);
+                $http.get($rootScope.url + '/user/getAddresses?id=' + localStorageService.get('id')).success(callback);
             },
             //得到会员余额
             getUserAccount: function (callback) {
-                $http.get($rootScope.url + '/user/account?id=' + $stateParams.id).success(callback);
+                $http.get($rootScope.url + '/user/account?id=' + localStorageService.get('id')).success(callback);
             },
             //完善个人信息
             setUserDetailInfo: function (users) {
@@ -380,9 +380,12 @@ angular.module('starter.services', [])
                 var data = {
                         province: address.province,
                         city: address.city,
-                        address: address.address,
-                        linkMan: address.linkMan,
-                        linkPhone: address.linkPhone
+                        district: address.district,
+                        street: address.street,
+                        username: address.username,
+                        phone:address.phone,
+                        "user.id":localStorageService.get('id'),
+                        default:true
                     },
                     transFn = function (data) {
                         return $.param(data);
@@ -393,8 +396,8 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                $http.post($rootScope.url + 'act=userAddressAdd&subsiteCode=' + $rootScope.subsiteCode, data, postCfg).success(function (data) {
-                    if (data.succeed == "000") {
+                $http.post($rootScope.url + '/user/addAddress', data, postCfg).success(function (data) {
+                    if (data.success) {
                         $window.history.back();
                     }
                 });
