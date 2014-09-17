@@ -240,7 +240,12 @@ angular.module('starter.services', [])
                 });
             },
             getcartsList:function(callback){ //购物车列表
-                $http.get($rootScope.url +'/goods/cart?userId='+localStorageService.get('id')).success(callback);
+                if (localStorageService.get('id') == null){
+                    var url = '#/' + $rootScope.subsiteCode + '/login';
+                    window.location.assign(url);
+                }else{
+                    $http.get($rootScope.url +'/goods/cart?userId='+localStorageService.get('id')).success(callback);
+                }
             }
         };
     })
@@ -402,13 +407,18 @@ angular.module('starter.services', [])
     })
 
 //用户订单
-    .factory('UserOrderService', function ($http, $stateParams, $rootScope) {
+    .factory('UserOrderService', function ($http, $stateParams, localStorageService,$rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         currentPage = 0;
         return {
             getNextOrderList: function (callback) {
                 currentPage++;
-                $http.get($rootScope.url + '/order/list?userId=' + $stateParams.userId).success(callback);
+                if (localStorageService.get('id') == null){
+                    var url = '#/' + $rootScope.subsiteCode + '/login';
+                    window.location.assign(url);
+                }else {
+                    $http.get($rootScope.url + '/order/list?userId=' + localStorageService.get('id')).success(callback);
+                }
             }
         };
     })

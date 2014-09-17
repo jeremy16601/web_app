@@ -3,7 +3,7 @@
 
         <div class="list">
             <a ng-repeat="item in orderList" class="item item-thumbnail-left item-no-board">
-                <img ng-src="http://115.28.242.219/webapp/{{item.photo}}">
+                <img ng-src="{{item.pictures[0].path}}">
 
                 <p style="-webkit-text-fill-color: #898989">订单编号:{{item.num}}</p>
 

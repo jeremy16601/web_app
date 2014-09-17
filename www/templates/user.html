@@ -18,7 +18,7 @@
             <a class="item" href="">余额：{{ acc.data }} &nbsp;元
                 <a class="item" href="">手机：{{ userdata.phone }}
                     <a class="item " href="">邮箱：{{ userdata.email }}</a> <br/> <br/>
-                    <a class="item " href="#/{{subsiteCode}}/user-order/{{userdata.id}}">我的订单</a>
+                    <a class="item " href="#/{{subsiteCode}}/user-order?userId={{userdata.id}}">我的订单</a>
                     <!--<a class="item " href="#/{{subsiteCode}}/user-card">我的会员卡</a>-->
                     <a class="item " href="#/{{subsiteCode}}/user-address?id={{ userdata.id }}">我的收货地址</a>
 

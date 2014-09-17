@@ -164,7 +164,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //个人中心--订单
             .state('user-order', {
-                url: '/:pid/user-order/:userId',
+                url: '/:pid/user-order?userId',
                 templateUrl: 'templates/user-order.html',
                 controller: 'UserCtrlOrder'
             })
