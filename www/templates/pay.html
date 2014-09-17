@@ -16,9 +16,9 @@ body {
                 收货地址
                 <br>
             </div>
-            <div style="text-align: right;margin-right: 25px; color:#898989; font-size:14px;" ng-click="selectAddress()">{{address.linkMan}} {{address.province}} {{address.city}}
-                <br>{{address.address}}
-                <br>{{address.linkPhone}}
+            <div style="text-align: right;margin-right: 25px; color:#898989; font-size:14px;" ng-click="selectAddress()">{{address.username}} {{address.province}} {{address.city}}
+                <br>{{address.street}}
+                <br>{{address.phone}}
             </div>
             <div class="item item-divider">
                 选择支付方式
@@ -29,7 +29,7 @@ body {
                 <span style="font-size: 14px; color:#898989;">推荐使用微信5.4以上版本使用</span>
             </ion-radio>
             <button class="button  button-positive" ng-click="orders(address)" style="background-color: #f5655f;border: solid 0;margin-top: 10px;">
-                去付款
+                去下单
             </button>
         </div>
         <script>

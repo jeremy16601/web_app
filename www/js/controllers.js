@@ -165,23 +165,23 @@ angular.module('starter.controllers', [])
 //付款
     .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $location, $stateParams, $scope, PayService) {
 
-        // $scope.address = $cookieStore.get("address");
-        // if ($scope.address == undefined) {
-        //     alert('请先去选择收货地址');
-        //     $location.url('/' + $rootScope.subsiteCode + '/user-address');
-        // }
+        $scope.address = localStorageService.get("addressYoo");
+        if ($scope.address == undefined) {
+             alert('请先去选择收货地址');
+             $location.url('/' + $rootScope.subsiteCode + '/user-address');
+        }
 
         //下订单
         $scope.orders = function (order) {
             order.proId = $location.search().proId;
             order.num = $location.search().num;
             order.standardId = $location.search().unit;
-            //1线下支付 0微信支付
+            //1线下支付2货到付款
             if ($scope.selectValue == undefined) {
                 alert('请先选择支付方式!')
                 return;
             }
-            order.payType = $scope.selectValue;
+            order.payType = 2;
             PayService.setProductOrder(order, function (data) {
                 if (data.succeed == "000") {
                     $location.url('/' + $rootScope.subsiteCode + '/pay-ok?orderNum=' + data.orderNum + '&totalMoney=' + data.totalMoney + '&linkMan=' + data.linkMan + '&productName=' + data.productName);
@@ -196,19 +196,19 @@ angular.module('starter.controllers', [])
         if (localStorageService.get('payType') == 0) {
             $scope.serverSideList = [
                 {
-                    text: "微信支付",
-                    value: "0"
+                    text: "在线支付",
+                    value: "1"
                 },
                 {
                     text: "货到付款",
-                    value: "1"
+                    value: "2"
                 }
             ];
         } else {
             $scope.serverSideList = [
                 {
                     text: "货到付款",
-                    value: "1"
+                    value: "2"
                 }
             ];
         }
@@ -570,7 +570,7 @@ angular.module('starter.controllers', [])
     })
 
 //用户收货地址
-    .controller('user-addressCtrl', function ($scope, $window, $cookieStore, UsersService) {
+    .controller('user-addressCtrl', function ($scope, $window, localStorageService, UsersService) {
 
         UsersService.getUserAddressList(function (data) {
             $scope.items = data.data;
@@ -579,7 +579,6 @@ angular.module('starter.controllers', [])
 
         //添加地址
         $scope.addAddress = function (address) {
-            // address.userId = $cookieStore.get('userId');
             UsersService.addAddress(address);
         };
 
@@ -593,8 +592,8 @@ angular.module('starter.controllers', [])
         };
 
         $scope.serverSideChange = function (item) {
-            $cookieStore.remove('address');
-            $cookieStore.put("address", item);
+            localStorageService.remove('address');
+            localStorageService.set('addressYoo',item);
             $window.history.back();
         };
 

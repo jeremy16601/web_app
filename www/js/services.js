@@ -398,6 +398,8 @@ angular.module('starter.services', [])
                     };
                 $http.post($rootScope.url + '/user/addAddress', data, postCfg).success(function (data) {
                     if (data.success) {
+                        //保存默认地址
+                        localStorageService.set('addressYoo',data.data);
                         $window.history.back();
                     }
                 });
