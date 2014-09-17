@@ -13,13 +13,7 @@ angular.module('starter.controllers', [])
             maxWidth: 200,
             delay: 100
         });
-        //检测本地是否有id
-        if (localStorageService.get('id') == null) {
-            alert('请先注册！谢谢');
-            var url = '#/' + $rootScope.subsiteCode + '/register';
-            window.location.assign(url);
-            $ionicLoading.hide();
-        } else {
+
             $scope.$on('$stateChangeSuccess', function () {
                 $ionicLoading.hide();
             });
@@ -49,7 +43,7 @@ angular.module('starter.controllers', [])
                     "href": "#/201407220000400/news"
                 }
             ]
-        }
+
 
         var color = 'black';
         $scope.styleColor = "{color:'" + color + "'}";
@@ -119,7 +113,7 @@ angular.module('starter.controllers', [])
 
 
 //产品详情
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $window, ProductDetailService) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $window, localStorageService,ProductDetailService) {
 
         $ionicLoading.show({
             content: '加载数据',
@@ -153,12 +147,18 @@ angular.module('starter.controllers', [])
 
             });
         });
-
-        //add to cart
-        $scope.addtoCarts = function (goodsId) {
-            ProductDetailService.addToCart(goodsId);
-        };
-
+        //检测本地是否有id
+        if (localStorageService.get('id') == null) {
+            alert('请先注册！谢谢');
+            var url = '#/' + $rootScope.subsiteCode + '/register';
+            window.location.assign(url);
+            $ionicLoading.hide();
+        } else {
+            //add to cart
+            $scope.addtoCarts = function (goodsId) {
+                ProductDetailService.addToCart(goodsId);
+            };
+        }
 
     })
 
@@ -519,21 +519,29 @@ angular.module('starter.controllers', [])
             maxWidth: 200,
             showDelay: 100
         });
-        UsersService.getUserInfo(function (data) {
-            //给前台赋值
-            $scope.userdata = data.data;
-            localStorageService.set('id', data.data.id);
-            //$cookieStore.put('userId',);
-            $scope.go = function (path) {
-                $location.path(path);
-            };
-        });
-        //金额
-        $scope.account = UsersService.getUserAccount(function (data) {
-            $scope.acc = data;
-        });
+        //检测本地是否有id
+        if (localStorageService.get('id') == null) {
+            alert('请先注册！谢谢');
+            var url = '#/' + $rootScope.subsiteCode + '/register';
+            window.location.assign(url);
+            $ionicLoading.hide();
+        } else {
+            UsersService.getUserInfo(function (data) {
+                //给前台赋值
+                $scope.userdata = data.data;
+                localStorageService.set('id', data.data.id);
+                //$cookieStore.put('userId',);
+                $scope.go = function (path) {
+                    $location.path(path);
+                };
+            });
+            //金额
+            $scope.account = UsersService.getUserAccount(function (data) {
+                $scope.acc = data;
+            });
 
-        $ionicLoading.hide();
+            $ionicLoading.hide();
+        }
     })
 
 //用户订单
@@ -712,6 +720,7 @@ angular.module('starter.controllers', [])
     //登陆
     .controller('LoginCtrl', function ($scope, LoginService) {
         $scope.signIn = function (user) {
+
             LoginService.sign(user);
         };
         $scope.login = function (user) {

@@ -465,7 +465,7 @@ angular.module('starter.services', [])
             login: function (user) {
                 $http.get($rootScope.url + '/user/login?emailOrPhone=' + user.emailOrPhone + '&password=' + user.password).success(function (data) {
                     if (data.success) {
-                        $rootScope.userid = data.data;
+                        localStorageService.set('id', data.data);
                         $window.location.assign('#/201407220000400/user?id=' + data.data);
                     }
                 });

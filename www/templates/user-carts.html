@@ -1,9 +1,9 @@
-<ion-view title="我的购物车" hide-nav-bar="true">
-    <ion-content>
+<ion-view title="我的购物车" >
+    <ion-content has-header="true">
 
         <div class="list">
             <a ng-repeat="item in datas" class="item item-thumbnail-left item-no-board">
-                <img ng-src="http://115.28.242.219/webapp/{{item.photo}}">
+                <img ng-src="{{item.goods.goodsDetail.pictures[0].path}}">
 
                 <p style="-webkit-text-fill-color: #898989"><span style="margin-left:10px;">{{item.goods.goodsDetail.name}}</span>
 

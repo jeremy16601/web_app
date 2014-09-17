@@ -21,9 +21,9 @@
     width: 96px;
     height: 96px;
 }
-.icon-home1:after {
-    content: url("../img/icon/bg_icon.png");
-}
+/*.icon-home1:after {*/
+    /*content: url("www/img/icon/bg_icon.png");*/
+/*}*/
 .ionic-margin {
     margin: 20px 10px;
 }
