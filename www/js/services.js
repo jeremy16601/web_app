@@ -330,13 +330,19 @@ angular.module('starter.services', [])
     })
 
 //根据用户名查询用户信息
-    .factory('UsersService', function ($http, $stateParams, $window, $location, $rootScope) {
+    .factory('UsersService', function ($http, $stateParams,localStorageService, $window, $location, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
+
             getUserInfo: function (callback) {
-                $http.get($rootScope.url + '/user/getInfo?id=' + $stateParams.id, {
-                    cache: true
-                }).success(callback);
+                if (localStorageService.get('id') == null){
+                    var url = '#/' + $rootScope.subsiteCode + '/login';
+                    window.location.assign(url);
+                }else {
+                    $http.get($rootScope.url + '/user/getInfo?id=' +localStorageService.get('id'), {
+                        cache: true
+                    }).success(callback);
+                }
             },
             //得到会员收货地址
             getUserAddressList: function (callback) {
