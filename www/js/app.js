@@ -109,7 +109,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //下订单
             .state('pay', {
-                url: '/:pid/pay?num',
+                url: '/:pid/pay',
                 templateUrl: 'templates/pay.html',
                 controller: 'PayCtrl'
             })

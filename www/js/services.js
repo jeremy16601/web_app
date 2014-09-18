@@ -206,7 +206,7 @@ angular.module('starter.services', [])
     })
 
     //产品详情
-    .factory('ProductDetailService', function ($http, $stateParams,$window,localStorageService, $rootScope) {
+    .factory('ProductDetailService', function ($http, $stateParams, $window, localStorageService, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
@@ -238,32 +238,56 @@ angular.module('starter.services', [])
                         alert('添加失败:' + data.data);
                     }
                 });
+            }, //添加到购物车，然后下单
+            addToOrder: function (goodsId) {
+                //添加商品到购物车
+                var data = {
+                        'goodsId': goodsId,
+                        'userId': localStorageService.get('id')
+                    },
+                    transFn = function (data) {
+                        return $.param(data, true);
+                    },
+                    postCfg = {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        transformRequest: transFn
+                    };
+
+                $http.post($rootScope.url + '/goods/add2Cart', data, postCfg).success(function (data) {
+                    if (data.success) {
+                        //添加成功后，去付款页面
+                        $window.location.assign('#/201407220000400/pay');
+                    } else {
+                        alert('服务器异常，请检查网络！');
+                    }
+                });
             },
-            getcartsList:function(callback){ //购物车列表
-                if (localStorageService.get('id') == null){
+            getcartsList: function (callback) { //购物车列表
+                if (localStorageService.get('id') == null) {
                     var url = '#/' + $rootScope.subsiteCode + '/login';
                     window.location.assign(url);
-                }else{
-                    $http.get($rootScope.url +'/goods/cart?userId='+localStorageService.get('id')).success(callback);
+                } else {
+                    $http.get($rootScope.url + '/goods/cart?userId=' + localStorageService.get('id')).success(callback);
                 }
             }
         };
     })
 
 //支付
-    .factory('PayService', function ($http, $stateParams, localStorageService,$rootScope) {
+    .factory('PayService', function ($http, $stateParams, localStorageService, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
                 $http.get($rootScope.url + 'act=productDetail&subsiteCode=' + $rootScope.subsiteCode + '&proId=' + $stateParams.proId).success(callback);
             },
-            //生成订单
-            setProductOrder: function (order, callback) {
+            //确认订单
+            setProductOrder: function (callback) {
                 var orderInfo = {
                         addressId: localStorageService.get('addressYoo').id,
-                        num: order.num,
                         userId: localStorageService.get('id'),
-                        payMethod: order.payType
+                        payMethod: 2
                     },
                     transFn = function (orderInfo) {
                         return $.param(orderInfo);
@@ -274,8 +298,16 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                console.log(orderInfo);
-                $http.post($rootScope.url + 'act=createOrderList&subsiteCode=' + $rootScope.subsiteCode, orderInfo, postCfg).success(callback);
+                console.log('orderInfo=='+orderInfo.addressId);
+                $http.post($rootScope.url + '/order/create', orderInfo, postCfg).success(function (data) {
+                    //付款成功
+                    if (data.success) {
+                        alert('32232');
+                    }else{
+                        console.log('order faild!' + data);
+                    }
+
+                });
             }
         };
     })
@@ -327,16 +359,16 @@ angular.module('starter.services', [])
     })
 
 //根据用户名查询用户信息
-    .factory('UsersService', function ($http, $stateParams,localStorageService, $window, $location, $rootScope) {
+    .factory('UsersService', function ($http, $stateParams, localStorageService, $window, $location, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
 
             getUserInfo: function (callback) {
-                if (localStorageService.get('id') == null){
+                if (localStorageService.get('id') == null) {
                     var url = '#/' + $rootScope.subsiteCode + '/login';
                     window.location.assign(url);
-                }else {
-                    $http.get($rootScope.url + '/user/getInfo?id=' +localStorageService.get('id'), {
+                } else {
+                    $http.get($rootScope.url + '/user/getInfo?id=' + localStorageService.get('id'), {
                         cache: true
                     }).success(callback);
                 }
@@ -380,9 +412,9 @@ angular.module('starter.services', [])
                         district: address.district,
                         street: address.street,
                         username: address.username,
-                        phone:address.phone,
-                        "user.id":localStorageService.get('id'),
-                        default:true
+                        phone: address.phone,
+                        "user.id": localStorageService.get('id'),
+                        default: true
                     },
                     transFn = function (data) {
                         return $.param(data);
@@ -396,7 +428,7 @@ angular.module('starter.services', [])
                 $http.post($rootScope.url + '/user/addAddress', data, postCfg).success(function (data) {
                     if (data.success) {
                         //保存默认地址
-                        localStorageService.set('addressYoo',data.data);
+                        localStorageService.set('addressYoo', data.data);
                         $window.history.back();
                     }
                 });
@@ -415,16 +447,16 @@ angular.module('starter.services', [])
     })
 
 //用户订单
-    .factory('UserOrderService', function ($http, $stateParams, localStorageService,$rootScope) {
+    .factory('UserOrderService', function ($http, $stateParams, localStorageService, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         currentPage = 0;
         return {
             getNextOrderList: function (callback) {
                 currentPage++;
-                if (localStorageService.get('id') == null){
+                if (localStorageService.get('id') == null) {
                     var url = '#/' + $rootScope.subsiteCode + '/login';
                     window.location.assign(url);
-                }else {
+                } else {
                     $http.get($rootScope.url + '/order/list?userId=' + localStorageService.get('id')).success(callback);
                 }
             }
