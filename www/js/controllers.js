@@ -223,14 +223,13 @@ angular.module('starter.controllers', [])
     })
 
     //付款成功
-    .controller('PayOKCtrl', function ($rootScope, $stateParams, $scope, PayService) {
+    .controller('PayOKCtrl', function ($rootScope, $stateParams, $scope) {
 
-
+        $scope.linkMan = $stateParams.username;
         $scope.orderNum = $stateParams.orderNum;
-        $scope.totalMoney = $stateParams.totalMoney;
         $scope.payFS = '货到付款';
-        $scope.linkMan = $stateParams.linkMan;
-        $scope.productName = $stateParams.productName;
+        $scope.amount = $stateParams.amount;
+        $scope.address = $stateParams.address;
     })
     //预约
     .controller('orderCtrl', function ($scope, $ionicLoading, $cookieStore, yuyueService) {

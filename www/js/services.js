@@ -238,8 +238,33 @@ angular.module('starter.services', [])
                         alert('添加失败:' + data.data);
                     }
                 });
-            }, //添加到购物车，然后下单
-            addToOrder: function (goodsId) {
+            } ,//从购物车删除
+            delToCart:function(goodsId){
+                //添加商品到购物车
+                var data = {
+                        'goodsId': goodsId,
+                        'userId': localStorageService.get('id')
+                    },
+                    transFn = function (data) {
+                        return $.param(data, true);
+                    },
+                    postCfg = {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        transformRequest: transFn
+                    };
+                $http.post($rootScope.url + '/goods/removeFromCart', data, postCfg).success(function (data) {
+                    if (data.success) {
+                        console.log('从购物移除成功！');
+//                        $window.location.reload();
+                    } else {
+                        console.log('移除失败:' + data.data);
+                    }
+                });
+            }
+            //添加到购物车，然后下单
+            ,addToOrder: function (goodsId) {
                 //添加商品到购物车
                 var data = {
                         'goodsId': goodsId,
@@ -276,7 +301,7 @@ angular.module('starter.services', [])
     })
 
 //支付
-    .factory('PayService', function ($http, $stateParams, localStorageService, $rootScope) {
+    .factory('PayService', function ($http, $stateParams, localStorageService, $rootScope,ProductDetailService) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
@@ -302,9 +327,12 @@ angular.module('starter.services', [])
                 $http.post($rootScope.url + '/order/create', orderInfo, postCfg).success(function (data) {
                     //付款成功
                     if (data.success) {
-                        alert('32232');
+                        var url = '#/' + $rootScope.subsiteCode + '/pay-ok?username='+data.data.username+'&orderNum='+data.data.num+
+                            '&amount='+data.data.amount+'&address='+data.data.address;
+                        window.location.assign(url);
+                        ProductDetailService.delToCart(data.data.item[0].goodsDetail.id);
                     }else{
-                        console.log('order faild!' + data);
+                        console.log('order faild!' + data.data);
                     }
 
                 });

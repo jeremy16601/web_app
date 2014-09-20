@@ -13,27 +13,17 @@ body {
 }
 </style>
 
-<ion-view title="付款" hide-nav-bar="true">
-    <ion-content has-header="false">
+<ion-view title="付款成功" >
+    <ion-content has-header="true">
 
-        <div class="row" style="padding-bottom: 0px;padding-right: 30px;background: white;">
-            <div class="col col-44" style="background:white;text-align:right;">
-                <img src="../www/img/ok.png">
-            </div>
-            <div class="col col-60" style="background:white; color:#43cb53; font-size:18px; padding-top:10px;">
-                支付成功
-            </div>
-        </div>
         <div class="list">
-            <div class="item item-divider">
-        </div>
 
             <div class="item" style="font-size: 14px;color:#898989;">
-                商品名称
-                <span class="spanname">{{ productName }}</span>
+                联系人
+                <span class="spanname" style="margin-left: 24px;color: black;">{{ linkMan }}</span>
                 <br>
-                <br>联系人
-                <span style="margin-left: 30px;color: black;">{{ linkMan }}</span>
+                <br>收货地址
+                <span style="margin-left: 10px;color: black;">{{ address }}</span>
             </div>
 
             <div class="item" style="font-size: 14px;color:#898989;">
@@ -48,9 +38,18 @@ body {
 
             <div class="item" style="font-size: 14px;color:#898989;">
                 支付金额
-                <span class="spanname">{{ totalMoney }}</span>
+                <span class="spanname">{{ amount }} 元</span>
                 <br>
 
+            </div>
+
+            <div class="row" style="padding-bottom: 0px;padding-right: 30px;background: white;">
+                <!--<div class="col col-44" style="background:white;text-align:right;">-->
+                <!--<img src="../www/img/ok.png">-->
+                <!--</div>-->
+                <div class="col" style="background:white; color:#43cb53; text-align: center; font-size:18px; padding-top:15px;padding-bottom: 10px;">
+                    支付成功
+                </div>
             </div>
             <!-- <ion-radio ng-repeat="item in serverSideList" ng-value="item.value" ng-model="data.serverSide" ng-change="serverSideChange(item)" name="server-side">
                商户名称  {{ item.text }}
