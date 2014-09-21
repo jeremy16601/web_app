@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
     .run(function ($rootScope) {
         $rootScope.subsiteCode = "";
-        $rootScope.url = "http://localhost:8080/api";
+        $rootScope.url = "http://106.187.52.57:8080/api";
         $rootScope.timeout = 100;
     })
 

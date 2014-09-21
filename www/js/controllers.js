@@ -113,7 +113,7 @@ angular.module('starter.controllers', [])
 
 
 //产品详情
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $window, localStorageService,ProductDetailService) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $window, $cookieStore,ProductDetailService) {
 
         $ionicLoading.show({
             content: '加载数据',

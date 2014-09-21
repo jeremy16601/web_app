@@ -543,10 +543,13 @@ angular.module('starter.services', [])
             },
             //登陆
             login: function (user) {
+                console.log('login user==='+user);
                 $http.get($rootScope.url + '/user/login?emailOrPhone=' + user.emailOrPhone + '&password=' + user.password).success(function (data) {
                     if (data.success) {
                         $cookieStore.put('id', data.data);
                         $window.location.assign('#/201407220000400/user?id=' + data.data);
+                    }else{
+                        alert('登陆失败:' + data.data);
                     }
                 });
             }
