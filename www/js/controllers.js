@@ -6,7 +6,7 @@ angular.module('starter.controllers', [])
         });
     })
 
-    .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $state, HomeService) {
+    .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $cookieStore, HomeService) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -28,13 +28,13 @@ angular.module('starter.controllers', [])
                     "id": 2,
                     "icon": "ion-ios7-cart-outline",
                     "title": "我的购物车",
-                    "href": "#/201407220000400/carts?id=" + localStorageService.get('id')
+                    "href": "#/201407220000400/carts?id=" + $cookieStore.get('id')
                 },
                 {
                     "id": 3,
                     "icon": "ion-ios7-person-outline",
                     "title": "用户中心",
-                    "href": "#/201407220000400/user?id=" + localStorageService.get('id')
+                    "href": "#/201407220000400/user?id=" + $cookieStore.get('id')
                 },
                 {
                     "id": 4,
@@ -148,7 +148,7 @@ angular.module('starter.controllers', [])
             });
         });
         //检测本地是否有id
-        if (localStorageService.get('id') == null) {
+        if ($cookieStore.get('id') == null) {
             alert('请先注册！谢谢');
             var url = '#/' + $rootScope.subsiteCode + '/register';
             window.location.assign(url);
@@ -169,7 +169,7 @@ angular.module('starter.controllers', [])
 //付款
     .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $location, $scope, PayService) {
 
-        $scope.address = localStorageService.get("addressYoo");
+        $scope.address = $cookieStore.get("addressYoo");
         if ($scope.address == undefined) {
              alert('请先去选择收货地址');
              $location.url('/' + $rootScope.subsiteCode + '/user-address');
@@ -191,7 +191,7 @@ angular.module('starter.controllers', [])
         };
 
         //支付方式
-        if (localStorageService.get('payType') == 0) {
+        if ($cookieStore.get('payType') == 0) {
             $scope.serverSideList = [
                 {
                     text: "在线支付",
@@ -508,7 +508,7 @@ angular.module('starter.controllers', [])
     })
 
     //用户授权
-    .controller('UserCtrl', function ($scope, UsersService, $ionicLoading, localStorageService, $rootScope, $location) {
+    .controller('UserCtrl', function ($scope, UsersService, $ionicLoading, localStorageService, $cookieStore,$rootScope, $location) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -517,8 +517,8 @@ angular.module('starter.controllers', [])
             showDelay: 100
         });
         //检测本地是否有id
-        if (localStorageService.get('id') == null) {
-            alert('请先注册！谢谢');
+        if ($cookieStore.get('id') == null) {
+//            alert('请先注册！谢谢');
             var url = '#/' + $rootScope.subsiteCode + '/register';
             window.location.assign(url);
             $ionicLoading.hide();
@@ -526,7 +526,7 @@ angular.module('starter.controllers', [])
             UsersService.getUserInfo(function (data) {
                 //给前台赋值
                 $scope.userdata = data.data;
-                localStorageService.set('id', data.data.id);
+                $cookieStore.put('id', data.data.id);
                 //$cookieStore.put('userId',);
                 $scope.go = function (path) {
                     $location.path(path);
@@ -589,8 +589,8 @@ angular.module('starter.controllers', [])
         };
 
         $scope.serverSideChange = function (item) {
-            localStorageService.remove('address');
-            localStorageService.set('addressYoo',item);
+            $cookieStore.remove('address');
+            $cookieStore.put('addressYoo',item);
             $window.history.back();
         };
 

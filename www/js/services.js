@@ -206,7 +206,7 @@ angular.module('starter.services', [])
     })
 
     //产品详情
-    .factory('ProductDetailService', function ($http, $stateParams, $window, localStorageService, $rootScope) {
+    .factory('ProductDetailService', function ($http, $stateParams, $window, $cookieStore, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
@@ -218,7 +218,7 @@ angular.module('starter.services', [])
                 //添加商品到购物车
                 var data = {
                         'goodsId': goodsId,
-                        'userId': localStorageService.get('id')
+                        'userId': $cookieStore.get('id')
                     },
                     transFn = function (data) {
                         return $.param(data, true);
@@ -243,7 +243,7 @@ angular.module('starter.services', [])
                 //添加商品到购物车
                 var data = {
                         'goodsId': goodsId,
-                        'userId': localStorageService.get('id')
+                        'userId': $cookieStore.get('id')
                     },
                     transFn = function (data) {
                         return $.param(data, true);
@@ -268,7 +268,7 @@ angular.module('starter.services', [])
                 //添加商品到购物车
                 var data = {
                         'goodsId': goodsId,
-                        'userId': localStorageService.get('id')
+                        'userId': $cookieStore.get('id')
                     },
                     transFn = function (data) {
                         return $.param(data, true);
@@ -290,18 +290,18 @@ angular.module('starter.services', [])
                 });
             },
             getcartsList: function (callback) { //购物车列表
-                if (localStorageService.get('id') == null) {
+                if ($cookieStore.get('id') == null) {
                     var url = '#/' + $rootScope.subsiteCode + '/login';
                     window.location.assign(url);
                 } else {
-                    $http.get($rootScope.url + '/goods/cart?userId=' + localStorageService.get('id')).success(callback);
+                    $http.get($rootScope.url + '/goods/cart?userId=' + $cookieStore.get('id')).success(callback);
                 }
             }
         };
     })
 
 //支付
-    .factory('PayService', function ($http, $stateParams, localStorageService, $rootScope,ProductDetailService) {
+    .factory('PayService', function ($http, $stateParams, $cookieStore, $rootScope,ProductDetailService) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
@@ -310,8 +310,8 @@ angular.module('starter.services', [])
             //确认订单
             setProductOrder: function (callback) {
                 var orderInfo = {
-                        addressId: localStorageService.get('addressYoo').id,
-                        userId: localStorageService.get('id'),
+                        addressId: $cookieStore.get('addressYoo').id,
+                        userId: $cookieStore.get('id'),
                         payMethod: 2
                     },
                     transFn = function (orderInfo) {
@@ -332,27 +332,7 @@ angular.module('starter.services', [])
                         window.location.assign(url);
 
                         console.log('goodsID=='+data.data.item[0].goodsDetail.id);
-                        //清空购物车
-                        var data = {
-                                'goodsId': data.data.items[0].id,
-                                'userId': localStorageService.get('id')
-                            },
-                            transFn = function (data) {
-                                return $.param(data, true);
-                            },
-                            postCfg = {
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                                },
-                                transformRequest: transFn
-                            };
-                        $http.post($rootScope.url + '/goods/removeFromCart', data, postCfg).success(function (data) {
-                            if (data.success) {
-                                console.log('从购物移除成功！');
-                            } else {
-                                console.log('移除失败:' + data.data);
-                            }
-                        });
+
                     }else{
                         console.log('order faild!' + data.data);
                     }
@@ -409,27 +389,27 @@ angular.module('starter.services', [])
     })
 
 //根据用户名查询用户信息
-    .factory('UsersService', function ($http, $stateParams, localStorageService, $window, $location, $rootScope) {
+    .factory('UsersService', function ($http, $stateParams, $cookieStore, $window, $location, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
 
             getUserInfo: function (callback) {
-                if (localStorageService.get('id') == null) {
+                if ($cookieStore.get('id') == null) {
                     var url = '#/' + $rootScope.subsiteCode + '/login';
                     window.location.assign(url);
                 } else {
-                    $http.get($rootScope.url + '/user/getInfo?id=' + localStorageService.get('id'), {
+                    $http.get($rootScope.url + '/user/getInfo?id=' + $cookieStore.get('id'), {
                         cache: true
                     }).success(callback);
                 }
             },
             //得到会员收货地址
             getUserAddressList: function (callback) {
-                $http.get($rootScope.url + '/user/getAddresses?id=' + localStorageService.get('id')).success(callback);
+                $http.get($rootScope.url + '/user/getAddresses?id=' + $cookieStore.get('id')).success(callback);
             },
             //得到会员余额
             getUserAccount: function (callback) {
-                $http.get($rootScope.url + '/user/account?id=' + localStorageService.get('id')).success(callback);
+                $http.get($rootScope.url + '/user/account?id=' + $cookieStore.get('id')).success(callback);
             },
             //完善个人信息
             setUserDetailInfo: function (users) {
@@ -463,7 +443,7 @@ angular.module('starter.services', [])
                         street: address.street,
                         username: address.username,
                         phone: address.phone,
-                        "user.id": localStorageService.get('id'),
+                        "user.id": $cookieStore.get('id'),
                         default: true
                     },
                     transFn = function (data) {
@@ -478,7 +458,7 @@ angular.module('starter.services', [])
                 $http.post($rootScope.url + '/user/addAddress', data, postCfg).success(function (data) {
                     if (data.success) {
                         //保存默认地址
-                        localStorageService.set('addressYoo', data.data);
+                        $cookieStore.put('addressYoo', data.data);
                         $window.history.back();
                     }
                 });
@@ -497,17 +477,17 @@ angular.module('starter.services', [])
     })
 
 //用户订单
-    .factory('UserOrderService', function ($http, $stateParams, localStorageService, $rootScope) {
+    .factory('UserOrderService', function ($http, $stateParams, $cookieStore, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         currentPage = 0;
         return {
             getNextOrderList: function (callback) {
                 currentPage++;
-                if (localStorageService.get('id') == null) {
+                if ($cookieStore.get('id') == null) {
                     var url = '#/' + $rootScope.subsiteCode + '/login';
                     window.location.assign(url);
                 } else {
-                    $http.get($rootScope.url + '/order/list?userId=' + localStorageService.get('id')).success(callback);
+                    $http.get($rootScope.url + '/order/list?userId=' + $cookieStore.get('id')).success(callback);
                 }
             }
         };
@@ -530,7 +510,7 @@ angular.module('starter.services', [])
     })
 
 //用户登陆
-    .factory('LoginService', function ($http, localStorageService, $stateParams, $window, $rootScope) {
+    .factory('LoginService', function ($http, $cookieStore, $stateParams, $window, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             //注册
@@ -554,7 +534,7 @@ angular.module('starter.services', [])
 
                 $http.post($rootScope.url + '/user/register', data, postCfg).success(function (data) {
                     if (data.success) {
-                        localStorageService.set('id', data.data);
+                        $cookieStore.put('id', data.data);
                         $window.location.assign('#/201407220000400/user?id=' + data.data);
                     } else {
                         alert('注册失败:' + data.data);
@@ -565,7 +545,7 @@ angular.module('starter.services', [])
             login: function (user) {
                 $http.get($rootScope.url + '/user/login?emailOrPhone=' + user.emailOrPhone + '&password=' + user.password).success(function (data) {
                     if (data.success) {
-                        localStorageService.set('id', data.data);
+                        $cookieStore.put('id', data.data);
                         $window.location.assign('#/201407220000400/user?id=' + data.data);
                     }
                 });
