@@ -330,7 +330,29 @@ angular.module('starter.services', [])
                         var url = '#/' + $rootScope.subsiteCode + '/pay-ok?username='+data.data.username+'&orderNum='+data.data.num+
                             '&amount='+data.data.amount+'&address='+data.data.address;
                         window.location.assign(url);
-                        ProductDetailService.delToCart(data.data.item[0].goodsDetail.id);
+
+                        console.log('goodsID=='+data.data.item[0].goodsDetail.id);
+                        //清空购物车
+                        var data = {
+                                'goodsId': data.data.items[0].id,
+                                'userId': localStorageService.get('id')
+                            },
+                            transFn = function (data) {
+                                return $.param(data, true);
+                            },
+                            postCfg = {
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                },
+                                transformRequest: transFn
+                            };
+                        $http.post($rootScope.url + '/goods/removeFromCart', data, postCfg).success(function (data) {
+                            if (data.success) {
+                                console.log('从购物移除成功！');
+                            } else {
+                                console.log('移除失败:' + data.data);
+                            }
+                        });
                     }else{
                         console.log('order faild!' + data.data);
                     }
