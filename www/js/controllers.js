@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
     .controller('InitCtrl', function ($scope, localStorageService, $ionicLoading, $stateParams, $state, InitService) {
-        $state.go('home-29', $stateParams, {
+        $state.go('home', $stateParams, {
             location: true
         });
     })
@@ -22,25 +22,25 @@ angular.module('starter.controllers', [])
                     "id": 1,
                     "icon": "ion-ios7-paper-outline",
                     "title": "商品分类",
-                    "href": "#/201407220000400/classify"
+                    "href": "#/classify"
                 },
                 {
                     "id": 2,
                     "icon": "ion-ios7-cart-outline",
                     "title": "我的购物车",
-                    "href": "#/201407220000400/carts?id=" + $cookieStore.get('id')
+                    "href": "#/carts?id=" + $cookieStore.get('id')
                 },
                 {
                     "id": 3,
                     "icon": "ion-ios7-person-outline",
                     "title": "用户中心",
-                    "href": "#/201407220000400/user?id=" + $cookieStore.get('id')
+                    "href": "#/user?id=" + $cookieStore.get('id')
                 },
                 {
                     "id": 4,
                     "icon": "ion-ios7-compose-outline",
                     "title": "关于我们",
-                    "href": "#/201407220000400/news"
+                    "href": "#/news"
                 }
             ]
 
