@@ -1,18 +1,27 @@
-<ion-view title="'首页'">
-    <ion-content has-header="true" has-tabs="true">
-        <p>{{title}}</p>
-
-        <ul>
-            <li><a href="#/home">首页</a>
-            </li>
-            <li><a href="#/news">新闻</a>
-            </li>
-            <li><a href="#/classify">分类</a>
-            </li>
-            <li><a href="#/home-grids">首页风格2</a>
-            </li>
-            <li><a href="#/products">产品</a>
-            </li>
-        </ul>
+<style type="text/css">
+.foot {
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+</style>
+<ion-view title="首页">
+    <ion-content padding="true" class="has-header">
+        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+            <img src="img/home-title.png">
+        </div>
+        <div>
+            <h4 style="text-align: center; color: #ee7700;">
+                立即预定上门保养服务
+            </h4>
+        </div>
+        <a href="#">
+            <img src="img/select_car.png" width="100%">
+        </a>
+        <div class="foot">
+            客服电话:
+            <span style="color: #ee7700;">400-006-8181</span>
+            <p>若没找到车型，请拨打客服电话</p>
+        </div>
     </ion-content>
 </ion-view>

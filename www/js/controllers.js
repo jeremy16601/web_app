@@ -45,10 +45,10 @@ angular.module('starter.controllers', [])
             ]
 
 
-        var color = 'black';
-        $scope.styleColor = "{color:'" + color + "'}";
+        // var color = 'black';
+        // $scope.styleColor = "{color:'" + color + "'}";
 
-        $(".pane").css("background-image", "url(" + 'img/bj.png' + ")");
+        // $(".pane").css("background-image", "url(" + 'img/bj.png' + ")");
     })
 
 
@@ -267,37 +267,6 @@ angular.module('starter.controllers', [])
 
     })
 
-    //人才招聘
-    .controller('PersonnelRecruitmentCtrl', function ($scope, $ionicLoading, IndustryService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-        IndustryService.getRecruitment(function (result) {
-            $('.pr-content').html(result.sysValue);
-            $ionicLoading.hide();
-        });
-
-    })
-
-    //关于我们
-    .controller('AboutUsCtrl', function ($scope, IndustryService) {
-        IndustryService.getAboutUs(function (result) {
-            $('.about_us').html(result.sysValue);
-        });
-
-    })
-
-    //二维码
-    .controller('QRCodeCtrl', function ($scope, IndustryService) {
-        IndustryService.getQRcode(function (result) {
-            $scope.url = result.sysValue;
-        });
-    })
-
     //企业列表
     .controller('CompanyListCtrl', function ($scope, CompanyListService) {
         CompanyListService.getCompanyList(function (result) {
@@ -440,28 +409,6 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
             $scope.productList = results;
         });
-    })
-
-//发送留言
-    .controller('SendMessageCtrl', function ($scope, $window, $ionicPopup, $rootScope, IndustryService) {
-
-        $scope.send = function (message) {
-
-            IndustryService.setMessage(message, function (data) {
-
-                if (data.succeed == "000") {
-                    var alertPopup = $ionicPopup.alert({
-                        title: '留言成功',
-                        template: '<p>留言成功</p>'
-                    });
-                    alertPopup.then(function (res) {
-                        //                    $location.path('/' + $rootScope.subsiteCode);
-                        //                    $location.replace();
-                        $window.history.back();
-                    });
-                }
-            });
-        }
     })
 
 //相册集列表

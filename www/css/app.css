@@ -1,6 +1,4 @@
-/*Your app's CSS, go crazy, make it your own */
 
-/*全局背景颜色*/
  .bg-color {
     background: #f9f9f9;
 }
@@ -21,9 +19,7 @@
     width: 96px;
     height: 96px;
 }
-/*.icon-home1:after {*/
-    /*content: url("www/img/icon/bg_icon.png");*/
-/*}*/
+
 .ionic-margin {
     margin: 20px 10px;
 }
@@ -258,4 +254,3 @@ ul, li {
     margin: 0px;
     padding: 0px;
 }
-/*李雪晴的样式

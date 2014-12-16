@@ -25,57 +25,11 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/news-index.html',
                 controller: 'NewsCtrl'
             })
-
-
             // 新闻详情
             .state('news-detail', {
                 url: '/news/:newsId',
                 templateUrl: 'templates/news-detail.html',
                 controller: 'NewsDetailCtrl'
-            })
-
-            //招聘
-            .state('personnel-recruitment', {
-                url: '/personnel-recruitment',
-                templateUrl: 'templates/personnel-recruitment.html',
-                controller: 'PersonnelRecruitmentCtrl'
-            })
-
-
-            //发送留言
-            .state('send-message', {
-                url: '/send-message',
-                templateUrl: 'templates/send-message.html',
-                controller: 'SendMessageCtrl'
-            })
-
-            //企业列表
-            .state('company-list', {
-                url: '/company-list',
-                templateUrl: 'templates/company-list.html',
-                controller: 'CompanyListCtrl'
-            })
-
-            //企业详情
-            .state('company-details', {
-                resolve: {
-                    loadJs: function () {
-                        var oldDocumentWrite = document.write;
-                        document.write = function (node) {
-                            $("body").append(node);
-                        }
-
-                        // get script
-                        $.getScript("http://api.map.baidu.com/api?v=1.5&ak=89638fb582dece35cc3955c0f580abca", function () {
-                            setTimeout(function () {
-                                document.write = oldDocumentWrite;
-                            }, 100);
-                        });
-                    }
-                },
-                url: '/company-details',
-                templateUrl: 'templates/company-details.html',
-                controller: 'CompanyDetailsCtrl'
             })
             //分类
             .state('classify', {
@@ -123,7 +77,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             //首页风格
             .state('home', {
                 url: '/home',
-                templateUrl: 'templates/home-29.html',
+                templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
             })
             //个人中心
@@ -168,21 +122,9 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/user-order.html',
                 controller: 'UserCtrlOrder'
             })
-            //关于我们
-            .state('about-us', {
-                url: '/about-us',
-                templateUrl: 'templates/about-us.html',
-                controller: 'AboutUsCtrl'
-            })
             .state('login', {
                 url: "/login",
                 templateUrl: "templates/login.html",
-                controller: 'LoginCtrl'
-            })
-            //二维码
-            .state('register', {
-                url: '/register',
-                templateUrl: 'templates/register.html',
                 controller: 'LoginCtrl'
             })
             //相册

@@ -3,12 +3,6 @@ angular.module('starter.services', [])
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     })
-    //获取导航
-    .factory('InitService', function ($http, $stateParams, $rootScope) {
-        $rootScope.subsiteCode = $stateParams.pid;
-
-    })
-
     //HomeService
     .factory('HomeService', function ($stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
@@ -55,67 +49,6 @@ angular.module('starter.services', [])
             }
         }
     })
-
-    //人才招聘、关于我们、二维码 、发送留言
-    .factory('IndustryService', function ($http, $location, $ionicPopup, $rootScope, $stateParams) {
-        $rootScope.subsiteCode = $stateParams.pid;
-        return {
-            getAboutUs: function (callback) {
-                $http.get($rootScope.url + 'act=relatedEnterprise&subsiteCode=' + $rootScope.subsiteCode + '&alias=about_us', {
-                    cache: true
-                }).success(callback);
-            },
-            getRecruitment: function (callback) {
-                $http.get($rootScope.url + 'act=relatedEnterprise&subsiteCode=' + $rootScope.subsiteCode + '&alias=recruitment', {
-                    cache: true
-                }).success(callback);
-            },
-            getQRcode: function (callback) {
-                $http.get($rootScope.url + 'act=relatedEnterprise&subsiteCode=' + $rootScope.subsiteCode + '&alias=dimensional_code', {
-                    cache: true
-                }).success(callback);
-            },
-            setMessage: function (message, callback) {
-                var data = {
-                        linkPhone: message.contacts,
-                        content: message.contents,
-                        senderName: message.name
-                    },
-                    transFn = function (data) {
-                        return $.param(data);
-                    },
-                    postCfg = {
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                        },
-                        transformRequest: transFn
-                    };
-                $http.post($rootScope.url + 'act=leaveMessage&subsiteCode=' + $rootScope.subsiteCode, data, postCfg).success(function (data) {
-                    if (data.succeed == 000) {
-                        var alertPopup = $ionicPopup.alert({
-                            title: '留言成功',
-                            template: '<p>留言成功</p>'
-                        });
-                        alertPopup.then(function (res) {
-                            $window.history.back();
-                        });
-                    } else {
-                        $ionicPopup.alert({
-                            title: '留言失败',
-                            template: '<p>留言失败</p>',
-                            buttons: [
-                                {
-                                    type: 'button-assertive'
-                                }
-                            ]
-                        });
-                    }
-                });
-            }
-        }
-
-    })
-
     //预约
     .factory('yuyueService', function ($http, $location, $ionicPopup, $window, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
