@@ -1,56 +1,8 @@
 angular.module('starter.controllers', [])
 
-    .controller('InitCtrl', function ($scope, localStorageService, $ionicLoading, $stateParams, $state, InitService) {
-        $state.go('home', $stateParams, {
-            location: true
-        });
-    })
-
     .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $cookieStore, HomeService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            maxWidth: 200,
-            delay: 100
-        });
 
-            $scope.$on('$stateChangeSuccess', function () {
-                $ionicLoading.hide();
-            });
-            $scope.navList = [
-                {
-                    "id": 1,
-                    "icon": "ion-ios7-paper-outline",
-                    "title": "商品分类",
-                    "href": "#/classify"
-                },
-                {
-                    "id": 2,
-                    "icon": "ion-ios7-cart-outline",
-                    "title": "我的购物车",
-                    "href": "#/carts?id=" + $cookieStore.get('id')
-                },
-                {
-                    "id": 3,
-                    "icon": "ion-ios7-person-outline",
-                    "title": "用户中心",
-                    "href": "#/user?id=" + $cookieStore.get('id')
-                },
-                {
-                    "id": 4,
-                    "icon": "ion-ios7-compose-outline",
-                    "title": "关于我们",
-                    "href": "#/news"
-                }
-            ]
-
-
-        // var color = 'black';
-        // $scope.styleColor = "{color:'" + color + "'}";
-
-        // $(".pane").css("background-image", "url(" + 'img/bj.png' + ")");
     })
-
 
     //新闻
     .controller('NewsCtrl', function ($scope, $ionicLoading, $timeout, NewsService) {
@@ -113,7 +65,7 @@ angular.module('starter.controllers', [])
 
 
 //产品详情
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $window, $cookieStore,ProductDetailService) {
+    .controller('ProductDetailCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $window, $cookieStore, ProductDetailService) {
 
         $ionicLoading.show({
             content: '加载数据',
@@ -159,7 +111,7 @@ angular.module('starter.controllers', [])
                 ProductDetailService.addToCart(goodsId);
             };
             //下单
-            $scope.setOrder=function(goodsId){
+            $scope.setOrder = function (goodsId) {
                 ProductDetailService.addToOrder(goodsId);
             };
         }
@@ -171,9 +123,10 @@ angular.module('starter.controllers', [])
 
         $scope.address = $cookieStore.get("addressYoo");
         if ($scope.address == undefined) {
-             alert('请先去选择收货地址');
-             $location.url('/' + $rootScope.subsiteCode + '/user-address');
-        };
+            alert('请先去选择收货地址');
+            $location.url('/' + $rootScope.subsiteCode + '/user-address');
+        }
+        ;
 
         //去付款
         $scope.pays = function () {
@@ -455,7 +408,7 @@ angular.module('starter.controllers', [])
     })
 
     //用户授权
-    .controller('UserCtrl', function ($scope, UsersService, $ionicLoading, localStorageService, $cookieStore,$rootScope, $location) {
+    .controller('UserCtrl', function ($scope, UsersService, $ionicLoading, localStorageService, $cookieStore, $rootScope, $location) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -537,7 +490,7 @@ angular.module('starter.controllers', [])
 
         $scope.serverSideChange = function (item) {
             $cookieStore.remove('address');
-            $cookieStore.put('addressYoo',item);
+            $cookieStore.put('addressYoo', item);
             $window.history.back();
         };
 

@@ -54,17 +54,6 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
                     }
                 }
             })
-
-            .state('tab.personnel-recruitment', {
-                url: '/personnel-recruitment',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/personnel-recruitment.html',
-                        controller: 'PersonnelRecruitmentCtrl'
-                    }
-                }
-            })
-
             //发送留言
             .state('tab.send-message', {
                 url: '/send-message',
@@ -73,17 +62,6 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
                         templateUrl: 'templates/send-message.html'
                     }
                 }
-            })
-            //企业详情
-            .state('tab.company-details', {
-                url: '/company-details',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'templates/company-details.html',
-                        controller: 'CompanyDetailsCtrl'
-                    }
-                }
-
             })
             //分类
             .state('tab.classify', {

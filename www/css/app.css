@@ -163,47 +163,7 @@ ul, li {
     text-indent: 0;
     padding: 0 .5rem 0.5em 0;
 }
-.mod-share {
-    font-size: 0;
-    text-align: center;
-}
-.mod-share .hd {
-    width: 53px;
-    height: 28px;
-    line-height: 200px;
-    vertical-align: top;
-    margin: 2px 6px 0 0;
-    background-position: 0 0;
-    overflow: hidden;
-}
-.mod-share .hd, .mod-share a {
-    display: inline-block;
-    background: url('../img/share.png') no-repeat;
-    background-size: auto 32px;
-}
-.mod-share a {
-    width: 32px;
-    height: 32px;
-    vertical-align: top;
-    margin-left: 6px;
-    color: #333;
-    text-decoration: none;
-}
-.mod-share .qzone {
-    background-position: -63px 0;
-}
-.mod-share .sina {
-    background-position: -100px 0;
-}
-.mod-share .renren {
-    background-position: -137px 0;
-}
-.mod-share .sohu {
-    background-position: -175px 0;
-}
-/*新闻样式结束*/
 
-/*李雪晴的样式*/
  .col-grids {
     padding: 2px;
     border: 1px solid #dddddd;

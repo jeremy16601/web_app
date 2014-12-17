@@ -15,10 +15,15 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             //开始页面，初始化
             .state('start', {
                 url: '/',
-                template: '<div></div>',
-                controller: 'InitCtrl'
+                templateUrl: 'templates/home.html',
+                controller: 'HomeCtrl'
             })
-
+            //首页
+            .state('home', {
+                url: '/home',
+                templateUrl: 'templates/home.html',
+                controller: 'HomeCtrl'
+            })
             // 新闻列表
             .state('news', {
                 url: '/news',
@@ -49,12 +54,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/product-list.html',
                 controller: 'productListCtrl'
             })
-            //产品搜索结果
-            .state('product-search', {
-                url: '/product-search/:productName',
-                templateUrl: 'templates/product-search.html',
-                controller: 'productSearchCtrl'
-            })
             //产品详情
             .state('product-detail', {
                 url: '/product-detail/:proId',
@@ -73,13 +72,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/pay-ok.html',
                 controller: 'PayOKCtrl'
             })
-
-            //首页风格
-            .state('home', {
-                url: '/home',
-                templateUrl: 'templates/home.html',
-                controller: 'HomeCtrl'
-            })
             //个人中心
             .state('user', {
                 url: '/user?id',
@@ -91,12 +83,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 url: '/order',
                 templateUrl: 'templates/order.html',
                 controller: 'orderCtrl'
-            })
-            //修改密码
-            .state('user-change-pwd', {
-                url: '/user-change-pwd',
-                templateUrl: 'templates/user-change-pwd.html'
-                // controller: 'NewsCtrl-grids'
             })
             //个人中心--个人信息修改
             .state('user-detail', {
@@ -121,11 +107,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 url: '/user-order?userId',
                 templateUrl: 'templates/user-order.html',
                 controller: 'UserCtrlOrder'
-            })
-            .state('login', {
-                url: "/login",
-                templateUrl: "templates/login.html",
-                controller: 'LoginCtrl'
             })
             //相册
             .state('photoAlbum', {
@@ -162,12 +143,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 url: '/user-card',
                 templateUrl: 'templates/user-card.html',
                 controller: 'UserCardCtrl'
-            })
-            //会员签到
-            .state('user-signIn', {
-                url: '/signIn',
-                templateUrl: 'templates/user-signin.html',
-                controller: 'UserSignInCtrl'
             })
             //我的购物车
             .state('user-cart', {
