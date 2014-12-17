@@ -1,42 +1,17 @@
 
 
-```bash
-$ sudo npm install -g ionic
+```安装环境 ionic
+$ sudo npm install -g ionic cordova
 ```
 
-Then run:
 
-```bash
-$ sudo npm install -g ionic
-$ ionic start myProject tabs
-```
-
-## Installation
- run:
+#### 运行方法
 
 ```bash
-$ cd ionic-app-base
-$ sudo npm install -g cordova ionic gulp
-$ npm install
-$ gulp install
+$ ionic platform add ios
+$ ionic build ios
+$ ionic emulate ios
 ```
 
-
-```
-
-## Updating Ionic
-
-```
-"ionic": "driftyco/ionic-bower#1.0.0-beta.4"
-```
-
-To this:
-
-```
-"ionic": "driftyco/ionic-bower#1.0.0-beta.5"
-```
-
-After saving the update to bower.json file, run `gulp install`.
-
-Alternatively, install bower globally with `npm install -g bower` and run `bower install`.
-
+#### 在浏览器中测试
+``ionic serve``
