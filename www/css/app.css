@@ -1,18 +1,22 @@
 
- .bg-color {
+.bg-color {
     background: #f9f9f9;
 }
+
 .pane {
     background: #f9f9f9;
 }
+
 /*全局的标题颜色*/
- .article-header-color {
+.article-header-color {
     color: #666666;
 }
+
 /*全局的正文颜色*/
- .article-color {
+.article-color {
     color: #898989;
 }
+
 .ionic-logo {
     display: block;
     margin: 15px auto;
@@ -23,36 +27,44 @@
 .ionic-margin {
     margin: 20px 10px;
 }
+
 /*列表无边框设计*/
- .item-no-padding {
+.item-no-padding {
     padding: 0;
 }
+
 .item-no-board {
     border: 0;
 }
+
 a.item-no-board:after {
     display: none;
 }
+
 /*列表无边框设计结束*/
 
 /*左右滑动开始*/
- .swipe-div {
+.swipe-div {
     position: relative;
 }
+
 .swipe {
     overflow: hidden;
     visibility: hidden;
     position: relative;
 }
+
 .swipe-wrap {
     overflow: hidden;
     position: relative;
 }
+
 .swipe-wrap > div {
     float: left;
     width: 100%;
     position: relative;
 }
+
 .swipe-wrap img {
     width: 100%;
     display: block;
@@ -62,6 +74,7 @@ a.item-no-board:after {
     text-align: center;
     background: #fff;
 }
+
 .swipe-wrap p {
     position: absolute;
     left: 0;
@@ -78,10 +91,11 @@ a.item-no-board:after {
     height: 35px;
     margin: 0;
 
-    background:-moz-linear-gradient(top,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.2));/*Mozilla*/
-    background:-webkit-linear-gradient(top,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.2));/*new gradient for Webkit*/
-    background:-o-linear-gradient(top,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.2)); /*Opera11*/
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); /*Mozilla*/
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); /*new gradient for Webkit*/
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); /*Opera11*/
 }
+
 .swipe-ctr {
     position: absolute;
     right: .5em;
@@ -89,6 +103,7 @@ a.item-no-board:after {
     overflow: hidden;
     text-align: center
 }
+
 .swipe-ctr span {
     display: inline-block;
     width: 8px;
@@ -97,18 +112,22 @@ a.item-no-board:after {
     background: rgba(255, 255, 255, 0.7);
     margin: 0 2px
 }
+
 .swipe-ctr .cur {
     background: rgba(255, 255, 255, 1)
 }
+
 /*左右滑动结束*/
 
 /*左右滑动样式二*/
- .mod_index {
+.mod_index {
     display: -webkit-box;
 }
+
 ul, li {
     list-style: none;
 }
+
 .mod_index li {
     -webkit-box-flex: 1;
     height: 2px;
@@ -116,24 +135,33 @@ ul, li {
     display: list-item;
     text-align: -webkit-match-parent;
 }
+
 .mod_index .current {
-    background-color: #e33b3d;
+    background-color: #0096e3;
 }
+
 /*左右滑动样式二结束*/
 
 /*标题栏（默认样式）开始*/
- div[class ^=bar-] {
+div[class ^=bar-] {
     margin-bottom: 8px;
     margin-top: 8px;
 }
+
+.bar.bar-assertive {
+    background-color: #0096e3;
+}
+
 .bar-title {
     line-height: 20px;
     font-size: 18px;
 }
+
 .bar-title.t1 {
-    border-left: 4px solid #e55e5e;
+    border-left: 4px solid #0096e3;
     padding-left: 3px;
 }
+
 .bar-title h2 {
     display: block;
     margin: 0;
@@ -141,14 +169,16 @@ ul, li {
     font-size: 100%;
     color: #64a000;
 }
+
 /*标题栏结束*/
 
 /*新闻样式*/
- .article-header {
+.article-header {
     text-align: center;
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 10px;
 }
+
 .article-header .mod-title {
     line-height: 1.3em;
     font-size: 20px;
@@ -156,6 +186,7 @@ ul, li {
     padding: .8rem .5rem 0rem 0rem;
     background: 0;
 }
+
 .article-header .mod-text {
     font-size: 14px;
     color: #999;
@@ -164,19 +195,22 @@ ul, li {
     padding: 0 .5rem 0.5em 0;
 }
 
- .col-grids {
+.col-grids {
     padding: 2px;
     border: 1px solid #dddddd;
 }
+
 .lable-text-color {
     color: #f5655f;
     padding-left: 55%;
 }
+
 .lable-color-title {
     color: #666666;
     margin-left: 5px;
     margin-bottom: 3px;
 }
+
 .button.button-full1 {
     border-color: transparent;
     background-color: #EEEEEE;
@@ -188,6 +222,7 @@ ul, li {
     line-height: 35px;
     min-height: 30px;
 }
+
 .button.button-full2 {
     border-color: transparent;
     background-color: #F5655E;
@@ -196,6 +231,7 @@ ul, li {
     color: white;
     margin: auto;
 }
+
 .user-div {
     text-align: center;
     background: url("../img/user_bg.png");
@@ -203,14 +239,20 @@ ul, li {
     min-height: 152px;
     padding-top: 10px;
 }
+
 .user_avatar {
     border-radius: 95px 95px / 95px 95px;
     width: 120px;
     height: 120px;
     background-size: cover;
 }
+
 /*朝右的箭头*/
- .item-home5 {
+.item-home5 {
     margin: 0px;
     padding: 0px;
+}
+
+.common {
+    color: #0096e3;
 }
