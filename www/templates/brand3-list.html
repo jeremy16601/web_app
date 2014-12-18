@@ -34,11 +34,12 @@
 
 <ion-view title="选择排量">
     <ion-content padding="true" class="has-header has-footer">
-        <ul class="list" ng-repeat="bs in brandslist2" style="margin-bottom: 0px;">
+        <ul class="list" ng-repeat="bs in brandslist3" style="margin-bottom: 0px;">
             <a href="#/home">
                 <li class="item">
 
-                    <span style="color:#666462;">{{ bs.brand_name}}</span> <span style="float: right !important;"><i
+                    <span style="color:#666462;">{{ bs.title}}&nbsp;{{ bs.brand3_type}}&nbsp;{{ bs.brand3_time}}</span> <span
+                        style="float: right !important;"><i
                         class="icon ion-ios-arrow-right"></i> </span>
 
                 </li>

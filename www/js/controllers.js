@@ -329,10 +329,15 @@ angular.module('starter.controllers', [])
     })
     //3级分类列表
     .controller('BrandListCtrl3', function ($scope, $rootScope, $stateParams, BrandService3) {
-        //$scope.brandsid = $stateParams.brandsid;
-        //$scope.addBrandTT = function (b) {
-        //    BrandService3.addBrand3(b)
-        //}
+        $scope.addBrandTT = function (b) {
+            BrandService3.addBrand3(b)
+        }
+
+        //二级分类夹在
+        BrandService3.getBrands3(function (results) {
+            $scope.brandslist3 = results;
+        });
+
     })
 
 //相册列表

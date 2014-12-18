@@ -102,16 +102,16 @@ angular.module('starter.services', [])
     .factory('BrandService3', function ($http, $rootScope, $window, $stateParams) {
         return {
             getBrands3: function (callback) {
-                $http.get($rootScope.url + 'brandsTypeById?brand_type=' + $stateParams.brand_type, {
+                $http.get($rootScope.url + 'brandTT?brandsid=' + $stateParams.brandsid, {
                     cache: true
                 }).success(callback);
             }, addBrand3: function (b) {
                 //添加商品到购物车
                 var data = {
-                        title: req.body.title,
-                        brand3_type: req.body.brand3_type,
-                        brand3_time: req.body.brand3_time,
-                        brands3_id: req.body.brands3_id
+                        title: b.title,
+                        brand3_type: b.brand3_type,
+                        brand3_time: b.brand3_time,
+                        brands3_id: $stateParams.brandsid
                     },
                     transFn = function (data) {
                         return $.param(data, true);
@@ -122,7 +122,7 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                $http.post($rootScope.url + 'addBrandType', data, postCfg).success(function (data) {
+                $http.post($rootScope.url + 'addBrandTT', data, postCfg).success(function (data) {
                     if (data.success) {
                         alert('添加成功！');
                         $window.location.reload();

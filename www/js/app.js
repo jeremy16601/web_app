@@ -68,9 +68,9 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //三级分类
             .state('brand3-list', {
-                url: '/brand3-list',
+                url: '/brand3-list?brandsid',
                 templateUrl: 'templates/brand3-list.html',
-                controller: 'BrandListCtrl'
+                controller: 'BrandListCtrl3'
             })
             //产品详情
             .state('product-detail', {
