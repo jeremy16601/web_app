@@ -26,45 +26,18 @@ angular.module('starter.services', [])
 
     })
 
-    //企业列表
-    .factory('CompanyListService', function ($http, $rootScope, $stateParams) {
+    //添加一级品牌
+    .factory('BrandService', function ($http, $rootScope, $window, $stateParams) {
         $rootScope.subsiteCode = $stateParams.pid
         return {
-            getCompanyList: function (callback) {
-                $http.post($rootScope.url + 'act=clientsView&subsiteCode=' + $rootScope.subsiteCode, {
-                    cache: true
-                }).success(callback);
-            }
-        }
-    })
-
-    //企业详情
-    .factory('CompanyDetailsService', function ($http, $rootScope, $stateParams) {
-        $rootScope.subsiteCode = $stateParams.pid
-        return {
-            getCompanyDetail: function (callback) {
-                $http.post($rootScope.url + 'act=clientsView&subsiteCode=' + $rootScope.subsiteCode, {
-                    cache: true
-                }).success(callback);
-            }
-        }
-    })
-    //预约
-    .factory('yuyueService', function ($http, $location, $ionicPopup, $window, $stateParams, $rootScope) {
-        $rootScope.subsiteCode = $stateParams.pid;
-        return {
-            addYuyue: function (yudingInfo) {
-                console.log(yudingInfo);
+            addBrand: function (b) {
+                //添加商品到购物车
                 var data = {
-                        appId: yudingInfo.appId,
-                        typeId: yudingInfo.typeId,
-                        linkMan: yudingInfo.linkMan,
-                        linkPhone: yudingInfo.linkPhone,
-                        appTime: yudingInfo.appTime,
-                        remark: yudingInfo.remark
+                        brand_name: b.brand_name,
+                        brand_type: b.brand_type
                     },
                     transFn = function (data) {
-                        return $.param(data);
+                        return $.param(data, true);
                     },
                     postCfg = {
                         headers: {
@@ -72,30 +45,94 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                $http.post($rootScope.url + 'act=createAppointment&subsiteCode=' + $rootScope.subsiteCode, data, postCfg).success(function (data) {
-                    if (data.succeed == 000) {
-                        var alertPopup = $ionicPopup.alert({
-                            title: '预约成功',
-                            template: '<p>预约成功</p>'
-                        });
-                        alertPopup.then(function (res) {
-                            $window.history.back();
-                        });
-                    } else {
-                        $ionicPopup.alert({
-                            title: '预约失败',
-                            template: '<p>预约失败</p>'
-                        });
-                    }
 
+                $http.post($rootScope.url + 'addBrands', data, postCfg).success(function (data) {
+                    if (data.success) {
+                        alert('添加成功！');
+                        $window.location.reload();
+                    } else {
+                        alert('添加失败!');
+                    }
+                });
+            }, addBrandType: function (b) {
+                //添加商品到购物车
+                var data = {
+                        brand_type: b.brand_type2,
+                        childname: b.childname
+                    },
+                    transFn = function (data) {
+                        return $.param(data, true);
+                    },
+                    postCfg = {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        transformRequest: transFn
+                    };
+                console.log(data)
+                $http.post($rootScope.url + 'addBrandType', data, postCfg).success(function (data) {
+                    if (data.success) {
+                        alert('添加成功！');
+                        $window.location.reload();
+                    } else {
+                        alert('添加失败!');
+                    }
                 });
             },
-            getYuyueInfo: function (callback) {
-                $http.get($rootScope.url + 'act=appointmentContent&subsiteCode=' + $rootScope.subsiteCode).success(callback);
+            getBrandsList: function (callback) {
+                $http.get($rootScope.url + 'getbrandsList', {
+                    cache: true
+                }).success(callback);
             }
-        };
+        }
     })
 
+    //企业详情
+    .factory('BrandService2', function ($http, $rootScope, $window, $stateParams) {
+        $rootScope.subsiteCode = $stateParams.pid
+        return {
+            getBrandsListType: function (callback) {
+                $http.get($rootScope.url + 'brandsTypeById?brand_type=' + $stateParams.brand_type, {
+                    cache: true
+                }).success(callback);
+            }
+        }
+    })
+    //排量列表
+    .factory('BrandService3', function ($http, $rootScope, $window, $stateParams) {
+        return {
+            getBrands3: function (callback) {
+                $http.get($rootScope.url + 'brandsTypeById?brand_type=' + $stateParams.brand_type, {
+                    cache: true
+                }).success(callback);
+            }, addBrand3: function (b) {
+                //添加商品到购物车
+                var data = {
+                        title: req.body.title,
+                        brand3_type: req.body.brand3_type,
+                        brand3_time: req.body.brand3_time,
+                        brands3_id: req.body.brands3_id
+                    },
+                    transFn = function (data) {
+                        return $.param(data, true);
+                    },
+                    postCfg = {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                        },
+                        transformRequest: transFn
+                    };
+                $http.post($rootScope.url + 'addBrandType', data, postCfg).success(function (data) {
+                    if (data.success) {
+                        alert('添加成功！');
+                        $window.location.reload();
+                    } else {
+                        alert('添加失败!');
+                    }
+                });
+            }
+        }
+    })
     //产品搜索
     .factory('productSearchService', function ($http, $stateParams, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
@@ -171,8 +208,8 @@ angular.module('starter.services', [])
                         alert('添加失败:' + data.data);
                     }
                 });
-            } ,//从购物车删除
-            delToCart:function(goodsId){
+            },//从购物车删除
+            delToCart: function (goodsId) {
                 //添加商品到购物车
                 var data = {
                         'goodsId': goodsId,
@@ -197,7 +234,7 @@ angular.module('starter.services', [])
                 });
             }
             //添加到购物车，然后下单
-            ,addToOrder: function (goodsId) {
+            , addToOrder: function (goodsId) {
                 //添加商品到购物车
                 var data = {
                         'goodsId': goodsId,
@@ -234,7 +271,7 @@ angular.module('starter.services', [])
     })
 
 //支付
-    .factory('PayService', function ($http, $stateParams, $cookieStore, $rootScope,ProductDetailService) {
+    .factory('PayService', function ($http, $stateParams, $cookieStore, $rootScope, ProductDetailService) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             getFruitsAsync: function (callback) {
@@ -256,17 +293,17 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                console.log('orderInfo=='+orderInfo.addressId);
+                console.log('orderInfo==' + orderInfo.addressId);
                 $http.post($rootScope.url + '/order/create', orderInfo, postCfg).success(function (data) {
                     //付款成功
                     if (data.success) {
-                        var url = '#/' + $rootScope.subsiteCode + '/pay-ok?username='+data.data.username+'&orderNum='+data.data.num+
-                            '&amount='+data.data.amount+'&address='+data.data.address;
+                        var url = '#/' + $rootScope.subsiteCode + '/pay-ok?username=' + data.data.username + '&orderNum=' + data.data.num +
+                            '&amount=' + data.data.amount + '&address=' + data.data.address;
                         window.location.assign(url);
 
-                        console.log('goodsID=='+data.data.item[0].goodsDetail.id);
+                        console.log('goodsID==' + data.data.item[0].goodsDetail.id);
 
-                    }else{
+                    } else {
                         console.log('order faild!' + data.data);
                     }
 
@@ -476,12 +513,12 @@ angular.module('starter.services', [])
             },
             //登陆
             login: function (user) {
-                console.log('login user==='+user);
+                console.log('login user===' + user);
                 $http.get($rootScope.url + '/user/login?emailOrPhone=' + user.emailOrPhone + '&password=' + user.password).success(function (data) {
                     if (data.success) {
                         $cookieStore.put('id', data.data);
                         $window.location.assign('#/201407220000400/user?id=' + data.data);
-                    }else{
+                    } else {
                         alert('登陆失败:' + data.data);
                     }
                 });

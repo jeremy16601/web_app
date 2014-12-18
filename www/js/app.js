@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
     .run(function ($rootScope) {
         $rootScope.subsiteCode = "";
-        $rootScope.url = "http://localhost:3000/api";
+        $rootScope.url = "http://localhost:3000/";
         $rootScope.timeout = 100;
     })
 
@@ -36,23 +36,41 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/news-detail.html',
                 controller: 'NewsDetailCtrl'
             })
-            //分类
-            .state('classify', {
-                url: '/classify',
-                templateUrl: 'templates/classify.html',
-                controller: 'ClassCtrl'
+            //添加分类
+            .state('addBrand', {
+                url: '/addBrand',
+                templateUrl: 'templates/addBrand.html',
+                controller: 'addBrandCtrl'
             })
-            //产品列表首页
-            .state('products', {
-                url: '/products?categoryId&page&pageSize',
-                templateUrl: 'templates/products.html',
-                controller: 'ProductCtrl'
+            //添加二级分类
+            .state('addBrandType', {
+                url: '/addBrandType',
+                templateUrl: 'templates/addBrandType.html',
+                controller: 'BrandListCtrl2'
             })
-            //产品列表（根据分类）
-            .state('product-list', {
-                url: '/product-list/:proTypeMaxId',
-                templateUrl: 'templates/product-list.html',
-                controller: 'productListCtrl'
+            //添加排量
+            .state('addBrandT', {
+                url: '/addBrandT?brandsid',
+                templateUrl: 'templates/addbrandT.html',
+                controller: 'BrandListCtrl3'
+            })
+            //一级分类
+            .state('brand-list', {
+                url: '/brand-list',
+                templateUrl: 'templates/brand-list.html',
+                controller: 'BrandListCtrl'
+            })
+            //二级分类
+            .state('brand2-list', {
+                url: '/brand2-list?brand_type',
+                templateUrl: 'templates/brand2-list.html',
+                controller: 'BrandListCtrl2'
+            })
+            //三级分类
+            .state('brand3-list', {
+                url: '/brand3-list',
+                templateUrl: 'templates/brand3-list.html',
+                controller: 'BrandListCtrl'
             })
             //产品详情
             .state('product-detail', {
@@ -119,24 +137,6 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 url: '/photoAlbum/:albumId',
                 templateUrl: 'templates/photo-picture-list.html',
                 controller: 'PhotoListCtrl'
-            })
-            //团购
-            .state('customers', {
-                url: '/customers',
-                templateUrl: 'templates/customers.html',
-                controller: 'CustomersCtrl'
-            })
-            //团购详情
-            .state('customers-details', {
-                url: '/customers-details/:groupId',
-                templateUrl: 'templates/customers-details.html',
-                controller: 'CustomersDetailsCtrl'
-            })
-            //优惠信息
-            .state('special-offers', {
-                url: '/specialOffers',
-                templateUrl: 'templates/special-offers.html',
-                controller: 'SpecialOffersCtrl'
             })
             //会员卡
             .state('user-card', {

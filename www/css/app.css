@@ -40,9 +40,6 @@
 a.item-no-board:after {
     display: none;
 }
-
-/*列表无边框设计结束*/
-
 /*左右滑动开始*/
 .swipe-div {
     position: relative;
@@ -201,7 +198,7 @@ div[class ^=bar-] {
 }
 
 .lable-text-color {
-    color: #f5655f;
+    color: #0096e3;
     padding-left: 55%;
 }
 
@@ -225,8 +222,8 @@ div[class ^=bar-] {
 
 .button.button-full2 {
     border-color: transparent;
-    background-color: #F5655E;
-    width: 90%;
+    background-color: #0096e3;
+    width: 100%;
     text-align: center;
     color: white;
     margin: auto;

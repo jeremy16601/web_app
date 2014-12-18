@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
                 url: '/classify',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/classify.html'
+                        templateUrl: 'templates/addBrand.html'
                         //controller: 'DetCtrl'
                     }
                 }
@@ -79,7 +79,7 @@ angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
                 url: '/products',
                 views: {
                     'menuContent': {
-                        templateUrl: 'templates/products.html',
+                        templateUrl: 'templates/brand-list.html',
                         controller: 'ProductCtrl'
                     }
                 }

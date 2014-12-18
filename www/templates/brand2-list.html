@@ -1,0 +1,48 @@
+<style>
+    .list {
+        font-size: 14px;
+        border-color: #eee;
+        color: #666462;
+        padding-top: 0px;
+    }
+
+    .item {
+        border-color: #ddd;
+        background-color: #fff;
+        color: #444;
+        position: relative;
+        z-index: 2;
+        display: block;
+        border-width: 1px;
+        border-style: solid;
+        font-size: 14px;
+    }
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:active {
+        color: red;
+        text-decoration: none;
+    }
+
+    .padding {
+        padding: 0px;
+    }
+</style>
+
+<ion-view title="选择品牌">
+    <ion-content padding="true" class="has-header has-footer">
+        <ul class="list" ng-repeat="bs in brandslist2" style="margin-bottom: 0px;">
+            <a href="#/addbrandT?brandsid={{bs._id}}">
+                <li class="item">
+                    <span style="color:#666462;">{{ bs.childname}}</span> <span style="float: right !important;"><i
+                        class="icon ion-ios-arrow-right"></i> </span>
+
+                </li>
+            </a>
+        </ul>
+
+    </ion-content>
+</ion-view>

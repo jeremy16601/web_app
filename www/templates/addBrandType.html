@@ -1,0 +1,16 @@
+<ion-view title="添加品牌">
+    <ion-content padding="true" class="has-header">
+        <form ng-submit="addBrandType(b)">
+            <label class="item item-input">
+                <span class="input-label">品牌2</span>
+                <input id="brand2" type="text" ng-model="b.childname" placeholder="输入汽车品牌">
+
+            </label>
+            <label class="item item-input">
+                <span class="input-label">类型</span>
+                <input type="text" value="{{brand_type}}" ng-model="b.brand_type2"/>
+            </label>
+            <button class="button button-full2 button-block " style="margin-top: 20px" type="submit">保存</button>
+        </form>
+    </ion-content>
+</ion-view></script>

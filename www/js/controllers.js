@@ -226,52 +226,6 @@ angular.module('starter.controllers', [])
             $scope.url = result.sysValue;
         });
     })
-
-    // 企业详情 controller
-    .controller('CompanyDetailsCtrl', function ($scope, loadJs, CompanyDetailsService) {
-        CompanyDetailsService.getCompanyDetail(function (results) {
-            $scope.companyDetail = results.dataList;
-            $('.detail').html(results.dataList.intro);
-
-            //显示地图
-            var mp = new BMap.Map('map');
-            var point = new BMap.Point($scope.companyDetail.mapx, $scope.companyDetail.mapy);
-
-            mp.centerAndZoom(point, 17);
-            var marker = new BMap.Marker(point);
-            mp.addOverlay(marker);
-        });
-    })
-
-    //产品列表
-    .controller('ProductCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location, $stateParams, ProductService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-        //默认加载
-        ProductService.getProducts(function (results) {
-            $scope.productList = results;
-            $ionicLoading.hide();
-        });
-
-//        //点击详情
-//        $scope.more = function (proTypeMaxId) {
-//            $location.path('/' + $rootScope.subsiteCode + '/product-list/' + proTypeMaxId);
-//        };
-//        //根据输入内容，查询
-//        $scope.search = function (productName) {
-//            var elem = document.getElementById('productName');
-//            // alert(elem.value);
-//            $location.path('/' + $rootScope.subsiteCode + '/product-search/' + elem.value);
-//        };
-
-
-    })
-
     //团购
     .controller('CustomersCtrl', function ($scope, $rootScope, $ionicLoading, CustomerService) {
         $ionicLoading.show({
@@ -327,30 +281,15 @@ angular.module('starter.controllers', [])
 
     })
 
-//产品类型列表页
-    .controller('ClassCtrl', function ($scope, $ionicLoading, $rootScope, $location, productListService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
+    //添加一级产品分类
+    .controller('addBrandCtrl', function ($scope, $ionicLoading, $rootScope, $location, BrandService) {
 
-        $scope.gotoCata = function (id) {
-            var url = '#/' + $rootScope.subsiteCode + '/products?categoryId=' + id;
-            window.location.assign(url);
-        };
-
-        productListService.getProductTypeList(function (results) {
-            $ionicLoading.hide();
-            $scope.productTypeList = results.data;
-        });
-
+        $scope.addBrand = function (b) {
+            BrandService.addBrand(b);
+        }
     })
-
-//产品搜索
-    .controller('productSearchCtrl', function ($scope, $stateParams, $ionicLoading, productSearchService) {
+    //一级品牌列表
+    .controller('BrandListCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location, $stateParams, BrandService) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -358,14 +297,19 @@ angular.module('starter.controllers', [])
             maxWidth: 200,
             showDelay: 100
         });
-        productSearchService.getFruitsAsync(function (results) {
+        //默认加载
+        BrandService.getBrandsList(function (results) {
+            $scope.brandslist = results;
             $ionicLoading.hide();
-            $scope.productList = results;
+        });
+        //三级分类夹在
+        BrandService.getBrandsList(function (results) {
+            $scope.brandslist3 = results;
+            $ionicLoading.hide();
         });
     })
-
-//相册集列表
-    .controller('PhotoAlbumCtrl', function ($scope, $ionicLoading, PhotoAlbumService) {
+    //二级分类列表
+    .controller('BrandListCtrl2', function ($scope, $rootScope, $ionicLoading, $timeout, $location, $stateParams, BrandService2) {
         $ionicLoading.show({
             content: '加载数据',
             animation: 'fade-in',
@@ -373,10 +317,22 @@ angular.module('starter.controllers', [])
             maxWidth: 200,
             showDelay: 100
         });
-        PhotoAlbumService.getPhotoAlbum(function (result) {
-            $scope.photoAlbums = result.showImgList;
+        //二级分类夹在
+        BrandService2.getBrandsListType(function (results) {
+            $scope.brandslist2 = results;
             $ionicLoading.hide();
         });
+
+        $scope.addBrandType = function (b) {
+            BrandService.addBrandType(b)
+        }
+    })
+    //3级分类列表
+    .controller('BrandListCtrl3', function ($scope, $rootScope, $stateParams, BrandService3) {
+        //$scope.brandsid = $stateParams.brandsid;
+        //$scope.addBrandTT = function (b) {
+        //    BrandService3.addBrand3(b)
+        //}
     })
 
 //相册列表
