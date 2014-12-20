@@ -126,7 +126,6 @@ angular.module('starter.controllers', [])
             alert('请先去选择收货地址');
             $location.url('/' + $rootScope.subsiteCode + '/user-address');
         }
-        ;
 
         //去付款
         $scope.pays = function () {
