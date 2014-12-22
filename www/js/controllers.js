@@ -184,15 +184,7 @@ angular.module('starter.controllers', [])
         $scope.address = $stateParams.address;
     })
     //预约
-    .controller('orderCtrl', function ($scope, $ionicLoading, $cookieStore, yuyueService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-
+    .controller('orderCtrl', function ($scope, $cookieStore, yuyueService) {
 
         //初始化得到预约信息
         yuyueService.getYuyueInfo(function (result) {

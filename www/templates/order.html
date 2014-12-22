@@ -1,65 +1,29 @@
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/datepicker3.css" rel="stylesheet">
+<style>
+    .apptitle {
+        height: 30px;
+        line-height: 30px;
+    }
+    .header {
+        font-size: 1.5em;
+        padding: 5px;
+        font-weight: bold;
+    }
 
-<style type="text/css">
-.card1 {
-    margin: auto;
-    padding-top: 0px;
-}
-.h4 {
-    margin-top: 0px;
-    padding-top: 20px;
-}
-button {
-    -webkit-text-fill-color: white;
-}
 </style>
 
-<ion-view title="预约" hide-nav-bar="true">
-    <ion-content has-header="false" has-tabs="false">
-        <img class="full-image" src="{{datas.dataList.img}}">
-
-        <div class="card card1">
-            <div class="item item-divider">
-                预约说明
-            </div>
-            <div class="item item-text-wrap" ng-bind-html="datas.dataList.instructions">
-            </div>
-
-            <div class="item item-divider">
-                商家地址
-            </div>
-            <div class="item item-text-wrap ">
-                {{datas.dataList.address}}
-                <br/>商家电话：{{datas.dataList.phone}}
-            </div>
+<ion-view title="order">
+    <ion-content padding="true" class="has-header">
+        <div class="header apptitle">
+             <span>海阳星</span> 
         </div>
-
-        <h4 class="item item-divider h4 ">信息填写</h4>
-
-        <form name="myForm" ng-submit="addYuyue(yudingInfo)" style="padding-bottom: 100px;">
-            <div class="list">
-
-                <label class="item item-input">
-                    <input type="text" placeholder="联系人" ng-model="yudingInfo.linkMan">
-                    <input type="text" ng-show="false" ng-model="yudingInfo.appId" ng-value="datas.dataList.id">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="联系电话" ng-model="yudingInfo.linkPhone">
-                </label>
-                <label class="item item-input">
-                    <input type="date" name="input" ng-model="yudingInfo.appTime" placeholder="预约时间" required/>
-                </label>
-                <label class="item item-input">
-                    <select ng-model="yudingInfo.typeId" ng-options="opt.id as opt.typeName for opt in datas.typeList">
-                        <option value="">--选择预约类型 --</option>
-                    </select>
-                </label>
-                <label class="item item-input">
-                    <textarea placeholder="备注" ng-model="yudingInfo.remark"></textarea>
-                </label>
-            </div>
-            <button class="button button-full2 button-block  " type="submit">提 交</button>
+        <div style="line-height: 30px;">
+            海阳星
+        </div>
+        <form>
+            <label class="item item-select">
+                <span class="input-label">机油</span>
+                <select></select>
+            </label>
         </form>
     </ion-content>
 </ion-view>
