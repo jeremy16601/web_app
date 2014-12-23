@@ -40,6 +40,7 @@
 a.item-no-board:after {
     display: none;
 }
+
 /*左右滑动开始*/
 .swipe-div {
     position: relative;

@@ -3,10 +3,6 @@ angular.module('starter.services', [])
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     })
-    //HomeService
-    .factory('HomeService', function ($stateParams, $rootScope) {
-        $rootScope.subsiteCode = $stateParams.pid;
-    })
 
     //新闻数据
     .factory('NewsService', function ($http, $stateParams, $rootScope) {
@@ -69,7 +65,6 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                console.log(data)
                 $http.post($rootScope.url + 'addBrandType', data, postCfg).success(function (data) {
                     if (data.success) {
                         alert('添加成功！');
@@ -87,6 +82,17 @@ angular.module('starter.services', [])
         }
     })
 
+    //企业详情
+    .factory('orderService', function ($http, $rootScope, $window, $stateParams) {
+        $rootScope.subsiteCode = $stateParams.pid
+        //return {
+        //    getBrandsListType: function (callback) {
+        //        $http.get($rootScope.url + 'brandsTypeById?brand_type=' + $stateParams.brand_type, {
+        //            cache: true
+        //        }).success(callback);
+        //    }
+        //}
+    })
     //企业详情
     .factory('BrandService2', function ($http, $rootScope, $window, $stateParams) {
         $rootScope.subsiteCode = $stateParams.pid

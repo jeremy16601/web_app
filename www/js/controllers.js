@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-    .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $cookieStore, HomeService) {
+    .controller('HomeCtrl', function ($scope, $location, localStorageService, $rootScope, $ionicLoading, $cookieStore) {
 
     })
 
@@ -60,61 +60,6 @@ angular.module('starter.controllers', [])
             $('.article-content').html($scope.news.newsContent);
 
         });
-
-    })
-
-
-//产品详情
-    .controller('ProductDetailCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $window, $cookieStore, ProductDetailService) {
-
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-        ProductDetailService.getFruitsAsync(function (results) {
-
-            $ionicLoading.hide();
-            $scope.datas = results;
-            $('#product-content').html($scope.datas.data.goodsDetail.description);
-            angular.element(document).ready(function () {
-
-                for (var i = 1; i < $scope.datas.data.goodsDetail.pictures.length; i++) {
-                    var dot = document.createElement("span");
-                    $('.swipe-ctr').append(dot);
-                }
-                var elem = document.getElementById('slider-news');
-                window.slider = Swipe(elem, {
-                    startSlide: 0,
-                    auto: false,
-                    continuous: true,
-                    disableScroll: false,
-                    stopPropagation: false,
-                    transitionEnd: function (index, element) {
-                        $('.swipe-ctr').find("span").removeClass("cur").eq(index).addClass("cur")
-                    }
-                });
-
-            });
-        });
-        //检测本地是否有id
-        if ($cookieStore.get('id') == null) {
-            alert('请先注册！谢谢');
-            var url = '#/' + $rootScope.subsiteCode + '/register';
-            window.location.assign(url);
-            $ionicLoading.hide();
-        } else {
-            //add to cart
-            $scope.addtoCarts = function (goodsId) {
-                ProductDetailService.addToCart(goodsId);
-            };
-            //下单
-            $scope.setOrder = function (goodsId) {
-                ProductDetailService.addToOrder(goodsId);
-            };
-        }
 
     })
 
@@ -184,91 +129,15 @@ angular.module('starter.controllers', [])
         $scope.address = $stateParams.address;
     })
     //预约
-    .controller('orderCtrl', function ($scope, $cookieStore, yuyueService) {
-
-        //初始化得到预约信息
-        yuyueService.getYuyueInfo(function (result) {
-            $ionicLoading.hide();
-            $scope.datas = result;
-            appId = result.dataList.id;
-
-            angular.element(document).ready(function () {
-                $('#orderTime').prop("readOnly", true).datepicker({
-                    format: "yyyy-mm-dd",
-                    language: "zh-CN",
-                    autoclose: true,
-                    todayHighlight: true
-                });
-            });
-        });
+    .controller('orderCtrl', function ($scope, $cookieStore) {
         //提交预约信息
-        $scope.addYuyue = function (yudingInfo) {
-
-            $ionicLoading.hide();
-            yudingInfo.appId = appId;
-            yuyueService.addYuyue(yudingInfo);
-        }
-
-    })
-
-    //企业列表
-    .controller('CompanyListCtrl', function ($scope, CompanyListService) {
-        CompanyListService.getCompanyList(function (result) {
-            $scope.url = result.sysValue;
-        });
-    })
-    //团购
-    .controller('CustomersCtrl', function ($scope, $rootScope, $ionicLoading, CustomerService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-        CustomerService.getDatas(function (result) {
-            $ionicLoading.hide();
-            $scope.productList = result;
-        });
-    })
-
-    //团购-详情
-    .controller('CustomersDetailsCtrl', function ($scope, $ionicLoading, $rootScope, CustomerService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-        CustomerService.getDetailsData(function (result) {
-            $scope.datas = result;
-            console.log(result);
-            $ionicLoading.hide();
-        });
-    })
-
-
-//优惠信息
-    .controller('CartCtrl', function ($scope, ProductDetailService) {
-        ProductDetailService.getcartsList(function (datas) {
-            $scope.datas = datas.data;
-        });
-    })
-
-//产品列表页
-    .controller('productListCtrl', function ($scope, $ionicLoading, $rootScope, productListService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-        productListService.getFruitsAsync(function (results) {
-            $scope.productList = results;
-            $ionicLoading.hide();
-        });
+        //$scope.addYuyue = function (yudingInfo) {
+        //
+        //    $ionicLoading.hide();
+        //    yudingInfo.appId = appId;
+        //    yuyueService.addYuyue(yudingInfo);
+        //}
+        $scope.price = 150;
 
     })
 
@@ -280,38 +149,21 @@ angular.module('starter.controllers', [])
         }
     })
     //一级品牌列表
-    .controller('BrandListCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $location, $stateParams, BrandService) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
+    .controller('BrandListCtrl', function ($scope, $rootScope, $location, $stateParams, BrandService) {
         //默认加载
         BrandService.getBrandsList(function (results) {
             $scope.brandslist = results;
-            $ionicLoading.hide();
         });
         //三级分类夹在
         BrandService.getBrandsList(function (results) {
             $scope.brandslist3 = results;
-            $ionicLoading.hide();
         });
     })
     //二级分类列表
-    .controller('BrandListCtrl2', function ($scope, $rootScope, $ionicLoading, $timeout, $location, $stateParams, BrandService2) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
+    .controller('BrandListCtrl2', function ($scope, $rootScope, $location, $stateParams, BrandService2) {
         //二级分类夹在
         BrandService2.getBrandsListType(function (results) {
             $scope.brandslist2 = results;
-            $ionicLoading.hide();
         });
 
         $scope.addBrandType = function (b) {
@@ -322,7 +174,7 @@ angular.module('starter.controllers', [])
     .controller('BrandListCtrl3', function ($scope, $rootScope, $stateParams, BrandService3) {
         $scope.addBrandTT = function (b) {
             BrandService3.addBrand3(b)
-        }
+        };
 
         //二级分类夹在
         BrandService3.getBrands3(function (results) {
