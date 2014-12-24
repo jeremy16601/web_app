@@ -59,118 +59,131 @@
         border-right: 1px solid #ccc;
     }
 
+    .tab_off {
+        display: none;
+    }
+
+    .tab_con {
+        display: block;
+    }
 </style>
 <link href="./css/application.css" media="all" rel="stylesheet"/>
 <ion-view title="下订单" hide-nav-bar="true">
     <ion-content has-header="false">
         <div class="container has-header">
             <ul class="tab_title">
-                <li class="selected">立即下单</li>
-                <li>服务介绍</li>
-                <li>评价(未开通)</li>
+                <li ng-class="selecte1" ng-click="setActive(1)">立即下单</li>
+                <li ng-class="selecte2" ng-click="setActive(2)">服务介绍</li>
+                <li ng-class="selecte3" ng-click="setActive(3)">评价(未开通)</li>
             </ul>
 
-            <div class="header apptitle">
-                <span>海阳星</span>
-            </div>
 
-            <div class="col-xs-12">
-                <div class="goods-title">
+            <div ng-class="tab_con1">
+                <div class="header apptitle">
+                    <span>海阳星</span>
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="goods-title">
             <span>大众(一汽) 宝来 上门保养<br><span>
             <hr>
           </span></span></div>
-          <span>价格: <strong class="good-price" >{{price}}元</strong>
+          <span>价格: <strong class="good-price">{{price}}元</strong>
           </span>
-                <hr>
-            </div>
-
-            <div class="col-xs-12" style="min-height: 300px;">
-                <span>项目:</span>
-
-                <div class="list">
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <label class="item item-input item-select" style="margin-left: 15px;">
-                            <div class="input-label " style="font-size: 13px;">
-                                机油
-                            </div>
-                            <select style="font-size: 13px;">
-                                <option>嘉实多磁护 SN 5W-40</option>
-                                <option selected>Green</option>
-                                <option>Red</option>
-                            </select>
-                        </label>
-                    </label>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <label class="item item-input item-select" style="margin-left: 15px;">
-                            <div class="input-label " style="font-size: 13px;">
-                                机油
-                            </div>
-                            <select style="font-size: 13px;">
-                                <option>嘉实多磁护 SN 5W-40</option>
-                                <option selected>Green</option>
-                                <option>Red</option>
-                            </select>
-                        </label>
-                    </label>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <label class="item item-input item-select" style="margin-left: 15px;">
-                            <div class="input-label " style="font-size: 13px;">
-                                机油
-                            </div>
-                            <select style="font-size: 13px;">
-                                <option>嘉实多磁护 SN 5W-40</option>
-                                <option selected>Green</option>
-                                <option>Red</option>
-                            </select>
-                        </label>
-                    </label>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <label class="item item-input item-select" style="margin-left: 15px;">
-                            <div class="input-label " style="font-size: 13px;">
-                                机油
-                            </div>
-                            <select style="font-size: 13px;">
-                                <option>嘉实多磁护 SN 5W-40</option>
-                                <option selected>壳牌黄喜力HX5 10W-40</option>
-                                <option>嘉实多磁护 SN 5W-40</option>
-                                <option>美孚美孚1号 0W-40</option>
-                                <option>嘉实多极护 SN 0W-40</option>
-                                <option>嘉实多磁护 SN 5W-40</option>
-                                <option>嘉实多磁护 SN 5W-40</option>
-                            </select>
-                        </label>
-                    </label>
+                    <hr>
                 </div>
 
-            </div>
+                <div class="col-xs-12" style="min-height: 300px;">
+                    <span>项目:</span>
 
-            <div class="col-xs-12">
-                <span>其他:</span>
-
-                <label class="checkbox" style="padding-left: 26px;">
-                    <input type="checkbox">
-
-                    <div class="btn-group btn-group-lg" id="car_type_5">
-                        <button type="button" style="min-width: 240px; font-size: 14px; margin-left: 18px;color:#999;"
-                                class="button button-light  ">已有配件,仅购买上门服务
-                        </button>
+                    <div class="list">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <label class="item item-input item-select" style="margin-left: 15px;">
+                                <div class="input-label " style="font-size: 13px;">
+                                    机油
+                                </div>
+                                <select style="font-size: 13px;">
+                                    <option>嘉实多磁护 SN 5W-40</option>
+                                    <option selected>Green</option>
+                                    <option>Red</option>
+                                </select>
+                            </label>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <label class="item item-input item-select" style="margin-left: 15px;">
+                                <div class="input-label " style="font-size: 13px;">
+                                    机油
+                                </div>
+                                <select style="font-size: 13px;">
+                                    <option>嘉实多磁护 SN 5W-40</option>
+                                    <option selected>Green</option>
+                                    <option>Red</option>
+                                </select>
+                            </label>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <label class="item item-input item-select" style="margin-left: 15px;">
+                                <div class="input-label " style="font-size: 13px;">
+                                    机油
+                                </div>
+                                <select style="font-size: 13px;">
+                                    <option>嘉实多磁护 SN 5W-40</option>
+                                    <option selected>Green</option>
+                                    <option>Red</option>
+                                </select>
+                            </label>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <label class="item item-input item-select" style="margin-left: 15px;">
+                                <div class="input-label " style="font-size: 13px;">
+                                    机油
+                                </div>
+                                <select style="font-size: 13px;">
+                                    <option>嘉实多磁护 SN 5W-40</option>
+                                    <option selected>壳牌黄喜力HX5 10W-40</option>
+                                    <option>嘉实多磁护 SN 5W-40</option>
+                                    <option>美孚美孚1号 0W-40</option>
+                                    <option>嘉实多极护 SN 0W-40</option>
+                                    <option>嘉实多磁护 SN 5W-40</option>
+                                    <option>嘉实多磁护 SN 5W-40</option>
+                                </select>
+                            </label>
+                        </label>
                     </div>
-                </label>
 
-            </div>
-            <hr>
-            <div class="col-xs-12">
-                <h4 class="pull-left" style="font-size: 0.9em; margin-top: 20px;">支付: 支持现金支付、刷卡支付</h4>
-                <br><br>
-                <button type="submit" class="button button-positive common" style="width: 100%;">立即预定</button>
-            </div>
+                </div>
 
-            <img alt="Detail 1" class="img-thumbnail" src="./img/detail.png">
-            <img alt="Detail 2" class="img-thumbnail" src="./img/detail.png">
+                <div class="col-xs-12">
+                    <span>其他:</span>
+
+                    <label class="checkbox" style="padding-left: 26px;">
+                        <input type="checkbox">
+
+                        <div class="btn-group btn-group-lg" id="car_type_5">
+                            <button type="button"
+                                    style="min-width: 240px; font-size: 14px; margin-left: 18px;color:#999;"
+                                    class="button button-light  ">已有配件,仅购买上门服务
+                            </button>
+                        </div>
+                    </label>
+
+                </div>
+                <hr>
+                <div class="col-xs-12">
+                    <h4 class="pull-left" style="font-size: 0.9em; margin-top: 20px;">支付: 支持现金支付、刷卡支付</h4>
+                    <br><br>
+                    <button type="submit" class="button button-positive common" style="width: 100%;">立即预定</button>
+                </div>
+            </div>
+            <div ng-class="tab_con2">
+                <img alt="Detail 1" class="img-thumbnail" src="./img/detail.png">
+                <img alt="Detail 2" class="img-thumbnail" src="./img/detail.png">
+            </div>
+            <div ng-class="tab_con3"> 暂未开通</div>
         </div>
     </ion-content>
 </ion-view>

@@ -130,14 +130,35 @@ angular.module('starter.controllers', [])
     })
     //预约
     .controller('orderCtrl', function ($scope, $cookieStore) {
-        //提交预约信息
-        //$scope.addYuyue = function (yudingInfo) {
-        //
-        //    $ionicLoading.hide();
-        //    yudingInfo.appId = appId;
-        //    yuyueService.addYuyue(yudingInfo);
-        //}
         $scope.price = 150;
+
+        $scope.selecte1 = 'selected'
+        $scope.setActive = function (index) {
+            if (index == 1) {
+                $scope.selecte1 = 'selected'
+                $scope.selecte2 = ''
+                $scope.selecte3 = ''
+                $scope.tab_con1='tab_con'
+                $scope.tab_con2='tab_con'
+                $scope.tab_con3='tab_off'
+            }
+            if (index == 2) {
+                $scope.tab_con1='tab_off'
+                $scope.tab_con2='tab_con'
+                $scope.tab_con3='tab_off'
+                $scope.selecte1 = ''
+                $scope.selecte2 = 'selected'
+                $scope.selecte3 = ''
+            }
+            if (index == 3) {
+                $scope.tab_con1='tab_off'
+                $scope.tab_con2='tab_off'
+                $scope.tab_con3='tab_con'
+                $scope.selecte1 = ''
+                $scope.selecte2 = ''
+                $scope.selecte3 = 'selected'
+            }
+        };
 
     })
 
