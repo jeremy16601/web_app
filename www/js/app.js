@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
     .run(function ($rootScope) {
         $rootScope.subsiteCode = "";
-        $rootScope.url = "http://172.16.210.165:3000/";
+        $rootScope.url = "http://60.216.75.142:60001/";
         $rootScope.timeout = 100;
     })
 

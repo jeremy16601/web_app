@@ -128,7 +128,7 @@ angular.module('starter.controllers', [])
         $scope.amount = $stateParams.amount;
         $scope.address = $stateParams.address;
     })
-    //预约
+    //下单
     .controller('orderCtrl', function ($scope, $cookieStore) {
         $scope.price = 150;
 
@@ -138,27 +138,35 @@ angular.module('starter.controllers', [])
                 $scope.selecte1 = 'selected'
                 $scope.selecte2 = ''
                 $scope.selecte3 = ''
-                $scope.tab_con1='tab_con'
-                $scope.tab_con2='tab_con'
-                $scope.tab_con3='tab_off'
+                $scope.tab_con1 = 'tab_con'
+                $scope.tab_con2 = 'tab_con'
+                $scope.tab_con3 = 'tab_off'
             }
             if (index == 2) {
-                $scope.tab_con1='tab_off'
-                $scope.tab_con2='tab_con'
-                $scope.tab_con3='tab_off'
+                $scope.tab_con1 = 'tab_off'
+                $scope.tab_con2 = 'tab_con'
+                $scope.tab_con3 = 'tab_off'
                 $scope.selecte1 = ''
                 $scope.selecte2 = 'selected'
                 $scope.selecte3 = ''
             }
             if (index == 3) {
-                $scope.tab_con1='tab_off'
-                $scope.tab_con2='tab_off'
-                $scope.tab_con3='tab_con'
+                $scope.tab_con1 = 'tab_off'
+                $scope.tab_con2 = 'tab_off'
+                $scope.tab_con3 = 'tab_con'
                 $scope.selecte1 = ''
                 $scope.selecte2 = ''
                 $scope.selecte3 = 'selected'
             }
         };
+
+        $scope.titleList = [
+            {id: 1, title: '机油'},
+            {id: 2, title: '机滤'},
+            {id: 3, title: '空气滤清器'},
+            {id: 4, title: '空调滤清器'}
+        ];
+
 
     })
 

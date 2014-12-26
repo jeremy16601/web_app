@@ -88,7 +88,7 @@
             <span>大众(一汽) 宝来 上门保养<br><span>
             <hr>
           </span></span></div>
-          <span>价格: <strong class="good-price">{{price}}元</strong>
+          <span>价格: <strong class="good-price">{{price}}元 </strong> <span>(含服务费150元)</span>
           </span>
                     <hr>
                 </div>
@@ -97,50 +97,13 @@
                     <span>项目:</span>
 
                     <div class="list">
-                        <label class="checkbox">
-                            <input type="checkbox">
+
+                        <label class="checkbox" ng-repeat="t in titleList">
+                            <input type="checkbox" id="{{t.id}}" ng-checked="isSelected(t.id)"
+                                   ng-click="updateSelection($event, t.id)">
                             <label class="item item-input item-select" style="margin-left: 15px;">
                                 <div class="input-label " style="font-size: 13px;">
-                                    机油
-                                </div>
-                                <select style="font-size: 13px;">
-                                    <option>嘉实多磁护 SN 5W-40</option>
-                                    <option selected>Green</option>
-                                    <option>Red</option>
-                                </select>
-                            </label>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <label class="item item-input item-select" style="margin-left: 15px;">
-                                <div class="input-label " style="font-size: 13px;">
-                                    机油
-                                </div>
-                                <select style="font-size: 13px;">
-                                    <option>嘉实多磁护 SN 5W-40</option>
-                                    <option selected>Green</option>
-                                    <option>Red</option>
-                                </select>
-                            </label>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <label class="item item-input item-select" style="margin-left: 15px;">
-                                <div class="input-label " style="font-size: 13px;">
-                                    机油
-                                </div>
-                                <select style="font-size: 13px;">
-                                    <option>嘉实多磁护 SN 5W-40</option>
-                                    <option selected>Green</option>
-                                    <option>Red</option>
-                                </select>
-                            </label>
-                        </label>
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <label class="item item-input item-select" style="margin-left: 15px;">
-                                <div class="input-label " style="font-size: 13px;">
-                                    机油
+                                    {{t.title}}
                                 </div>
                                 <select style="font-size: 13px;">
                                     <option>嘉实多磁护 SN 5W-40</option>
@@ -153,6 +116,7 @@
                                 </select>
                             </label>
                         </label>
+
                     </div>
 
                 </div>
@@ -161,12 +125,12 @@
                     <span>其他:</span>
 
                     <label class="checkbox" style="padding-left: 26px;">
-                        <input type="checkbox">
+                        <input type="checkbox" id="yiyou_checkbox">
 
                         <div class="btn-group btn-group-lg" id="car_type_5">
                             <button type="button"
                                     style="min-width: 240px; font-size: 14px; margin-left: 18px;color:#999;"
-                                    class="button button-light  ">已有配件,仅购买上门服务
+                                    class="button button-light">已有配件,仅购买上门服务
                             </button>
                         </div>
                     </label>
