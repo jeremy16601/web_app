@@ -130,9 +130,10 @@ angular.module('starter.controllers', [])
     })
     //下单
     .controller('orderCtrl', function ($scope, $cookieStore) {
-        $scope.price = 150;
+        $scope.price = parseInt(150);
+        var tmp_price=0;
 
-        $scope.selecte1 = 'selected'
+        $scope.selecte1 = 'selected';
         $scope.setActive = function (index) {
             if (index == 1) {
                 $scope.selecte1 = 'selected'
@@ -159,13 +160,39 @@ angular.module('starter.controllers', [])
                 $scope.selecte3 = 'selected'
             }
         };
-
+        //分类列表
         $scope.titleList = [
-            {id: 1, title: '机油'},
-            {id: 2, title: '机滤'},
-            {id: 3, title: '空气滤清器'},
-            {id: 4, title: '空调滤清器'}
+            {id: 1, Selected: false, title: '机油'},
+            {id: 2, Selected: false, title: '机滤'},
+            {id: 3, Selected: false, title: '空气滤清器'},
+            {id: 4, Selected: false, title: '空调滤清器'}
         ];
+        //列表价格
+        $scope.selectList = [
+            {p: 123, Selected: false, title: '嘉实多磁护 SN 5W-40'},
+            {p: 56, Selected: false, title: '壳牌黄喜力HX5 10W-40'},
+            {p: 67.2, Selected: false, title: '嘉实多磁护 SN 5W-40'},
+            {p: 54.2, Selected: false, title: '美孚美孚1号 0W-40'},
+            {p: 23.21, Selected: false, title: '嘉实多极护 SN 0W-40'}
+        ];
+        $scope.change = function (p) {
+            $scope.price = $scope.price - parseFloat(tmp_price);
+            $scope.price = $scope.price + parseFloat(p);
+            tmp_price = p;
+        }
+
+        $scope.checkAll = function () {
+            $scope.price=150;
+            if ($scope.selectedAll) {
+                $scope.selectedAll = true;
+            } else {
+                $scope.selectedAll = false;
+            }
+
+            angular.forEach($scope.titleList, function (t) {
+                t.Selected = $scope.selectedAll;
+            });
+        };
 
 
     })

@@ -99,20 +99,13 @@
                     <div class="list">
 
                         <label class="checkbox" ng-repeat="t in titleList">
-                            <input type="checkbox" id="{{t.id}}" ng-checked="isSelected(t.id)"
-                                   ng-click="updateSelection($event, t.id)">
+                            <input type="checkbox" ng-disabled="t.Selected">
                             <label class="item item-input item-select" style="margin-left: 15px;">
                                 <div class="input-label " style="font-size: 13px;">
                                     {{t.title}}
                                 </div>
-                                <select style="font-size: 13px;">
-                                    <option>嘉实多磁护 SN 5W-40</option>
-                                    <option selected>壳牌黄喜力HX5 10W-40</option>
-                                    <option>嘉实多磁护 SN 5W-40</option>
-                                    <option>美孚美孚1号 0W-40</option>
-                                    <option>嘉实多极护 SN 0W-40</option>
-                                    <option>嘉实多磁护 SN 5W-40</option>
-                                    <option>嘉实多磁护 SN 5W-40</option>
+                                <select style="font-size: 13px;" ng-change="change(p)" ng-model="p">
+                                    <option ng-repeat="item in selectList" value="{{item.p}}">{{item.title}}</option>
                                 </select>
                             </label>
                         </label>
@@ -125,7 +118,7 @@
                     <span>其他:</span>
 
                     <label class="checkbox" style="padding-left: 26px;">
-                        <input type="checkbox" id="yiyou_checkbox">
+                        <input type="checkbox" ng-model="$parent.selectedAll" ng-click="checkAll($event)">
 
                         <div class="btn-group btn-group-lg" id="car_type_5">
                             <button type="button"
