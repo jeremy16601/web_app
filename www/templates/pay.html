@@ -1,39 +1,78 @@
-<style type="text/css">
-body {
-    cursor: url('http://ionicframework.com/img/finger.png'), auto;
-}
-.button {
-    width: 90%;
-    margin-left: 15px;
-}
+<style>
+
+    .star {
+        color: red;
+    }
+
+    .input-label {
+        color: #999999;
+    }
+
 </style>
+<ion-view title="确认订单" hide-nav-bar="true">
+    <ion-content padding="true" has-header="false">
+        <h4 style="line-height: 1.5em;">请正确填写以下内容，提交订单后，会有客服与您联系。</h4>
 
-<ion-view title="确认购买" hide-nav-bar="true">
-    <ion-content has-header="false">
+        <form ng-submit="pays(order)">
+            <label class="item item-input">
+                <span class="input-label"><strong class="star">*</strong>姓名:</span>
+                <input type="text" ng-model="order.username">
+            </label>
+            <!--<label class="col-sm-2 control-label">所在地</label>-->
+            <!--<div class="col-sm-4">-->
+            <!--<city-select-->
+            <!--ng-model="item.city"></city-select>-->
+            <!--</div>-->
+            <label class="item item-input">
+                <span class="input-label"><strong class="star">*</strong>地址:</span>
+                <input type="text" ng-model="order.address" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label"><strong class="star">*</strong>车牌号:</span>
+                <input type="text" ng-model="order.chepai" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label"><strong class="star">*</strong>服务时间:</span>
+                <input type="date" ng-model="order.datetime" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label"><strong class="star">*</strong>手机号码:</span>
+                <input type="text" ng-model="order.tel" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label"><strong class="star">*</strong>车辆注册时间:</span>
+                <input type="date" ng-model="order.regtime" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">发动机号码:</span>
+                <input type="text" ng-model="order.fadongjiNo" placeholder="">
+            </label>
+            <label class="item item-input">
+                <span class="input-label"> VIN:</span>
+                <input type="text" ng-model="order.vin" placeholder="">
+            </label>
+            <ion-toggle toggle-class="toggle-positive" ng-model="order.fapiao">是否要发票</ion-toggle>
+            <span class="input-label"> 备注:</span>
+            <label class="item item-input">
+                <textarea placeholder="填写备注" ng-model="order.beizhu" rows="5"> </textarea>
+            </label>
 
-        <div class="list">
             <div class="item item-divider">
-                收货地址
-                <br>
+                选择支付方式<strong class="star">*</strong>
             </div>
-            <div style="text-align: right;margin-right: 25px; color:#898989; font-size:14px;" ng-click="selectAddress()">{{address.username}} {{address.province}} {{address.city}}
-                <br>{{address.street}}
-                <br>{{address.phone}}
-            </div>
-            <div class="item item-divider">
-                选择支付方式
-            </div>
-            <ion-radio ng-repeat="item in serverSideList" ng-value="item.value" ng-model="data.serverSide" ng-change="serverSideChange(item)" name="server-side">
+            <ion-radio ng-repeat="item in serverSideList" ng-value="item.value" ng-model="data.serverSide"
+                       ng-change="serverSideChange(item)" name="server-side">
                 {{ item.text }}
-                <br>
-                <span style="font-size: 14px; color:#898989;">推荐使用微信5.4以上版本使用</span>
             </ion-radio>
-            <a class="button  button-positive" ng-click="pays()" style="background-color: #f5655f;border: solid 0;margin-top: 10px;">
+            <button class="button  button-positive" type="submit"
+               style="background-color: #f5655f;border: solid 0;margin-top: 10px;">
                 确认订单
-            </a>
-        </div>
+            </button>
+        </form>
         <script>
-        alert($("input[type='radio'], input[type='checkbox']").ionCheckRadio());
+            alert($("input[type='radio'], input[type='checkbox']").ionCheckRadio());
         </script>
     </ion-content>
 </ion-view>
+
+

@@ -66,57 +66,49 @@ angular.module('starter.controllers', [])
 //付款
     .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $location, $scope, PayService) {
 
-        $scope.address = $cookieStore.get("addressYoo");
-        if ($scope.address == undefined) {
-            alert('请先去选择收货地址');
-            $location.url('/' + $rootScope.subsiteCode + '/user-address');
-        }
-
+        var selectValue = '';
+        //$scope.address = $cookieStore.get("addressYoo");
         //去付款
-        $scope.pays = function () {
-            //1线下支付2货到付款
-//            if ($scope.selectValue == undefined) {
-//                alert('请先选择支付方式!')
-//                return;
-//            }
-            PayService.setProductOrder();
+        $scope.pays = function (o) {
+            if (o.username == undefined || o.address == undefined || o.tel == undefined || o.chepai == undefined) {
+                alert('必填内容不能为空!');
+                return;
+            }
+            if (selectValue == '') {
+                alert('请选择支付方式');
+                return;
+            }
 
+            console.log('username=' + o.username);
+            //console.log('content:' + angular.toJson(order));
         };
 
-        $scope.selectAddress = function () {
-            $location.path('/' + $rootScope.subsiteCode + '/user-address');
-        };
 
         //支付方式
-        if ($cookieStore.get('payType') == 0) {
-            $scope.serverSideList = [
-                {
-                    text: "在线支付",
-                    value: "1"
-                },
-                {
-                    text: "货到付款",
-                    value: "2"
-                }
-            ];
-        } else {
-            $scope.serverSideList = [
-                {
-                    text: "货到付款",
-                    value: "2"
-                }
-            ];
-        }
+        //if ($cookieStore.get('payType') == 0) {
+        $scope.serverSideList = [
+            {
+                text: "现金",
+                value: "1"
+            },
+            {
+                text: "刷卡",
+                value: "2"
+            }
+        ];
+        //}
+        $scope.$on('onCitySelected', function (event, item) {
+            console.log(item);
+        });
 
         $scope.data = {
             clientSide: 'ng'
         };
 
         $scope.serverSideChange = function (item) {
-            $scope.selectValue = item.value;
+            selectValue = item.value;
             console.log("Selected Serverside, text:", item.value);
         };
-        console.log('serverSideChange=' + $scope.selectValue);
     })
 
     //付款成功
@@ -131,7 +123,7 @@ angular.module('starter.controllers', [])
     //下单
     .controller('orderCtrl', function ($scope, $cookieStore) {
         $scope.price = parseInt(150);
-        var tmp_price=0;
+        var tmp_price = 0;
 
         $scope.selecte1 = 'selected';
         $scope.setActive = function (index) {
@@ -169,20 +161,22 @@ angular.module('starter.controllers', [])
         ];
         //列表价格
         $scope.selectList = [
-            {p: 123, Selected: false, title: '嘉实多磁护 SN 5W-40'},
-            {p: 56, Selected: false, title: '壳牌黄喜力HX5 10W-40'},
-            {p: 67.2, Selected: false, title: '嘉实多磁护 SN 5W-40'},
-            {p: 54.2, Selected: false, title: '美孚美孚1号 0W-40'},
-            {p: 23.21, Selected: false, title: '嘉实多极护 SN 0W-40'}
+            {id: 1, p: 123, Selected: false, title: '嘉实多磁护 SN 5W-40'},
+            {id: 2, p: 56, Selected: false, title: '壳牌黄喜力HX5 10W-40'},
+            {id: 3, p: 67.2, Selected: false, title: '嘉实多磁护 SN 5W-40'},
+            {id: 4, p: 54.2, Selected: false, title: '美孚美孚1号 0W-40'},
+            {id: 5, p: 23.21, Selected: false, title: '嘉实多极护 SN 0W-40'}
         ];
+
         $scope.change = function (p) {
+
             $scope.price = $scope.price - parseFloat(tmp_price);
             $scope.price = $scope.price + parseFloat(p);
             tmp_price = p;
         }
 
         $scope.checkAll = function () {
-            $scope.price=150;
+            $scope.price = 150;
             if ($scope.selectedAll) {
                 $scope.selectedAll = true;
             } else {
