@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 'starter.controllers', 'ngCookies','angular.city.select'])
+angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 'starter.controllers', 'ngCookies', 'angular.city.select'])
 
     .run(function ($rootScope) {
         $rootScope.subsiteCode = "";
