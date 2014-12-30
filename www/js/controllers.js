@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
     })
 
 //付款
-    .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $location, $scope, PayService) {
+    .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $state, $scope, PayService) {
 
         var selectValue = '';
         //$scope.address = $cookieStore.get("addressYoo");
@@ -79,8 +79,7 @@ angular.module('starter.controllers', [])
                 return;
             }
 
-            console.log('username=' + o.username);
-            //console.log('content:' + angular.toJson(order));
+            $state.go('pay-ok');
         };
 
 
@@ -112,16 +111,12 @@ angular.module('starter.controllers', [])
     })
 
     //付款成功
-    .controller('PayOKCtrl', function ($rootScope, $stateParams, $scope) {
+    .controller('PayOKCtrl', function ($rootScope,$ionicNavBarDelegate, $state, $scope) {
+        $ionicNavBarDelegate.showBackButton(false);
 
-        $scope.linkMan = $stateParams.username;
-        $scope.orderNum = $stateParams.orderNum;
-        $scope.payFS = '货到付款';
-        $scope.amount = $stateParams.amount;
-        $scope.address = $stateParams.address;
     })
     //下单
-    .controller('orderCtrl', function ($scope, $cookieStore) {
+    .controller('orderCtrl', function ($scope, $state,$cookieStore) {
         $scope.price = parseInt(150);
         var tmp_price = 0;
 
@@ -188,6 +183,9 @@ angular.module('starter.controllers', [])
             });
         };
 
+        $scope.goPay=function(){
+            $state.go('pay');
+        }
 
     })
 

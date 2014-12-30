@@ -1,3 +1,4 @@
+<link href="./css/application.css" media="all" rel="stylesheet"/>
 <style>
     .header {
         font-size: 1.5em;
@@ -67,9 +68,9 @@
         display: block;
     }
 </style>
-<link href="./css/application.css" media="all" rel="stylesheet"/>
-<ion-view title="下订单" hide-nav-bar="true">
-    <ion-content has-header="false">
+
+<ion-view title="下订单">
+    <ion-content>
         <div class="container has-header">
             <ul class="tab_title">
                 <li ng-class="selecte1" ng-click="setActive(1)">立即下单</li>
@@ -105,7 +106,7 @@
                                     {{t.title}}
                                 </div>
                                 <select style="font-size: 13px;" ng-change="change(p)" ng-model="p">
-                                    <option ng-repeat="item in selectList" value="{{item.p}}" >{{item.title}}</option>
+                                    <option ng-repeat="item in selectList" value="{{item.p}}">{{item.title}}</option>
                                 </select>
                             </label>
                         </label>
@@ -133,7 +134,7 @@
                 <div class="col-xs-12">
                     <h4 class="pull-left" style="font-size: 0.9em; margin-top: 20px;">支付: 支持现金支付、刷卡支付</h4>
                     <br><br>
-                    <button type="submit" class="button button-positive common" style="width: 100%;">立即预定</button>
+                    <a type="submit" class="button button-positive common" ng-click="goPay()" style="width: 100%;">立即预定</a>
                 </div>
             </div>
             <div ng-class="tab_con2">

@@ -86,7 +86,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //去付款
             .state('pay-ok', {
-                url: '/pay-ok?username&orderNum&amount&address',
+                url: '/pay-ok',
                 templateUrl: 'templates/pay-ok.html',
                 controller: 'PayOKCtrl'
             })
