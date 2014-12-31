@@ -64,11 +64,9 @@ angular.module('starter.controllers', [])
     })
 
 //付款
-    .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $state, $scope, PayService) {
+    .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $scope, PayService) {
 
         var selectValue = '';
-        //$scope.address = $cookieStore.get("addressYoo");
-        //去付款
         $scope.pays = function (o) {
             if (o.username == undefined || o.address == undefined || o.tel == undefined || o.chepai == undefined) {
                 alert('必填内容不能为空!');
@@ -78,8 +76,8 @@ angular.module('starter.controllers', [])
                 alert('请选择支付方式');
                 return;
             }
-
-            $state.go('pay-ok');
+            o.payType = selectValue;
+            PayService.setOrder(o);
         };
 
 
@@ -105,20 +103,18 @@ angular.module('starter.controllers', [])
         };
 
         $scope.serverSideChange = function (item) {
-            selectValue = item.value;
+            selectValue = item.text;
             console.log("Selected Serverside, text:", item.value);
         };
     })
 
     //付款成功
-    .controller('PayOKCtrl', function ($rootScope,$ionicNavBarDelegate, $state, $scope) {
+    .controller('PayOKCtrl', function ($rootScope, $ionicNavBarDelegate, $state, $scope) {
         $ionicNavBarDelegate.showBackButton(false);
 
     })
     //下单
-    .controller('orderCtrl', function ($scope, $state,$cookieStore) {
-        $scope.price = parseInt(150);
-        var tmp_price = 0;
+    .controller('orderCtrl', function ($scope, $state, $cookieStore) {
 
         $scope.selecte1 = 'selected';
         $scope.setActive = function (index) {
@@ -149,26 +145,64 @@ angular.module('starter.controllers', [])
         };
         //分类列表
         $scope.titleList = [
-            {id: 1, Selected: false, title: '机油'},
-            {id: 2, Selected: false, title: '机滤'},
-            {id: 3, Selected: false, title: '空气滤清器'},
-            {id: 4, Selected: false, title: '空调滤清器'}
+            {
+                id: 1, Selected: false, title: '机油', selectList: [
+                {id: 1, p: 123, Selected: false, title: '1嘉实多磁护 SN 5W-40'},
+                {id: 2, p: 56, Selected: false, title: '1壳牌黄喜力HX5 10W-40'},
+                {id: 3, p: 67.2, Selected: false, title: '1嘉实多磁护 SN 5W-40'},
+                {id: 4, p: 54.2, Selected: false, title: '1美孚美孚1号 0W-40'},
+                {id: 5, p: 23.21, Selected: false, title: '1嘉实多极护 SN 0W-40'}
+            ]
+            },
+            {
+                id: 2, Selected: false, title: '机滤', selectList: [
+                {id: 6, p: 22, Selected: false, title: '2嘉实多磁护 SN 5W-40'},
+                {id: 7, p: 22, Selected: false, title: '2壳牌黄喜力HX5 10W-40'},
+                {id: 8, p: 22.2, Selected: false, title: '2嘉实多磁护 SN 5W-40'},
+                {id: 9, p: 22.2, Selected: false, title: '2美孚美孚1号 0W-40'},
+                {id: 10, p: 2.21, Selected: false, title: '2嘉实多极护 SN 0W-40'}
+            ]
+            },
+            {
+                id: 3, Selected: false, title: '空气滤清器', selectList: [
+                {id: 11, p: 33, Selected: false, title: '3嘉实多磁护 SN 5W-40'},
+                {id: 12, p: 33, Selected: false, title: '3壳牌黄喜力HX5 10W-40'},
+                {id: 13, p: 33.2, Selected: false, title: '3嘉实多磁护 SN 5W-40'},
+                {id: 14, p: 33.2, Selected: false, title: '3美孚美孚1号 0W-40'},
+                {id: 15, p: 33.21, Selected: false, title: '3嘉实多极护 SN 0W-40'}
+            ]
+            },
+            {
+                id: 4, Selected: false, title: '空调滤清器', selectList: [
+                {id: 16, p: 44, Selected: false, title: '4嘉实多磁护 SN 5W-40'},
+                {id: 17, p: 44, Selected: false, title: '4壳牌黄喜力HX5 10W-40'},
+                {id: 18, p: 44.2, Selected: false, title: '4嘉实多磁护 SN 5W-40'},
+                {id: 19, p: 44.2, Selected: false, title: '4美孚美孚1号 0W-40'},
+                {id: 20, p: 44.21, Selected: false, title: '4嘉实多极护 SN 0W-40'}
+            ]
+            }
         ];
-        //列表价格
-        $scope.selectList = [
-            {id: 1, p: 123, Selected: false, title: '嘉实多磁护 SN 5W-40'},
-            {id: 2, p: 56, Selected: false, title: '壳牌黄喜力HX5 10W-40'},
-            {id: 3, p: 67.2, Selected: false, title: '嘉实多磁护 SN 5W-40'},
-            {id: 4, p: 54.2, Selected: false, title: '美孚美孚1号 0W-40'},
-            {id: 5, p: 23.21, Selected: false, title: '嘉实多极护 SN 0W-40'}
-        ];
+        //默认价格
+        var price = $scope.price = parseInt(150);
+        var orderInfo = [];
 
-        $scope.change = function (p) {
+        $scope.change = function (item) {
+            if (orderInfo.length == 0) {
+                console.log('id=' + item.id + 'item.p=' + item);
+                //$scope.price = price + parseFloat(item.p);
+                //orderInfo.push(o);
+                return;
+            } else {
+                angular.forEach(orderInfo, function (t) {
+                    while (o.id != t.id) {
+                        orderInfo.add(o);
+                        $scope.price = $scope.price + parseFloat(o.p);
+                    }
+                });
 
-            $scope.price = $scope.price - parseFloat(tmp_price);
-            $scope.price = $scope.price + parseFloat(p);
-            tmp_price = p;
+            }
         }
+
 
         $scope.checkAll = function () {
             $scope.price = 150;
@@ -183,7 +217,7 @@ angular.module('starter.controllers', [])
             });
         };
 
-        $scope.goPay=function(){
+        $scope.goPay = function () {
             $state.go('pay');
         }
 
@@ -341,9 +375,8 @@ angular.module('starter.controllers', [])
         };
 
         $scope.serverSideChange = function (item) {
-            $cookieStore.remove('address');
-            $cookieStore.put('addressYoo', item);
-            $window.history.back();
+
+            //$window.history.back();
         };
 
     })

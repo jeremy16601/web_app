@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
     .run(function ($rootScope) {
         $rootScope.subsiteCode = "";
-        $rootScope.url = "http://60.216.75.142:60001/";
+        $rootScope.url = "http://localhost:3000/";// "http://60.216.75.142:60001/";
         $rootScope.timeout = 100;
     })
 
@@ -14,12 +14,14 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
         $stateProvider
             //开始页面，初始化
             .state('start', {
+                cache:false,
                 url: '/',
                 templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
             })
             //首页
             .state('home', {
+                cache:false,
                 url: '/home',
                 templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
@@ -38,54 +40,63 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //添加分类
             .state('addBrand', {
+                cache:false,
                 url: '/addBrand',
                 templateUrl: 'templates/addBrand.html',
                 controller: 'addBrandCtrl'
             })
             //添加二级分类
             .state('addBrandType', {
+                cache:false,
                 url: '/addBrandType',
                 templateUrl: 'templates/addBrandType.html',
                 controller: 'BrandListCtrl2'
             })
             //添加排量
             .state('addBrandT', {
+                cache:false,
                 url: '/addBrandT?brandsid',
                 templateUrl: 'templates/addbrandT.html',
                 controller: 'BrandListCtrl3'
             })
             //一级分类
             .state('brand-list', {
+                cache:false,
                 url: '/brand-list',
                 templateUrl: 'templates/brand-list.html',
                 controller: 'BrandListCtrl'
             })
             //二级分类
             .state('brand2-list', {
+                cache:false,
                 url: '/brand2-list?brand_type',
                 templateUrl: 'templates/brand2-list.html',
                 controller: 'BrandListCtrl2'
             })
             //三级分类
             .state('brand3-list', {
+                cache:false,
                 url: '/brand3-list?brandsid',
                 templateUrl: 'templates/brand3-list.html',
                 controller: 'BrandListCtrl3'
             })
             //产品详情
             .state('product-detail', {
+                cache:false,
                 url: '/product-detail/:proId',
                 templateUrl: 'templates/product-detail.html',
                 controller: 'ProductDetailCtrl'
             })
             //下订单
             .state('pay', {
+                cache:false,
                 url: '/pay',
                 templateUrl: 'templates/pay.html',
                 controller: 'PayCtrl'
             })
             //去付款
             .state('pay-ok', {
+                cache:false,
                 url: '/pay-ok',
                 templateUrl: 'templates/pay-ok.html',
                 controller: 'PayOKCtrl'

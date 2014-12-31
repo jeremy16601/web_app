@@ -8,9 +8,71 @@
         color: #999999;
     }
 
+    .table-bordered {
+        border: 1px solid #dddddd;
+    }
+
+    #item_table {
+        width: 100%;
+    }
+
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background-color: transparent;
+    }
+
+    tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+    }
+
+    tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+    }
+
+    .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+        padding: 8px;
+        line-height: 1.428571429;
+        vertical-align: top;
+        border-top: 1px solid #dddddd;
+    }
+
+    .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+        background-color: #f9f9f9;
+    }
+
+    .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+        background-color: #f9f9f9;
+    }
+
+    .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+        padding: 8px;
+        line-height: 1.428571429;
+        vertical-align: top;
+        border-top: 1px solid #dddddd;
+    }
+
+    .table-bordered {
+        border: 1px solid #dddddd;
+    }
+
+    .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+        border: 1px solid #dddddd;
+    }
 </style>
-<ion-view title="填写订单内容"  >
-    <ion-content padding="true"  >
+
+<script>
+    alert($("input[type='radio'], input[type='checkbox']").ionCheckRadio());
+</script>
+<ion-view title="填写订单内容" cache-view="false">
+    <ion-content padding="true">
         <h4 style="line-height: 1.5em;">请正确填写以下内容，提交订单后，会有客服与您联系。</h4>
 
         <form ng-submit="pays(order)">
@@ -64,16 +126,36 @@
                        ng-change="serverSideChange(item)" name="server-side">
                 {{ item.text }}
             </ion-radio>
+
+            <h3>商品详情:</h3>
+            <table class="table table-striped table-bordered" id="item_table">
+                <tbody>
+                <tr>
+                    <th>商品名称</th>
+                    <th>保养项目</th>
+                    <th>价格</th>
+                    <th>总价</th>
+                </tr>
+                <tr>
+                    <th rowspan="2">
+                        雪佛兰(上海通用) 景程 上门保养
+                    </th>
+                </tr>
+                <tr style="background-color: #f9f9f9;border: 1px solid #dddddd;">
+                    <td>[空调滤清器] 卡拉丁</td>
+                    <td>￥79.0</td>
+                    <td rowspan="1"> 129.0</td>
+                </tr>
+                </tbody>
+            </table>
             <div style="text-align: center">
-            <button class="button  button-positive" type="submit"
-               style="background-color: #0c63ee;border: solid 0;margin-top: 10px;width: 80%;">
-                确认订单
-            </button>
+                <button class="button  button-positive" type="submit"
+                        style="background-color: #0c63ee;border: solid 0;margin-top: 10px;width: 80%;">
+                    确认订单
+                </button>
             </div>
         </form>
-        <script>
-            alert($("input[type='radio'], input[type='checkbox']").ionCheckRadio());
-        </script>
+
     </ion-content>
 </ion-view>
 

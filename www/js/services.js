@@ -277,19 +277,11 @@ angular.module('starter.services', [])
     })
 
 //支付
-    .factory('PayService', function ($http, $stateParams, $cookieStore, $rootScope, ProductDetailService) {
+    .factory('PayService', function ($http, $stateParams, $cookieStore, $state, $rootScope) {
         $rootScope.subsiteCode = $stateParams.pid;
         return {
-            getFruitsAsync: function (callback) {
-                $http.get($rootScope.url + 'act=productDetail&subsiteCode=' + $rootScope.subsiteCode + '&proId=' + $stateParams.proId).success(callback);
-            },
-            //确认订单
-            setProductOrder: function (callback) {
-                var orderInfo = {
-                        addressId: $cookieStore.get('addressYoo').id,
-                        userId: $cookieStore.get('id'),
-                        payMethod: 2
-                    },
+            setOrder: function (o) {
+                var orderInfo = o,
                     transFn = function (orderInfo) {
                         return $.param(orderInfo);
                     },
@@ -299,16 +291,10 @@ angular.module('starter.services', [])
                         },
                         transformRequest: transFn
                     };
-                console.log('orderInfo==' + orderInfo.addressId);
-                $http.post($rootScope.url + '/order/create', orderInfo, postCfg).success(function (data) {
+                $http.post($rootScope.url + 'setOrder', orderInfo, postCfg).success(function (data) {
                     //付款成功
                     if (data.success) {
-                        var url = '#/' + $rootScope.subsiteCode + '/pay-ok?username=' + data.data.username + '&orderNum=' + data.data.num +
-                            '&amount=' + data.data.amount + '&address=' + data.data.address;
-                        window.location.assign(url);
-
-                        console.log('goodsID==' + data.data.item[0].goodsDetail.id);
-
+                        $state.go('pay-ok');
                     } else {
                         console.log('order faild!' + data.data);
                     }
