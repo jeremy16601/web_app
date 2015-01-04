@@ -64,8 +64,11 @@ angular.module('starter.controllers', [])
     })
 
 //付款
-    .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $scope, PayService) {
+    .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $stateParams, $state, $scope, PayService) {
 
+
+        $scope.orderlist = $rootScope.orderInfo;
+        $scope.price = $state.$current.locals.globals.$stateParams.price;
         var selectValue = '';
         $scope.pays = function (o) {
             if (o.username == undefined || o.address == undefined || o.tel == undefined || o.chepai == undefined) {
@@ -77,6 +80,8 @@ angular.module('starter.controllers', [])
                 return;
             }
             o.payType = selectValue;
+            o.products = angular.toJson($rootScope.orderInfo);
+            o.amount = $scope.price;
             PayService.setOrder(o);
         };
 
@@ -106,6 +111,7 @@ angular.module('starter.controllers', [])
             selectValue = item.text;
             console.log("Selected Serverside, text:", item.value);
         };
+
     })
 
     //付款成功
@@ -114,7 +120,7 @@ angular.module('starter.controllers', [])
 
     })
     //下单
-    .controller('orderCtrl', function ($scope, $state, $cookieStore) {
+    .controller('orderCtrl', function ($scope, $state, $rootScope, $cookieStore) {
 
         $scope.selecte1 = 'selected';
         $scope.setActive = function (index) {
@@ -183,24 +189,21 @@ angular.module('starter.controllers', [])
             }
         ];
         //默认价格
-        var price = $scope.price = parseInt(150);
-        var orderInfo = [];
-
+        $scope.price = parseInt(150);
         $scope.change = function (item) {
-            if (orderInfo.length == 0) {
-                console.log('id=' + item.id + 'item.p=' + item);
-                //$scope.price = price + parseFloat(item.p);
-                //orderInfo.push(o);
-                return;
-            } else {
-                angular.forEach(orderInfo, function (t) {
-                    while (o.id != t.id) {
-                        orderInfo.add(o);
-                        $scope.price = $scope.price + parseFloat(o.p);
-                    }
-                });
-
-            }
+            //if (orderInfo.length == 0) {
+            $rootScope.orderInfo.push(item);
+            $scope.price = $scope.price + parseFloat(item.p);
+            //    return;
+            //}
+            //for (var i = 0; i <= orderInfo.length; i++) {
+            //    console.log('id=' + id + 'id2=' + orderInfo[i].id);
+            //    if (orderInfo[i].id != id) {
+            //        orderInfo.push(item);
+            //        $scope.price = $scope.price + parseFloat(item.p);
+            //    }
+            //console.log('orderinfo=' + angular.toJson(orderInfo));
+            //}
         }
 
 
@@ -218,13 +221,18 @@ angular.module('starter.controllers', [])
         };
 
         $scope.goPay = function () {
-            $state.go('pay');
+            if ($rootScope.orderInfo == '') {
+                alert('请选择内容!');
+                return;
+            }
+            $state.go('pay', {price: $scope.price});
         }
 
     })
 
-    //添加一级产品分类
-    .controller('addBrandCtrl', function ($scope, $ionicLoading, $rootScope, $location, BrandService) {
+//添加一级产品分类
+    .
+    controller('addBrandCtrl', function ($scope, $ionicLoading, $rootScope, $location, BrandService) {
 
         $scope.addBrand = function (b) {
             BrandService.addBrand(b);
@@ -293,63 +301,11 @@ angular.module('starter.controllers', [])
         });
     })
 
-    //用户授权
-    .controller('UserCtrl', function ($scope, UsersService, $ionicLoading, localStorageService, $cookieStore, $rootScope, $location) {
-        $ionicLoading.show({
-            content: '加载数据',
-            animation: 'fade-in',
-            showBackdrop: false,
-            maxWidth: 200,
-            showDelay: 100
-        });
-        //检测本地是否有id
-        if ($cookieStore.get('id') == null) {
-//            alert('请先注册！谢谢');
-            var url = '#/' + $rootScope.subsiteCode + '/register';
-            window.location.assign(url);
-            $ionicLoading.hide();
-        } else {
-            UsersService.getUserInfo(function (data) {
-                //给前台赋值
-                $scope.userdata = data.data;
-                $cookieStore.put('id', data.data.id);
-                //$cookieStore.put('userId',);
-                $scope.go = function (path) {
-                    $location.path(path);
-                };
-            });
-            //金额
-            $scope.account = UsersService.getUserAccount(function (data) {
-                $scope.acc = data;
-            });
-
-            $ionicLoading.hide();
-        }
-    })
-
 //用户订单
-    .controller('UserCtrlOrder', function ($scope, $timeout, UserOrderService) {
-//        $scope.hasmore = true;
-//        $scope.loadMore = function () {
-//            $scope.$broadcast('scroll.infiniteScrollComplete');
-        UserOrderService.getNextOrderList(function (data) {
-            if (data.success) {
-//                        $scope.hasmore = false;
-//                    } else {
-                if ($scope.orderList == null) {
-                    $scope.orderList = data.data.content;
-                } else {
-                    for (var i = 0; i < data.data.content.length; i++) {
-                        $scope.orderList.push(data.data.content[i]);
-                    }
-                }
-//                        if (data.currentPage >= data.data.totalPages) {
-//                            $scope.hasmore = false;
-//                        }
-            }
-//                    $scope.$broadcast('scroll.infiniteScrollComplete');
+    .controller('UserCtrlOrder', function ($scope, UserOrderService) {
+        UserOrderService.getOrderList(function (data) {
+            $scope.orderlist = data;
         });
-//        };
     })
 
 //用户收货地址

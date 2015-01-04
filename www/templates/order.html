@@ -91,8 +91,8 @@
                                 <div class="input-label " style="font-size: 13px;">
                                     {{t.title}}
                                 </div>
-                                <select style="font-size: 13px;" ng-change="change(item)" ng-model="item">
-                                    <option ng-repeat="item in t.selectList" value="{{item}}">{{item.title}}</option>
+                                <select style="font-size: 13px;" ng-change="change(item)" ng-model="item"
+                                        ng-options="item as item.title for item in t.selectList">
                                 </select>
                             </label>
                         </label>

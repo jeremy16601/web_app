@@ -281,6 +281,7 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         return {
             setOrder: function (o) {
+                console.log('orderInfo==' + angular.toJson(o));
                 var orderInfo = o,
                     transFn = function (orderInfo) {
                         return $.param(orderInfo);
@@ -300,35 +301,6 @@ angular.module('starter.services', [])
                     }
 
                 });
-            }
-        };
-    })
-    //团购
-    .factory('CustomerService', function ($http, $stateParams, $rootScope) {
-        $rootScope.subsiteCode = $stateParams.pid;
-        return {
-            getDatas: function (callback) {
-                $http.post($rootScope.url + 'act=groupList&subsiteCode=' + $rootScope.subsiteCode, {
-                    cache: true
-                }).success(callback);
-            },
-            getDetailsData: function (callback) {
-                //$rootScope.url +
-                $http.get($rootScope.url + 'act=groupContent&subsiteCode=' + $rootScope.subsiteCode + '&groupId=' + $stateParams.groupId, {
-                    cache: true
-                }).success(callback);
-            }
-        };
-    })
-
-//优惠信息
-    .factory('SpecialOffersService', function ($http, $stateParams, $rootScope) {
-        $rootScope.subsiteCode = $stateParams.pid;
-        return {
-            getDatas: function (callback) {
-                $http.post($rootScope.url + 'act=discountList&subsiteCode=' + $rootScope.subsiteCode, {
-                    cache: true
-                }).success(callback);
             }
         };
     })
@@ -443,14 +415,8 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid;
         currentPage = 0;
         return {
-            getNextOrderList: function (callback) {
-                currentPage++;
-                if ($cookieStore.get('id') == null) {
-                    var url = '#/' + $rootScope.subsiteCode + '/login';
-                    window.location.assign(url);
-                } else {
-                    $http.get($rootScope.url + '/order/list?userId=' + $cookieStore.get('id')).success(callback);
-                }
+            getOrderList: function (callback) {
+                $http.get($rootScope.url + 'orderList').success(callback);
             }
         };
     })

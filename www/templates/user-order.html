@@ -1,23 +1,16 @@
-<ion-view title="我的订单" >
+<ion-view title="订单列表">
     <ion-content has-header="true">
 
         <div class="list">
-            <a ng-repeat="item in orderList" class="item item-thumbnail-left item-no-board">
-                <img ng-src="{{item.pictures[0].path}}">
+            <a ng-repeat="item in orderlist" class="item">
+                <p style="-webkit-text-fill-color: #898989">用户姓名: {{item.username}}<span style="margin-left:20px;">支付方式: {{item.payType}}</span>
+                </p>
 
-                <p style="-webkit-text-fill-color: #898989">订单编号:{{item.num}}</p>
-
-                <p style="font-size:16px; color: red; margin-top: 25px; ">￥{{item.amount}}
-                    <span style="margin-left:50px;">{{item.username}}</span>
+                <p style="font-size:16px; color: red; margin-top: 5px; ">总价: ￥{{item.amount}}
+                    <span style="margin-left:20px;">电话: {{item.tel}}</span>
                 </p>
             </a>
         </div>
 
-        <!--<ion-infinite-scroll-->
-        <!--ng-if="hasmore"-->
-        <!--on-infinite="loadMore()"-->
-        <!--icon="ion-loading-c"-->
-        <!--distance="10%">-->
-        <!--</ion-infinite-scroll>-->
     </ion-content>
 </ion-view>
