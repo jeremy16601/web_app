@@ -189,6 +189,7 @@ angular.module('starter.controllers', [])
 
         $scope.checkAll = function () {
             $scope.price = 50;
+            $rootScope.orderInfo = {id: 1, p: 50, Selected: false, title: '已有配件'};
             if ($scope.selectedAll) {
                 $scope.selectedAll = true;
             } else {
