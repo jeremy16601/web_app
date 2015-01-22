@@ -149,47 +149,27 @@ angular.module('starter.controllers', [])
                 $scope.selecte3 = 'selected'
             }
         };
+
         //分类列表
         $scope.titleList = [
             {
-                id: 1, Selected: false, title: '机油', selectList: [
-                {id: 1, p: 123, Selected: false, title: '1嘉实多磁护 SN 5W-40'},
-                {id: 2, p: 56, Selected: false, title: '1壳牌黄喜力HX5 10W-40'},
-                {id: 3, p: 67.2, Selected: false, title: '1嘉实多磁护 SN 5W-40'},
-                {id: 4, p: 54.2, Selected: false, title: '1美孚美孚1号 0W-40'},
-                {id: 5, p: 23.21, Selected: false, title: '1嘉实多极护 SN 0W-40'}
+                id: 1, Selected: true, title: '机油+机率+空滤', selectList: [
+                {id: 1, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'},
+                {id: 2, p: 268, Selected: false, title: '美孚速霸1000（10W-40）'},
+                {id: 3, p: 258, Selected: false, title: '嘉实多银嘉护SM（10W-40）'},
+                {id: 4, p: 328, Selected: false, title: '壳牌喜力黄壳HX5（10W-30）'}
             ]
             },
             {
-                id: 2, Selected: false, title: '机滤', selectList: [
-                {id: 6, p: 22, Selected: false, title: '2嘉实多磁护 SN 5W-40'},
-                {id: 7, p: 22, Selected: false, title: '2壳牌黄喜力HX5 10W-40'},
-                {id: 8, p: 22.2, Selected: false, title: '2嘉实多磁护 SN 5W-40'},
-                {id: 9, p: 22.2, Selected: false, title: '2美孚美孚1号 0W-40'},
-                {id: 10, p: 2.21, Selected: false, title: '2嘉实多极护 SN 0W-40'}
-            ]
-            },
-            {
-                id: 3, Selected: false, title: '空气滤清器', selectList: [
-                {id: 11, p: 33, Selected: false, title: '3嘉实多磁护 SN 5W-40'},
-                {id: 12, p: 33, Selected: false, title: '3壳牌黄喜力HX5 10W-40'},
-                {id: 13, p: 33.2, Selected: false, title: '3嘉实多磁护 SN 5W-40'},
-                {id: 14, p: 33.2, Selected: false, title: '3美孚美孚1号 0W-40'},
-                {id: 15, p: 33.21, Selected: false, title: '3嘉实多极护 SN 0W-40'}
-            ]
-            },
-            {
-                id: 4, Selected: false, title: '空调滤清器', selectList: [
-                {id: 16, p: 44, Selected: false, title: '4嘉实多磁护 SN 5W-40'},
-                {id: 17, p: 44, Selected: false, title: '4壳牌黄喜力HX5 10W-40'},
-                {id: 18, p: 44.2, Selected: false, title: '4嘉实多磁护 SN 5W-40'},
-                {id: 19, p: 44.2, Selected: false, title: '4美孚美孚1号 0W-40'},
-                {id: 20, p: 44.21, Selected: false, title: '4嘉实多极护 SN 0W-40'}
+                id: 2, Selected: false, title: '空调滤清器', selectList: [
+                {id: 6, p: 79, Selected: true, title: '海洋星空调滤'}
             ]
             }
         ];
+        //$scope.default1 = {id: 1, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'};
+        //$scope.default2 = {id: 6, p: 79, Selected: false, title: '海洋星空调滤'};
         //默认价格
-        $scope.price = parseInt(150);
+        $scope.price = parseInt(50);
         $scope.change = function (item) {
             //if (orderInfo.length == 0) {
             $rootScope.orderInfo.push(item);
@@ -208,7 +188,7 @@ angular.module('starter.controllers', [])
 
 
         $scope.checkAll = function () {
-            $scope.price = 150;
+            $scope.price = 50;
             if ($scope.selectedAll) {
                 $scope.selectedAll = true;
             } else {
