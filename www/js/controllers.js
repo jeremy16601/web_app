@@ -120,10 +120,10 @@ angular.module('starter.controllers', [])
 
     })
     //下单
-    .controller('orderCtrl', function ($scope, $state, $rootScope, $cookieStore) {
+    .controller('orderCtrl', function ($scope, $state, $rootScope, $window) {
 
         $scope.selecte1 = 'selected';
-        $scope.fuweifu='(含服务费50元)';
+        $scope.fuweifu = '(含服务费50元)';
         $scope.setActive = function (index) {
             if (index == 1) {
                 $scope.selecte1 = 'selected'
@@ -175,18 +175,21 @@ angular.module('starter.controllers', [])
             $rootScope.orderInfo.push(item);
             $scope.price = $scope.price + parseFloat(item.p);
             if (item.id != 6) {
-                $scope.fuweifu='';
+                $scope.fuweifu = '';
                 $scope.price = $scope.price - 50;
             }
         }
 
 
         $scope.checkAll = function () {
-            $scope.price = 50;
-            $rootScope.orderInfo = {id: 1, p: 50, Selected: false, title: '已有配件'};
+
             if ($scope.selectedAll) {
                 $scope.selectedAll = true;
+                $scope.price = 50;
+                $rootScope.orderInfo = {id: 1, p: 50, Selected: false, title: '已有配件'};
+                $scope.fuweifu = '(含服务费50元)';
             } else {
+                $window.location.reload();
                 $scope.selectedAll = false;
             }
 
