@@ -123,6 +123,7 @@ angular.module('starter.controllers', [])
     .controller('orderCtrl', function ($scope, $state, $rootScope, $cookieStore) {
 
         $scope.selecte1 = 'selected';
+        $scope.fuweifu='(含服务费50元)';
         $scope.setActive = function (index) {
             if (index == 1) {
                 $scope.selecte1 = 'selected'
@@ -153,7 +154,7 @@ angular.module('starter.controllers', [])
         //分类列表
         $scope.titleList = [
             {
-                id: 1, Selected: true, title: '机油+机率+空滤', selectList: [
+                id: 1, Selected: false, title: '机油+机滤+空滤', selectList: [
                 {id: 1, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'},
                 {id: 2, p: 268, Selected: false, title: '美孚速霸1000（10W-40）'},
                 {id: 3, p: 258, Selected: false, title: '嘉实多银嘉护SM（10W-40）'},
@@ -171,19 +172,12 @@ angular.module('starter.controllers', [])
         //默认价格
         $scope.price = parseInt(50);
         $scope.change = function (item) {
-            //if (orderInfo.length == 0) {
             $rootScope.orderInfo.push(item);
             $scope.price = $scope.price + parseFloat(item.p);
-            //    return;
-            //}
-            //for (var i = 0; i <= orderInfo.length; i++) {
-            //    console.log('id=' + id + 'id2=' + orderInfo[i].id);
-            //    if (orderInfo[i].id != id) {
-            //        orderInfo.push(item);
-            //        $scope.price = $scope.price + parseFloat(item.p);
-            //    }
-            //console.log('orderinfo=' + angular.toJson(orderInfo));
-            //}
+            if (item.id != 6) {
+                $scope.fuweifu='';
+                $scope.price = $scope.price - 50;
+            }
         }
 
 

@@ -75,7 +75,7 @@
             <span style="color:#656d78;">大众(一汽) 宝来 上门保养<br><span>
             <hr>
           </span></span></div>
-          <span style="color:#656d78;">价格: <strong class="good-price">{{price}}元 </strong> <span>(含服务费50元)</span>
+          <span style="color:#656d78;">价格: <strong class="good-price">{{price}}元 </strong> <span>{{fuweifu}}</span>
           </span>
                     <hr>
                 </div>
@@ -91,8 +91,9 @@
                                 <div class="input-label " style="font-size: 13px;">
                                     {{t.title}}
                                 </div>
-                                <select style="font-size: 13px;" ng-change="change(item)" ng-model="item"
-                                        ng-options="item as s.title for s in t.selectList">
+                                <select style="font-size: 13px;" ng-options="s.title for s in t.selectList"
+                                        ng-change="change(s)" ng-model="s">
+                                    <option value="">-- 请选择配件 --</option>
                                 </select>
                             </label>
                         </label>
