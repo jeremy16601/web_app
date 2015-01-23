@@ -175,8 +175,11 @@ angular.module('starter.controllers', [])
             $rootScope.orderInfo.push(item);
             $scope.price = $scope.price + parseFloat(item.p);
             if (item.id != 6) {
+                $scope.titleList[0].Selected = true;
                 $scope.fuweifu = '';
                 $scope.price = $scope.price - 50;
+            } else {
+                $scope.titleList[1].Selected = true;
             }
         }
 
@@ -194,7 +197,7 @@ angular.module('starter.controllers', [])
             }
 
             angular.forEach($scope.titleList, function (t) {
-                t.Selected = $scope.selectedAll;
+                $scope.dis = $scope.selectedAll;
             });
         };
 
