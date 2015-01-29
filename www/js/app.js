@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             //添加排量
             .state('addBrandT', {
                 cache: false,
-                url: '/addBrandT?brandsid',
+                url: '/addBrandT/:brandsid',
                 templateUrl: 'templates/addbrandT.html',
                 controller: 'BrandListCtrl3'
             })

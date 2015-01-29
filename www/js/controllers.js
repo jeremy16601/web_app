@@ -250,14 +250,14 @@ angular.module('starter.controllers', [])
         });
     })
     //二级分类列表
-    .controller('BrandListCtrl2', function ($scope, $rootScope, $location, $stateParams, BrandService2) {
+    .controller('BrandListCtrl2', function ($scope, $rootScope, $location, $stateParams,BrandService, BrandService2) {
         //二级分类夹在
         BrandService2.getBrandsListType(function (results) {
             $scope.brandslist2 = results;
         });
 
         $scope.addBrandType = function (b) {
-            BrandService.addBrandType(b)
+            BrandService.addBrandType(b);
         }
     })
     //3级分类列表
@@ -265,10 +265,11 @@ angular.module('starter.controllers', [])
         $scope.addBrandTT = function (b) {
             BrandService3.addBrand3(b)
         };
-
+        $scope.id=$stateParams.brandsid;
         //二级分类夹在
         BrandService3.getBrands3(function (results) {
             $scope.brandslist3 = results;
+            console.log(angular.toJson(results));
         });
 
     })
