@@ -75,24 +75,25 @@
             <span style="color:#656d78;">大众(一汽) 宝来 上门保养<br><span>
             <hr>
           </span></span></div>
-          <span style="color:#656d78;">价格: <strong class="good-price">{{price}}元 </strong> <span>(含服务费150元)</span>
+          <span style="color:#656d78;">价格: <strong class="good-price">{{price}}元 </strong> <span>{{fuweifu}}</span>
           </span>
                     <hr>
                 </div>
 
-                <div class="col-xs-12" style="min-height: 280px;">
+                <div class="col-xs-12" style="min-height: 180px;">
                     <span>项目:</span>
 
                     <div class="list">
 
                         <label class="checkbox" ng-repeat="t in titleList">
-                            <input type="checkbox" ng-disabled="t.Selected">
+                            <input type="checkbox" ng-disabled="dis" ng-model="t.Selected">
                             <label class="item item-input item-select" style="margin-left: 15px;">
                                 <div class="input-label " style="font-size: 13px;">
                                     {{t.title}}
                                 </div>
-                                <select style="font-size: 13px;" ng-change="change(item)" ng-model="item"
-                                        ng-options="item as item.title for item in t.selectList">
+                                <select style="font-size: 13px;" ng-options="s.title for s in t.selectList"
+                                        ng-change="change(s)" ng-model="s">
+                                    <option value="">-- 请选择配件 --</option>
                                 </select>
                             </label>
                         </label>
