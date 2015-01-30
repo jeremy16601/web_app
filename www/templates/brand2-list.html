@@ -36,7 +36,7 @@
     <ion-content padding="true" class="has-header has-footer">
         <ul class="list" ng-repeat="bs in brandslist2" style="margin-bottom: 0px;">
             <!--#/addBrandT-->
-            <a href="#/brand3-list?brandsid={{bs._id}}">
+            <a href="#/brand3-list?brandsid={{bs._id}}&brand_type={{ brand_type }}">
                 <li class="item">
                     <span style="color:#666462;">{{ bs.childname}}</span> <span style="float: right !important;"><i
                         class="icon ion-ios-arrow-right"></i> </span>

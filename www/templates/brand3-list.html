@@ -35,7 +35,7 @@
 <ion-view title="选择排量">
     <ion-content padding="true" class="has-header has-footer">
         <ul class="list" ng-repeat="bs in brandslist3"  ng-init="id=bs.brands3_id" style="margin-bottom: 0px;">
-            <a href="#/order">
+            <a href="#/order?brand_type={{ brand_type }}">
                 <li class="item">
 
                     <span style="color:#666462;">{{ bs.title}}&nbsp;{{ bs.brand3_type}}&nbsp;{{ bs.brand3_time}}</span> <span

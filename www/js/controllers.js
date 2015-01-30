@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
 
     })
     //下单
-    .controller('orderCtrl', function ($scope, $state, $rootScope, $window) {
+    .controller('orderCtrl', function ($scope, $state, $stateParams, $rootScope, $window, PeijianService) {
 
         $scope.selecte1 = 'selected';
         $scope.fuweifu = '(含服务费50元)';
@@ -152,34 +152,48 @@ angular.module('starter.controllers', [])
         };
 
         //分类列表
-        $scope.titleList = [
-            {
-                id: 1, Selected: false, title: '机油+机滤+空滤', selectList: [
-                {id: 1, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'},
-                {id: 2, p: 268, Selected: false, title: '美孚速霸1000（10W-40）'},
-                {id: 3, p: 258, Selected: false, title: '嘉实多银嘉护SM（10W-40）'},
-                {id: 4, p: 328, Selected: false, title: '壳牌喜力黄壳HX5（10W-30）'}
+        PeijianService.getPeijianList(function(result){
+            console.log(angular.toJson(result));
+            //$scope.titleList =result;
+        });
+        $scope.titleList1 = [{
+            "brand_type": 1, list: [
+                {
+                    id: 0, Selected: false, title: '机油+机滤+空滤', selectList: [
+                    {id: 0, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'},
+                    {id: 0, p: 268, Selected: false, title: '美孚速霸1000（10W-40）'},
+                    {id: 0, p: 258, Selected: false, title: '嘉实多银嘉护SM（10W-40）'},
+                    {id: 0, p: 328, Selected: false, title: '壳牌喜力黄壳HX5（10W-30）'}
+                ]
+                },
+                {
+                    id: 1, Selected: false, title: '空调滤清器', selectList: [
+                    {id: 1, p: 79, Selected: false, title: '海洋星空调滤'}
+                ]
+                }
             ]
-            },
-            {
-                id: 2, Selected: false, title: '空调滤清器', selectList: [
-                {id: 6, p: 79, Selected: true, title: '海洋星空调滤'}
-            ]
+        }];
+
+        //循环加载不同的配件
+        for (var v = 0; v < $scope.titleList1.length; v++) {
+            if ($stateParams.brand_type == $scope.titleList1[v].brand_type) {
+
+                $scope.titleList = $scope.titleList1[v].list;
             }
-        ];
-        //$scope.default1 = {id: 1, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'};
-        //$scope.default2 = {id: 6, p: 79, Selected: false, title: '海洋星空调滤'};
+        }
         //默认价格
         $scope.price = parseInt(50);
         $scope.change = function (item) {
             $rootScope.orderInfo.push(item);
             $scope.price = $scope.price + parseFloat(item.p);
-            if (item.id != 6) {
-                $scope.titleList[0].Selected = true;
-                $scope.fuweifu = '';
-                $scope.price = $scope.price - 50;
-            } else {
-                $scope.titleList[1].Selected = true;
+            for (var i = 0; i < $scope.titleList.length; i++) {
+                for (var j = 0; j < $scope.titleList[i].list.length; j++) {
+                    if (item.id == $scope.titleList[i].list[j].id) {
+                        $scope.titleList[i].list[j].Selected = true;
+                        $scope.fuweifu = '';
+                        $scope.price = $scope.price - 50;
+                    }
+                }
             }
         }
 
@@ -231,12 +245,12 @@ angular.module('starter.controllers', [])
         });
     })
     //二级分类列表
-    .controller('BrandListCtrl2', function ($scope, $rootScope, $location, $stateParams,BrandService, BrandService2) {
+    .controller('BrandListCtrl2', function ($scope, $rootScope, $location, $stateParams, BrandService, BrandService2) {
         //二级分类夹在
         BrandService2.getBrandsListType(function (results) {
             $scope.brandslist2 = results;
         });
-
+        $scope.brand_type = $stateParams.brand_type;
         $scope.addBrandType = function (b) {
             BrandService.addBrandType(b);
         }
@@ -246,11 +260,11 @@ angular.module('starter.controllers', [])
         $scope.addBrandTT = function (b) {
             BrandService3.addBrand3(b)
         };
-        $scope.id=$stateParams.brandsid;
+        $scope.id = $stateParams.brandsid;
+        $scope.brand_type = $stateParams.brand_type;
         //二级分类夹在
         BrandService3.getBrands3(function (results) {
             $scope.brandslist3 = results;
-            console.log(angular.toJson(results));
         });
 
     })

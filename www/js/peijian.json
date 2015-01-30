@@ -1,0 +1,16 @@
+
+{"brand_type":1,list:[
+    {
+        id: 1, Selected: false, title: '机油+机滤+空滤', selectList: [
+        {id: 1, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'},
+        {id: 2, p: 268, Selected: false, title: '美孚速霸1000（10W-40）'},
+        {id: 3, p: 258, Selected: false, title: '嘉实多银嘉护SM（10W-40）'},
+        {id: 4, p: 328, Selected: false, title: '壳牌喜力黄壳HX5（10W-30）'}
+    ]
+    },
+    {
+        id: 1, Selected: false, title: '空调滤清器', selectList: [
+        {id: 6, p: 79, Selected: false, title: '海洋星空调滤'}
+    ]
+    }
+]}
