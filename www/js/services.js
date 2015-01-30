@@ -109,9 +109,7 @@ angular.module('starter.services', [])
         $rootScope.subsiteCode = $stateParams.pid
         return {
             getPeijianList: function (callback) {
-                $http.get('js/peijian.json').success(callback).error(function (data) {
-                    console.log("Request failed");
-                });
+                $http.get('js/peijian.json').success(callback);
             }
         }
     }
