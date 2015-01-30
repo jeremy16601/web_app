@@ -120,7 +120,7 @@ angular.module('starter.controllers', [])
 
     })
     //下单
-    .controller('orderCtrl', function ($scope, $state, $stateParams, $rootScope, $window, PeijianService) {
+    .controller('orderCtrl', function ($scope, $state, $stateParams, $rootScope, $window, PeijianService, $http) {
 
         $scope.selecte1 = 'selected';
         $scope.fuweifu = '(含服务费50元)';
@@ -151,45 +151,27 @@ angular.module('starter.controllers', [])
             }
         };
 
+        var titleList=[];
         //分类列表
         PeijianService.getPeijianList(function(result){
-            console.log(angular.toJson(result));
-            //$scope.titleList =result;
-        });
-        $scope.titleList1 = [{
-            "brand_type": 1, list: [
-                {
-                    id: 0, Selected: false, title: '机油+机滤+空滤', selectList: [
-                    {id: 0, p: 248, Selected: false, title: '壳牌喜力红壳HX3(15W-40)'},
-                    {id: 0, p: 268, Selected: false, title: '美孚速霸1000（10W-40）'},
-                    {id: 0, p: 258, Selected: false, title: '嘉实多银嘉护SM（10W-40）'},
-                    {id: 0, p: 328, Selected: false, title: '壳牌喜力黄壳HX5（10W-30）'}
-                ]
-                },
-                {
-                    id: 1, Selected: false, title: '空调滤清器', selectList: [
-                    {id: 1, p: 79, Selected: false, title: '海洋星空调滤'}
-                ]
+            titleList=$scope.titleList1 =result;
+            //循环加载不同的配件
+            for (var v = 0; v < $scope.titleList1.length; v++) {
+                if ($stateParams.brand_type == $scope.titleList1[v].brand_type) {
+                    $scope.titleList = $scope.titleList1[v].list;
                 }
-            ]
-        }];
-
-        //循环加载不同的配件
-        for (var v = 0; v < $scope.titleList1.length; v++) {
-            if ($stateParams.brand_type == $scope.titleList1[v].brand_type) {
-
-                $scope.titleList = $scope.titleList1[v].list;
             }
-        }
+        });
+
         //默认价格
         $scope.price = parseInt(50);
         $scope.change = function (item) {
             $rootScope.orderInfo.push(item);
             $scope.price = $scope.price + parseFloat(item.p);
-            for (var i = 0; i < $scope.titleList.length; i++) {
-                for (var j = 0; j < $scope.titleList[i].list.length; j++) {
-                    if (item.id == $scope.titleList[i].list[j].id) {
-                        $scope.titleList[i].list[j].Selected = true;
+            for (var i = 0; i < titleList.length; i++) {
+                for (var j = 0; j <titleList[i].list.length; j++) {
+                    if (item.id == titleList[i].list[j].id) {
+                        titleList[i].list[j].Selected = true;
                         $scope.fuweifu = '';
                         $scope.price = $scope.price - 50;
                     }
