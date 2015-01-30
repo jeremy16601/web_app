@@ -76,7 +76,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             //三级分类
             .state('brand3-list', {
                 cache: false,
-                url: '/brand3-list?brandsid&brand_type',
+                url: '/brand3-list?brandsid&childname',
                 templateUrl: 'templates/brand3-list.html',
                 controller: 'BrandListCtrl3'
             })
@@ -109,7 +109,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
             })
             //在线预约
             .state('order', {
-                url: '/order?brand_type',
+                url: '/order?childname',
                 templateUrl: 'templates/order.html',
                 controller: 'orderCtrl'
             })

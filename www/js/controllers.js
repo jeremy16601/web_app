@@ -157,7 +157,7 @@ angular.module('starter.controllers', [])
             titleList=$scope.titleList1 =result;
             //循环加载不同的配件
             for (var v = 0; v < $scope.titleList1.length; v++) {
-                if ($stateParams.brand_type == $scope.titleList1[v].brand_type) {
+                if ($stateParams.childname==$scope.titleList1[v].childname) {
                     $scope.titleList = $scope.titleList1[v].list;
                 }
             }
@@ -243,7 +243,7 @@ angular.module('starter.controllers', [])
             BrandService3.addBrand3(b)
         };
         $scope.id = $stateParams.brandsid;
-        $scope.brand_type = $stateParams.brand_type;
+        $scope.childname = $stateParams.childname;
         //二级分类夹在
         BrandService3.getBrands3(function (results) {
             $scope.brandslist3 = results;

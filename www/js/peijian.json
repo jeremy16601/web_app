@@ -1,11 +1,10 @@
 ﻿[
-    //类型1
-    {"brand_type": 1, "list": [
+    {"childname": "高尔夫7", "list": [
         {
             "id": 0, "Selected": false, "title": "机油+机滤+空滤", "selectList": [
-            {"id": 0, "p": 248, "Selected": false, "title": "壳牌喜力红壳HX3(15W-40)"},
-            {"id": 0, "p": 268, "Selected": false, "title": "美孚速霸1000（10W-40）"},
-            {"id": 0, "p": 258, "Selected": false, "title": "嘉实多银嘉护SM（10W-40）"},
+            {"id": 0, "p": 688, "Selected": false, "title": "壳牌喜力灰壳ULTRA(5W-40)"},
+            {"id": 0, "p": 688, "Selected": false, "title": "美孚速霸金1号（0w-40）"},
+            {"id": 0, "p": 528, "Selected": false, "title": "嘉实多磁护SN(5W-40) "},
             {"id": 0, "p": 328, "Selected": false, "title": "壳牌喜力黄壳HX5（10W-30）"}
         ]
         },
@@ -15,16 +14,14 @@
         ]
         }
     ]
-},
-  ///////////////////
+}
 
-  //类型2
-  {"brand_type": 2, "list": [
+  ,{"childname": "CC", "list": [
     {"id": 0, "Selected": false, "title": "机油+机滤+空滤", "selectList": [
-      {"id": 0, "p": 248, "Selected": false, "title": "壳牌喜力红壳HX3(15W-40)"},
-      {"id": 0, "p": 268, "Selected": false, "title": "美孚速霸1000（10W-40）"},
-      {"id": 0, "p": 258, "Selected": false, "title": "嘉实多银嘉护SM（10W-40）"},
-      {"id": 0, "p": 328, "Selected": false, "title": "壳牌喜力黄壳HX5（10W-30）"}
+      {"id": 0, "p": 608, "Selected": false, "title": "壳牌喜力蓝壳HX7(5W-40)"},
+      {"id": 0, "p": 688, "Selected": false, "title": "嘉实多磁护API SN/KF(5w-40"},
+      {"id": 0, "p": 850, "Selected": false, "title": "嘉实多极护FE(5W-30)"},
+      {"id": 0, "p": 838, "Selected": false, "title": "壳牌喜力灰壳ULTRA(5W-40)"}
     ]
     },
     {"id": 1, "Selected": false, "title": "空调滤清器", "selectList": [
@@ -32,5 +29,20 @@
     }
   ]
   }
+
+,{"childname": "宝来", "list": [
+  {"id": 0, "Selected": false, "title": "机油+机滤+空滤", "selectList": [
+    {"id": 0, "p": 328, "Selected": false, "title": ".壳牌喜力黄壳HX5(10W-30)"},
+    {"id": 0, "p": 498, "Selected": false, "title": "美孚速霸2000（5w-40"},
+    {"id": 0, "p": 328, "Selected": false, "title": "嘉实多金嘉护SN(10W-40)"},
+    {"id": 0, "p": 498, "Selected": false, "title": "壳牌喜力蓝壳HX7(5W-40)"}
+  ]
+  },
+  {"id": 1, "Selected": false, "title": "空调滤清器", "selectList": [
+    {"id": 1, "p": 79, "Selected": false, "title": "海洋星空调滤"}]
+  }
+]
+}
+
 
 ]
