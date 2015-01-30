@@ -151,13 +151,13 @@ angular.module('starter.controllers', [])
             }
         };
 
-        var titleList=[];
+        var titleList = [];
         //分类列表
-        PeijianService.getPeijianList(function(result){
-            titleList=$scope.titleList1 =result;
+        PeijianService.getPeijianList(function (result) {
+            titleList = $scope.titleList1 = result;
             //循环加载不同的配件
             for (var v = 0; v < $scope.titleList1.length; v++) {
-                if ($stateParams.childname==$scope.titleList1[v].childname) {
+                if ($stateParams.childname == $scope.titleList1[v].childname) {
                     $scope.titleList = $scope.titleList1[v].list;
                 }
             }
@@ -169,11 +169,12 @@ angular.module('starter.controllers', [])
             $rootScope.orderInfo.push(item);
             $scope.price = $scope.price + parseFloat(item.p);
             for (var i = 0; i < titleList.length; i++) {
-                for (var j = 0; j <titleList[i].list.length; j++) {
+                for (var j = 0; j < titleList[i].list.length; j++) {
                     if (item.id == titleList[i].list[j].id) {
                         titleList[i].list[j].Selected = true;
                         $scope.fuweifu = '';
-                        $scope.price = $scope.price - 50;
+
+                        //$scope.price = $scope.price - 50;
                     }
                 }
             }
