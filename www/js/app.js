@@ -4,7 +4,7 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
 
     .run(function ($rootScope) {
         $rootScope.orderInfo = [];
-        $rootScope.url = "http://60.216.75.142:60001/";// "http://60.216.75.142:60001/";
+        $rootScope.url = "http://localhost:3000/";// "http://60.216.75.142:60001/";
         $rootScope.timeout = 100;
     })
 

@@ -150,7 +150,6 @@ angular.module('starter.controllers', [])
                 $scope.selecte3 = 'selected'
             }
         };
-
         var titleList = [];
         //分类列表
         PeijianService.getPeijianList(function (result) {
@@ -162,19 +161,52 @@ angular.module('starter.controllers', [])
                 }
             }
         });
+        //检测数组重复
+        function ov4(ar) {
+            var m = [], f;
+            for (var i = 0; i < ar.length; i++) {
+                f = true;
+                for (var j = 0; j < m.length; j++)
+                    if (ar[i] === m[j]) {
+                        f = false;
+                        break;
+                    }
+                if (f)m.push(ar[i])
+            }
+            return m.sort(function (a, b) {
+                return a - b
+            });
+        }
 
         //默认价格
         $scope.price = parseInt(50);
+        var isFirstAdd = true; //是否是第一次添加
+        var ordertitle;
         $scope.change = function (item) {
+            var temID;//选中第一个不收服务费
             $rootScope.orderInfo.push(item);
-            $scope.price = $scope.price + parseFloat(item.p);
+            $rootScope.orderInfo = ov4($rootScope.orderInfo);
+            for (var f = 0; f < $rootScope.orderInfo.length; f++) {
+                ordertitle = $rootScope.orderInfo[f].title;
+                if (isFirstAdd) {
+                    if (temID != 1) {
+                        $scope.price = $scope.price - 50;
+                    }
+                    isFirstAdd = false;
+                    $scope.price = $scope.price + parseFloat(item.p);
+                } else {
+                    if (!angular.equals(ordertitle, item.title)) {
+                        $scope.price = $scope.price + parseFloat(item.p);
+                    }
+                }
+            }
+
             for (var i = 0; i < titleList.length; i++) {
                 for (var j = 0; j < titleList[i].list.length; j++) {
                     if (item.id == titleList[i].list[j].id) {
                         titleList[i].list[j].Selected = true;
                         $scope.fuweifu = '';
-
-                        //$scope.price = $scope.price - 50;
+                        temID = titleList[i].list[j].id;
                     }
                 }
             }
