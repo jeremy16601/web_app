@@ -162,21 +162,7 @@ angular.module('starter.controllers', [])
             }
         });
         //检测数组重复
-        function ov4(ar) {
-            var m = [], f;
-            for (var i = 0; i < ar.length; i++) {
-                f = true;
-                for (var j = 0; j < m.length; j++)
-                    if (ar[i] === m[j]) {
-                        f = false;
-                        break;
-                    }
-                if (f)m.push(ar[i])
-            }
-            return m.sort(function (a, b) {
-                return a - b
-            });
-        }
+        //从一个给定的数组arr中,随机返回num个不重复项
 
         //默认价格
         $scope.price = parseInt(50);
@@ -184,10 +170,26 @@ angular.module('starter.controllers', [])
         var ordertitle;
         $scope.change = function (item) {
             var temID;//选中第一个不收服务费
+            var isCF = false;
             $rootScope.orderInfo.push(item);
-            $rootScope.orderInfo = ov4($rootScope.orderInfo);
-            for (var f = 0; f < $rootScope.orderInfo.length; f++) {
-                ordertitle = $rootScope.orderInfo[f].title;
+            //console.log('1==' + angular.toJson($rootScope.orderInfo));
+            var n = []; //一个新的临时数组
+            for (var i = 0; i < $rootScope.orderInfo.length; i++) //遍历当前数组
+            {
+                //如果当前数组的第i已经保存进了临时数组，那么跳过，
+                //否则把当前项push到临时数组里面
+                if (n.indexOf($rootScope.orderInfo[i]) == -1) {
+                    n.push($rootScope.orderInfo[i]);
+                    isCF=false;
+                } else {
+                    isCF = true;
+                }
+
+            }
+
+            for (var f = 0; f < n.length; f++) {
+                ordertitle = n[f].title;
+                //console.log('price='+ n[f].add(p));
                 if (isFirstAdd) {
                     if (temID != 1) {
                         $scope.price = $scope.price - 50;
@@ -196,7 +198,11 @@ angular.module('starter.controllers', [])
                     $scope.price = $scope.price + parseFloat(item.p);
                 } else {
                     if (!angular.equals(ordertitle, item.title)) {
-                        $scope.price = $scope.price + parseFloat(item.p);
+                        //$scope.price=$scope.price+n[f].p;
+                        console.log('isCF===' + isCF);
+                        if (!isCF) {
+                            $scope.price = $scope.price + parseFloat(item.p);
+                        }
                     }
                 }
             }
