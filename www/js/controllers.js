@@ -151,6 +151,7 @@ angular.module('starter.controllers', [])
             }
         };
         var titleList = [];
+        $scope.childname=$stateParams.childname;
         //分类列表
         PeijianService.getPeijianList(function (result) {
             titleList = $scope.titleList1 = result;
@@ -198,8 +199,6 @@ angular.module('starter.controllers', [])
                     $scope.price = $scope.price + parseFloat(item.p);
                 } else {
                     if (!angular.equals(ordertitle, item.title)) {
-                        //$scope.price=$scope.price+n[f].p;
-                        console.log('isCF===' + isCF);
                         if (!isCF) {
                             $scope.price = $scope.price + parseFloat(item.p);
                         }
