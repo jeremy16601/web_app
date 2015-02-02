@@ -151,7 +151,7 @@ angular.module('starter.controllers', [])
             }
         };
         var titleList = [];
-        $scope.childname=$stateParams.childname;
+        $scope.childname = $stateParams.childname;
         //分类列表
         PeijianService.getPeijianList(function (result) {
             titleList = $scope.titleList1 = result;
@@ -162,61 +162,50 @@ angular.module('starter.controllers', [])
                 }
             }
         });
-        //检测数组重复
-        //从一个给定的数组arr中,随机返回num个不重复项
-
         //默认价格
-        $scope.price = parseInt(50);
-        var isFirstAdd = true; //是否是第一次添加
-        var ordertitle;
+        $scope.price = 50;
+        var price2 = 0;
+        var isFirst = false;
         $scope.change = function (item) {
-            var temID;//选中第一个不收服务费
-            var isCF = false;
-            $rootScope.orderInfo.push(item);
-            //console.log('1==' + angular.toJson($rootScope.orderInfo));
-            var n = []; //一个新的临时数组
-            for (var i = 0; i < $rootScope.orderInfo.length; i++) //遍历当前数组
-            {
-                //如果当前数组的第i已经保存进了临时数组，那么跳过，
-                //否则把当前项push到临时数组里面
-                if (n.indexOf($rootScope.orderInfo[i]) == -1) {
-                    n.push($rootScope.orderInfo[i]);
-                    isCF=false;
+            if (item != null) {
+                if (item.id == 0) {
+                    isFirst = true;
+                    $scope.price = item.p + price2;
+                    $scope.fuweifu = '';
+                    $rootScope.orderInfo = [];
+                    $rootScope.orderInfo.push(item);
                 } else {
-                    isCF = true;
-                }
-
-            }
-
-            for (var f = 0; f < n.length; f++) {
-                ordertitle = n[f].title;
-                //console.log('price='+ n[f].add(p));
-                if (isFirstAdd) {
-                    if (temID != 1) {
-                        $scope.price = $scope.price - 50;
+                    price2 = item.p;
+                    if (isFirst) {
+                        $scope.price = $scope.price + parseFloat(price2);
+                    } else {
+                        $scope.fuweifu = '(含服务费50元)';
+                        $rootScope.orderInfo.push({id: 1, p: 50, Selected: false, title: '服务费'});
+                        $scope.price = $scope.price + parseFloat(price2);
                     }
-                    isFirstAdd = false;
-                    $scope.price = $scope.price + parseFloat(item.p);
-                } else {
-                    if (!angular.equals(ordertitle, item.title)) {
-                        if (!isCF) {
-                            $scope.price = $scope.price + parseFloat(item.p);
+                    //$rootScope.orderInfo.push(item);
+                }
+                //
+                for (var i = 0; i < titleList.length; i++) {
+                    for (var j = 0; j < titleList[i].list.length; j++) {
+                        if (item.id == titleList[i].list[j].id) {
+                            titleList[i].list[j].Selected = true;
+                            //$scope.fuweifu = '';
                         }
                     }
                 }
-            }
-
-            for (var i = 0; i < titleList.length; i++) {
-                for (var j = 0; j < titleList[i].list.length; j++) {
-                    if (item.id == titleList[i].list[j].id) {
-                        titleList[i].list[j].Selected = true;
-                        $scope.fuweifu = '';
-                        temID = titleList[i].list[j].id;
-                    }
-                }
+            } else {
+                $window.location.reload();
+                ////取消操作
+                //$scope.fuweifu = '(含服务费50元)';
+                //if (!isFirst) {
+                //    $scope.price = 50;
+                //} else {
+                //    $scope.price = $scope.price - price2;
+                //}
+                //return;
             }
         }
-
 
         $scope.checkAll = function () {
 
@@ -243,7 +232,8 @@ angular.module('starter.controllers', [])
             $state.go('pay', {price: $scope.price});
         }
 
-    })
+    }
+)
 
 //添加一级产品分类
     .
