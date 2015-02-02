@@ -179,6 +179,7 @@ angular.module('starter.controllers', [])
                     price2 = item.p;
                     if (isFirst) {
                         $scope.price = $scope.price + parseFloat(price2);
+                        $rootScope.orderInfo.push(item);
                     } else {
                         $scope.fuweifu = '(含服务费50元)';
                         $rootScope.orderInfo.push(item);
