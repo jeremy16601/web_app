@@ -182,7 +182,7 @@ angular.module('starter.controllers', [])
                     } else {
                         $scope.fuweifu = '(含服务费50元)';
                         $rootScope.orderInfo.push(item);
-                        $rootScope.orderInfo.push({id: 1, p: 50, Selected: false, title: '服务费'});
+                        $rootScope.orderInfo.push({"id": 0, "p": 50, "Selected": false, "title": "服务费"});
                         $scope.price = $scope.price + parseFloat(price2);
                     }
                     //$rootScope.orderInfo.push(item);
@@ -214,7 +214,7 @@ angular.module('starter.controllers', [])
             if ($scope.selectedAll) {
                 $scope.selectedAll = true;
                 $scope.price = 50;
-                $rootScope.orderInfo = {id: 1, p: 50, Selected: false, title: '已有配件'};
+                $rootScope.orderInfo = [{id: 1, p: 50, Selected: false, title: '已有配件'}];
                 $scope.fuweifu = '(含服务费50元)';
             } else {
                 $window.location.reload();
