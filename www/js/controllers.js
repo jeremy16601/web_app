@@ -68,6 +68,7 @@ angular.module('starter.controllers', [])
 
 
         $scope.orderlist = $rootScope.orderInfo;
+        console.log(angular.toJson( $scope.orderlist))
         $scope.price = $state.$current.locals.globals.$stateParams.price;
         var selectValue = '';
         $scope.pays = function (o) {
@@ -180,6 +181,7 @@ angular.module('starter.controllers', [])
                         $scope.price = $scope.price + parseFloat(price2);
                     } else {
                         $scope.fuweifu = '(含服务费50元)';
+                        $rootScope.orderInfo.push(item);
                         $rootScope.orderInfo.push({id: 1, p: 50, Selected: false, title: '服务费'});
                         $scope.price = $scope.price + parseFloat(price2);
                     }
