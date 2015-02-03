@@ -165,6 +165,7 @@ angular.module('starter.controllers', [])
         });
         //默认价格
         $scope.price = 50;
+
         var price2 = 0;
         var isFirst = false;
         $scope.change = function (item) {

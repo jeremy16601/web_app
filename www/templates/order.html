@@ -92,8 +92,7 @@
                                     {{t.title}}
                                 </div>
                                 <select style="font-size: 13px;" ng-options="s.title for s in t.selectList"
-                                        ng-change="change(s)" ng-model="s"  >
-                                    <option value="">-- 请选择配件 --</option>
+                                        ng-change="change(s)" ng-model="s" ng-init="s = t.selectList[0]" >
                                 </select>
                             </label>
                         </label>
