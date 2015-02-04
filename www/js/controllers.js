@@ -153,6 +153,7 @@ angular.module('starter.controllers', [])
         };
         //默认价格
         var price2 = 0;
+        $rootScope.orderInfo = [];
         var titleList = [];
         $scope.childname = $stateParams.childname;
         //分类列表
@@ -164,6 +165,8 @@ angular.module('starter.controllers', [])
                     $scope.titleList = $scope.titleList1[v].list;
                     $scope.price = 50 + $scope.titleList[0].selectList[0].p + $scope.titleList[1].selectList[0].p;
                     price2 = $scope.titleList[1].selectList[0].p;
+                    $rootScope.orderInfo.push($scope.titleList[1].selectList[0]);
+                    $rootScope.orderInfo.push($scope.titleList[0].selectList[0]);
                     $scope.fuweifu = '';
                 }
             }
@@ -176,7 +179,6 @@ angular.module('starter.controllers', [])
                     isFirst = true;
                     $scope.price = item.p + price2;
                     $scope.fuweifu = '';
-                    $rootScope.orderInfo = [];
                     $rootScope.orderInfo.push(item);
                 } else {
                     price2 = item.p;
