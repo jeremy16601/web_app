@@ -68,7 +68,7 @@ angular.module('starter.controllers', [])
 
 
         $scope.orderlist = $rootScope.orderInfo;
-        console.log(angular.toJson( $scope.orderlist))
+        //console.log(angular.toJson( $scope.orderlist))
         $scope.price = $state.$current.locals.globals.$stateParams.price;
         var selectValue = '';
         $scope.pays = function (o) {
@@ -151,6 +151,8 @@ angular.module('starter.controllers', [])
                 $scope.selecte3 = 'selected'
             }
         };
+        //默认价格
+        var price2 = 0;
         var titleList = [];
         $scope.childname = $stateParams.childname;
         //分类列表
@@ -160,13 +162,13 @@ angular.module('starter.controllers', [])
             for (var v = 0; v < $scope.titleList1.length; v++) {
                 if ($stateParams.childname == $scope.titleList1[v].childname) {
                     $scope.titleList = $scope.titleList1[v].list;
+                    $scope.price = 50 + $scope.titleList[0].selectList[0].p + $scope.titleList[1].selectList[0].p;
+                    price2 = $scope.titleList[1].selectList[0].p;
+                    $scope.fuweifu = '';
                 }
             }
         });
-        //默认价格
-        $scope.price = 50;
 
-        var price2 = 0;
         var isFirst = false;
         $scope.change = function (item) {
             if (item != null) {
