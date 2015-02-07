@@ -151,6 +151,7 @@ angular.module('starter.controllers', [])
                 $scope.selecte3 = 'selected'
             }
         };
+
         //默认价格
         var price2 = 0;
         $rootScope.orderInfo = [];
@@ -171,6 +172,29 @@ angular.module('starter.controllers', [])
                 }
             }
         });
+
+        var isload = 0;
+        //取消选项
+        $scope.quxiao = function (p, id) {
+            isload++;
+            if (isload != 3) {
+                if (id == 1) {
+                    console.log(angular.toJson($rootScope.orderInfo))
+                    $scope.price = $scope.price - p - 50;
+                }
+                if (id == 0) {
+                    $scope.price = $scope.price - p;
+                }
+            } else {
+                isload = 2;
+                if (id == 0) {
+                    $scope.price = $scope.price + p;
+                }
+                if (id == 1) {
+                    $scope.price = $scope.price + p + 50;
+                }
+            }
+        }
 
         var isFirst = false;
         $scope.change = function (item) {
@@ -204,14 +228,6 @@ angular.module('starter.controllers', [])
                 }
             } else {
                 $window.location.reload();
-                ////取消操作
-                //$scope.fuweifu = '(含服务费50元)';
-                //if (!isFirst) {
-                //    $scope.price = 50;
-                //} else {
-                //    $scope.price = $scope.price - price2;
-                //}
-                //return;
             }
         }
 

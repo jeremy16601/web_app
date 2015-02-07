@@ -83,16 +83,19 @@
                 <div class="col-xs-12" style="min-height: 180px;">
                     <span>项目:</span>
 
-                    <div class="list" >
+                    <div class="list">
 
                         <label class="checkbox" style="padding-left: 0px;" ng-repeat="t in titleList">
-                            <!--<input type="checkbox" ng-disabled="dis" ng-model="t.Selected">-->
-                            <label class="item item-input item-select" style="margin-left: 15px;">
+                            <input type="checkbox" ng-change='quxiao(s.p,t.id)' style="margin-left: 0;"
+                                   ng-disabled="dis"
+                                   ng-model="t.Selected">
+                            <label class="item item-input item-select" style="margin-left: 35px;">
                                 <div class="input-label " style="font-size: 13px;">
                                     {{t.title}}
                                 </div>
                                 <select style="font-size: 13px;" ng-options="s.title for s in t.selectList"
-                                        ng-change="change(s)" ng-model="s" ng-init="s = t.selectList[0]" >
+                                        ng-change="change(s)" ng-model="s" ng-init="s = t.selectList[0]">
+                                    <option value="">--重新选择--</option>
                                 </select>
                             </label>
                         </label>
