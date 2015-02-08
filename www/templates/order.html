@@ -86,7 +86,7 @@
                     <div class="list">
 
                         <label class="checkbox" style="padding-left: 0px;" ng-repeat="t in titleList">
-                            <input type="checkbox" ng-change='quxiao(s.p,t.id)' style="margin-left: 0;"
+                            <input type="checkbox" ng-change='quxiao(s.p,t.id,t.Selected,s)' style="margin-left: 0;"
                                    ng-disabled="dis"
                                    ng-model="t.Selected">
                             <label class="item item-input item-select" style="margin-left: 35px;">
@@ -94,7 +94,7 @@
                                     {{t.title}}
                                 </div>
                                 <select style="font-size: 13px;" ng-options="s.title for s in t.selectList"
-                                        ng-change="change(s)" ng-model="s" ng-init="s = t.selectList[0]">
+                                        ng-change="change(s,t.Selected)" ng-model="s" ng-init="s = t.selectList[0]">
                                     <option value="">--重新选择--</option>
                                 </select>
                             </label>

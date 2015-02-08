@@ -156,6 +156,7 @@ angular.module('starter.controllers', [])
         var price2 = 0;
         $rootScope.orderInfo = [];
         var titleList = [];
+        var isFirst = false;
         $scope.childname = $stateParams.childname;
         //分类列表
         PeijianService.getPeijianList(function (result) {
@@ -173,56 +174,58 @@ angular.module('starter.controllers', [])
             }
         });
 
-        var isload = 0;
         //取消选项
-        $scope.quxiao = function (p, id) {
-            isload++;
-            if (isload != 3) {
+        $scope.quxiao = function (p, id, select, s) {
+            isFirst = select;
+            if (!select) {
+                console.log('select====' + select + angular.toJson($rootScope.orderInfo));
                 if (id == 1) {
-                    console.log(angular.toJson($rootScope.orderInfo))
                     $scope.price = $scope.price - p - 50;
+                    $rootScope.orderInfo.splice(0);
                 }
                 if (id == 0) {
+                    $rootScope.orderInfo.splice(1);
                     $scope.price = $scope.price - p;
                 }
             } else {
-                isload = 2;
                 if (id == 0) {
                     $scope.price = $scope.price + p;
+                    $rootScope.orderInfo.push(s);
                 }
                 if (id == 1) {
                     $scope.price = $scope.price + p + 50;
+                    $rootScope.orderInfo.push(s);
                 }
             }
+            console.log(angular.toJson($rootScope.orderInfo));
         }
 
-        var isFirst = false;
         $scope.change = function (item) {
             if (item != null) {
                 if (item.id == 0) {
                     isFirst = true;
                     $scope.price = item.p + price2;
                     $scope.fuweifu = '';
-                    $rootScope.orderInfo.push(item);
+                    $rootScope.orderInfo.splice(0, 1, item);
+                    //$rootScope.orderInfo.push(item);
                 } else {
                     price2 = item.p;
+                    alert(price2)
                     if (isFirst) {
                         $scope.price = $scope.price + parseFloat(price2);
-                        $rootScope.orderInfo.push(item);
+                        $rootScope.orderInfo.splice(1, 1, item);
+                        //$rootScope.orderInfo.push(item);
                     } else {
                         $scope.fuweifu = '(含服务费50元)';
                         $rootScope.orderInfo.push(item);
                         $rootScope.orderInfo.push({"id": 0, "p": 50, "Selected": false, "title": "服务费"});
                         $scope.price = $scope.price + parseFloat(price2);
                     }
-                    //$rootScope.orderInfo.push(item);
                 }
-                //
                 for (var i = 0; i < titleList.length; i++) {
                     for (var j = 0; j < titleList[i].list.length; j++) {
                         if (item.id == titleList[i].list[j].id) {
                             titleList[i].list[j].Selected = true;
-                            //$scope.fuweifu = '';
                         }
                     }
                 }
