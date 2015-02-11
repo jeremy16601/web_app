@@ -165,9 +165,9 @@ angular.module('starter.controllers', [])
             for (var v = 0; v < $scope.titleList1.length; v++) {
                 if ($stateParams.childname == $scope.titleList1[v].childname) {
                     $scope.titleList = $scope.titleList1[v].list;
-                    $scope.price = 50 + $scope.titleList[0].selectList[0].p + $scope.titleList[1].selectList[0].p;
+                    $scope.price = $scope.titleList[0].selectList[0].p;
                     price2 = $scope.titleList[1].selectList[0].p;
-                    $rootScope.orderInfo.push($scope.titleList[1].selectList[0]);
+                    //$rootScope.orderInfo.push($scope.titleList[1].selectList[0]);
                     $rootScope.orderInfo.push($scope.titleList[0].selectList[0]);
                     $scope.fuweifu = '';
                 }
@@ -181,10 +181,10 @@ angular.module('starter.controllers', [])
                 console.log('select====' + select + angular.toJson($rootScope.orderInfo));
                 if (id == 1) {
                     $scope.price = $scope.price - p - 50;
-                    $rootScope.orderInfo.splice(0);
+                    $rootScope.orderInfo.splice(0, 1);
                 }
                 if (id == 0) {
-                    $rootScope.orderInfo.splice(1);
+                    $rootScope.orderInfo.splice(0, 1);
                     $scope.price = $scope.price - p;
                 }
             } else {
