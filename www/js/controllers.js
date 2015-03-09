@@ -65,8 +65,6 @@ angular.module('starter.controllers', [])
 
 //付款
     .controller('PayCtrl', function ($rootScope, $cookieStore, localStorageService, $stateParams, $state, $scope, PayService) {
-
-
         $scope.orderlist = $rootScope.orderInfo;
         //console.log(angular.toJson( $scope.orderlist))
         $scope.price = $state.$current.locals.globals.$stateParams.price;
@@ -114,7 +112,11 @@ angular.module('starter.controllers', [])
         };
 
     })
+    //后台管理
+    .controller('AdminCtrl', function ($rootScope, $state, $scope) {
 
+
+    })
     //付款成功
     .controller('PayOKCtrl', function ($rootScope, $ionicNavBarDelegate, $state, $scope) {
         $ionicNavBarDelegate.showBackButton(false);

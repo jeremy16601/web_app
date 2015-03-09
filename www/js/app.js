@@ -26,6 +26,13 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/home.html',
                 controller: 'HomeCtrl'
             })
+            //后台
+            .state('admin', {
+                cache: false,
+                url: '/admin',
+                templateUrl: 'templates/admin.html',
+                controller: 'AdminCtrl'
+            })
             // 新闻列表
             .state('news', {
                 url: '/news',
@@ -66,11 +73,25 @@ angular.module('starter', ['ionic', 'LocalStorageModule', 'starter.services', 's
                 templateUrl: 'templates/brand-list.html',
                 controller: 'BrandListCtrl'
             })
+            //一级分类
+            .state('brand-list-admin', {
+                cache: false,
+                url: '/brand-list-admin',
+                templateUrl: 'templates/brand-list-admin.html',
+                controller: 'BrandListCtrl'
+            })
             //二级分类
             .state('brand2-list', {
                 cache: false,
                 url: '/brand2-list?brand_type',
                 templateUrl: 'templates/brand2-list.html',
+                controller: 'BrandListCtrl2'
+            })
+            //二级分类-后台
+            .state('brand2-list-admin', {
+                cache: false,
+                url: '/brand2-list-admin?brand_type',
+                templateUrl: 'templates/brand2-list-admin.html',
                 controller: 'BrandListCtrl2'
             })
             //三级分类
